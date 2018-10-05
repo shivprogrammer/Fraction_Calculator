@@ -142,10 +142,15 @@ public class Main {
     }
 
     public static String reducer(int numerator, int denominator) {
+        if (numerator % denominator == 0) {
+            int reduced = numerator / denominator;
+            return Integer.toString(reduced);
+        }
+
         int smaller = (numerator < denominator) ? numerator : denominator;
         for (int i = 2; i < smaller / 2; i++) {
             if (numerator % i == 0 && denominator % i == 0) {
-                reducer(numerator / i,denominator / i);
+                return reducer(numerator / i,denominator / i);
             }
         }
         return Integer.toString(numerator) + '/' + Integer.toString(denominator);
