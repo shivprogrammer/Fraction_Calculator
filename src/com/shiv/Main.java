@@ -36,7 +36,7 @@ public class Main {
 
         String result = calculateResult(firstNum, secondNum, operation);
 
-        System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " is: " + result);
+        System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " in the form of an improper fraction is: " + result);
     }
 
     public static String calculateResult(String firstNum, String secondNum, String operation) {
@@ -70,23 +70,26 @@ public class Main {
 
         String result = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
         return result;
+
+//        return resultsMessage(firstNum, secondNum, operation, result);
     }
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
         if (operation.equals("add")) {
-            System.out.println("We are in the add function");
+            System.out.println("in the add function");
             return add(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
-        else if (operation == "subtract") {
-
+        else if (operation.equals("subtract")) {
+            System.out.println("in the subtract function");
+            return subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         else if (operation.equals("multiply")) {
-            System.out.println("We are in the multiply function");
+            System.out.println("in the multiply function");
             return multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
         else if (operation.equals("divide")) {
-            System.out.println("we are in the divide function");
+            System.out.println("in the divide function");
             return multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
         }
         return "";
@@ -108,9 +111,14 @@ public class Main {
         return result;
     }
 
-//    public static String subtract(String num1, String num2) {
-//        return "";
-//    }
+    public static String subtract(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
+        int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
+        System.out.println("newDenominator: " + newDenominator);
+        int newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
+        System.out.println("newNumerator: " + newNumerator);
+        String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
+        return result;
+    }
 
     public static int findLowestCommonMultiple(int firstNum, int secondNum) {
         int lowestCommonMultiple = firstNum * secondNum;
