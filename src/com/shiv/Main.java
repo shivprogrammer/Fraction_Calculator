@@ -3,6 +3,10 @@ package com.shiv;
 import java.util.Scanner;
 
 public class Main {
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 
     public static void initiateCalculation() {
         clearScreen();
@@ -37,18 +41,19 @@ public class Main {
     public static String calculateResult(String firstNum, String secondNum, String operation) {
         String num1 = calculateImproperFraction(firstNum);
         String num2 = calculateImproperFraction(secondNum);
+        int num1Numerator, num1Denominator, num2Numerator, num2Denominator;
 
         for (int x = 0; x < num1.length; x++) {
-            if (num1[x] == "/") {
-                int num1Numerator = parseInt(fraction.substring(0, x));
-                int num1Denominator = parseInt(fraction.substring(x + 1, fraction.length));
+            if (num1.charAt(x) == '/') {
+                num1Numerator = parseInt(fraction.substring(0, x));
+                num1Denominator = parseInt(fraction.substring(x + 1, fraction.length));
             }
         }
 
         for (int y = 0; y < num2.length; y++) {
-            if (num2[y] == "/") {
-                int num2Numerator = parseInt(fraction.substring(0, x));
-                int num2Denominator = parseInt(fraction.substring(x + 1, fraction.length));
+            if (num2.charAt(y) == '/') {
+                num2Numerator = parseInt(fraction.substring(0, x));
+                num2Denominator = parseInt(fraction.substring(x + 1, fraction.length));
             }
         }
 
@@ -77,48 +82,48 @@ public class Main {
         return newNumber;
     }
 
-    public static String reduce(String firstNum, String secondNum) {
+//    public static String reduce(String firstNum, String secondNum) {
+//
+//    }
 
-    }
+//    public static String calculateImproperFraction(String fraction) {
+//        for (int i = 0; i < fraction.length; i++) {
+//            if (fraction[i] == '_') {
+//                // perform some other function
+//            }
+//        }
+//        return fraction;
+//    }
 
-    public static String calculateImproperFraction(String fraction) {
-        for (int i = 0; i < fraction.length; i++) {
-            if (fraction[i] == '_') {
-                // perform some other function
-            }
-        }
-        return fraction;
-    }
+//    public static String calculateMixedFraction(String fraction) {
+//        return "";
+//    }
 
-    public static String calculateMixedFraction(String fraction) {
-        return "";
-    }
+//    public static String mixedToImproper(String mixed) {
+//        return "";
+//    }
 
-    public static String mixedToImproper(String mixed) {
-        return "";
-    }
+//    public static String add(String num1, String num2) {
+//        return "";
+//    }
 
-    public static String add(String num1, String num2) {
-        return "";
-    }
+//    public static String subtract(String num1, String num2) {
+//        return "";
+//    }
 
-    public static String subtract(String num1, String num2) {
-        return "";
-    }
-
-    public static String divide(String num1, String num2) {
-        return "";
-    }
-
-    public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
+//    public static String divide(String num1, String num2) {
+//        return "";
+//    }
 
     public static void main(String[] args) {
         initiateCalculation();
     }
 }
+
+
+/////////////////////////////
+////////// TESTS ////////////
+/////////////////////////////
 
 /*
 Potential tests:
