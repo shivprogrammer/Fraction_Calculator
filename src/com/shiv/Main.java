@@ -5,17 +5,11 @@ import java.util.Scanner;
 public class Main {
     private static Scanner consoleInput = new Scanner(System.in);
 
-    public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
     public static void initiateCalculation() {
-        clearScreen();
-
+        System.out.println(" ");
         System.out.println("Welcome to the Fraction Calculator");
         System.out.println("Please enter your first number as either a mixed number or improper fraction.");
-        System.out.print("If you are entering a mixed variable, please put a space between the whole number and the fraction: ");
+        System.out.print("If you are entering a mixed variable, please put an underscore between the whole number and the fraction (ex: 2_2/3): ");
         String firstNum = consoleInput.nextLine();
         System.out.println("Your first number is: " + firstNum);
         System.out.println(" ");
@@ -26,7 +20,7 @@ public class Main {
         System.out.println(" ");
 
         System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
-        String operation = consoleInput.nextLine();
+        String operation = consoleInput.nextLine().toLowerCase();
         System.out.println("The operation you want done between the two numbers is: " + operation);
         System.out.println(" ");
 
@@ -37,6 +31,15 @@ public class Main {
         String result = calculateResult(firstNum, secondNum, operation);
 
         System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " in the form of an improper fraction is: " + result);
+
+        System.out.println("Do you want to run another calculation?: ");
+        String anotherOne = consoleInput.nextLine();
+        if (anotherOne.toLowerCase().equals("yes")) {
+            initiateCalculation();
+        }
+        else {
+            System.out.println("Okay, bye!");
+        }
     }
 
     public static String calculateResult(String firstNum, String secondNum, String operation) {
@@ -161,7 +164,7 @@ public class Main {
         }
 
         int smaller = (numerator < denominator) ? numerator : denominator;
-        for (int i = 2; i < smaller / 2; i++) {
+        for (int i = 2; i <= smaller; i++) {
             if (numerator % i == 0 && denominator % i == 0) {
                 return reducer(numerator / i,denominator / i);
             }
