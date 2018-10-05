@@ -76,20 +76,17 @@ public class Main {
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
         if (operation.equals("add")) {
-//            System.out.println("in the add function");
             return add(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         else if (operation.equals("subtract")) {
-//            System.out.println("in the subtract function");
             return subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         else if (operation.equals("multiply")) {
-//            System.out.println("in the multiply function");
-            return multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+            String result = multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+            return reduce(result);
         }
         // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
         else if (operation.equals("divide")) {
-//            System.out.println("in the divide function");
             return multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
         }
         return "";
@@ -129,9 +126,30 @@ public class Main {
         return lowestCommonMultiple * 2;
     }
 
-//    public static String reduce(String firstNum, String secondNum) {
-//
-//    }
+    public static String reduce(String fraction) {
+        int divideSymbolLocation = -1;
+
+        for (int i = 0; i < fraction.length(); i++) {
+            if (fraction.charAt(i) == '/') {
+                divideSymbolLocation = i;
+            }
+        }
+
+        int numerator = Integer.parseInt(fraction.substring(0, divideSymbolLocation));
+        int denominator = Integer.parseInt(fraction.substring(divideSymbolLocation + 1, fraction.length()));
+
+        return reducer(numerator, denominator);
+    }
+
+    public static String reducer(int numerator, int denominator) {
+        int smaller = (numerator < denominator) ? numerator : denominator;
+        for (int i = 2; i < smaller / 2; i++) {
+            if (numerator % i == 0 && denominator % i == 0) {
+                reducer(numerator / i,denominator / i);
+            }
+        }
+        return Integer.toString(numerator) + '/' + Integer.toString(denominator);
+    }
 
     public static String calculateImproperFraction(String fraction) {
         for (int i = 0; i < fraction.length(); i++) {
@@ -154,10 +172,10 @@ public class Main {
             }
         }
 
+        int denominator = Integer.parseInt(mixed.substring(divideSymbolLocation + 1, mixed.length()));
         int wholeNumber = Integer.parseInt(mixed.substring(0, underscoreLocation));
         int currentNumerator = Integer.parseInt(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
-        int newNumerator = wholeNumber * currentNumerator;
-        int denominator = Integer.parseInt(mixed.substring(divideSymbolLocation + 1, mixed.length()));
+        int newNumerator = wholeNumber * denominator + currentNumerator;
         String result = Integer.toString(newNumerator)+ '/' + Integer.toString(denominator);
         return result;
     }
