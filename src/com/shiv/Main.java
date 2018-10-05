@@ -3,6 +3,12 @@ package com.shiv;
 import java.util.Scanner;
 
 public class Main {
+    private static Scanner consoleInput = new Scanner(System.in);
+
+    public Main() {
+        initiateCalculation();
+    }
+
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -10,22 +16,21 @@ public class Main {
 
     public static void initiateCalculation() {
         clearScreen();
-        Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to the Fraction Calculator");
         System.out.println("Please enter your first number as either a mixed number or improper fraction.");
         System.out.print("If you are entering a mixed variable, please put a space between the whole number and the fraction: ");
-        String firstNum = in.nextLine();
+        String firstNum = consoleInput.nextLine();
         System.out.println("Your first number is: " + firstNum);
         System.out.println(" ");
 
         System.out.print("Great, now please enter your second number in the same fashion: ");
-        String secondNum = in.nextLine();
+        String secondNum = consoleInput.nextLine();
         System.out.println("Your second number is: " + secondNum);
         System.out.println(" ");
 
         System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
-        String operation = in.nextLine();
+        String operation = consoleInput.nextLine();
 //        if (checkValidOperation(operation)) {
         System.out.println("The operation you want done between the two numbers is: " + operation);
         System.out.println(" ");
@@ -53,9 +58,9 @@ public class Main {
         for (int x = 0; x < num1.length(); x++) {
             if (num1.charAt(x) == '/') {
                 num1Numerator = Integer.parseInt(num1.substring(0, x));
-//                System.out.println("num1Numerator: " + num1Numerator);
+                System.out.println("num1Numerator: " + num1Numerator);
                 num1Denominator = Integer.parseInt(num1.substring(x + 1, num1.length()));
-//                System.out.println("num1Denominator: " + num1Denominator);
+                System.out.println("num1Denominator: " + num1Denominator);
 
             }
         }
@@ -63,7 +68,10 @@ public class Main {
         for (int y = 0; y < num2.length(); y++) {
             if (num2.charAt(y) == '/') {
                 num2Numerator = Integer.parseInt(num2.substring(0, y));
+                System.out.println("num2Numerator: " + num2Numerator);
                 num2Denominator = Integer.parseInt(num2.substring(y + 1, num2.length()));
+                System.out.println("num2Denominator: " + num2Denominator);
+
             }
         }
 
@@ -128,7 +136,8 @@ public class Main {
 
     public static void main(String[] args) {
 //        initiateCalculation();
-        calculateResult("111/8", "22/3", "multiply");
+//        calculateResult("111/8", "22/3", "multiply");
+        new Main();
     }
 }
 
