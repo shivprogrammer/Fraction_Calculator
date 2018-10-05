@@ -31,36 +31,46 @@ public class Main {
         System.out.println(" ");
 //        }
 
-        System.out.print("Great, would you like your answer as a mixed fraction or an improper fraction? ");
-        String mixedOrImproper = in.nextLine();
-        System.out.println("Cool, you want your result as a " + mixedOrImproper + " fraction");
+//        System.out.print("Great, would you like your answer as a mixed fraction or an improper fraction? ");
+//        String mixedOrImproper = in.nextLine();
+//        System.out.println("Cool, you want your result as a " + mixedOrImproper + " fraction");
 
-        calculateResult(firstNum, secondNum, operation);
+        String result = calculateResult(firstNum, secondNum, operation);
+        System.out.println(" ");
+        System.out.println(result);
+
+//        System.out.println("The result of " + firstNum + operation + " with " + secondNum + " is: " + result);
     }
 
     public static String calculateResult(String firstNum, String secondNum, String operation) {
         String num1 = calculateImproperFraction(firstNum);
         String num2 = calculateImproperFraction(secondNum);
-        int num1Numerator, num1Denominator, num2Numerator, num2Denominator;
+        int num1Numerator = 0;
+        int num1Denominator = 0;
+        int num2Numerator = 0;
+        int num2Denominator = 0;
 
-        for (int x = 0; x < num1.length; x++) {
+        for (int x = 0; x < num1.length(); x++) {
             if (num1.charAt(x) == '/') {
-                num1Numerator = parseInt(fraction.substring(0, x));
-                num1Denominator = parseInt(fraction.substring(x + 1, fraction.length));
+                num1Numerator = Integer.parseInt(num1.substring(0, x));
+//                System.out.println("num1Numerator: " + num1Numerator);
+                num1Denominator = Integer.parseInt(num1.substring(x + 1, num1.length()));
+//                System.out.println("num1Denominator: " + num1Denominator);
+
             }
         }
 
-        for (int y = 0; y < num2.length; y++) {
+        for (int y = 0; y < num2.length(); y++) {
             if (num2.charAt(y) == '/') {
-                num2Numerator = parseInt(fraction.substring(0, x));
-                num2Denominator = parseInt(fraction.substring(x + 1, fraction.length));
+                num2Numerator = Integer.parseInt(num2.substring(0, y));
+                num2Denominator = Integer.parseInt(num2.substring(y + 1, num2.length()));
             }
         }
 
         return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
 
-    public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator Sting operation) {
+    public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
         if (operation == "add") {
 
         }
@@ -73,12 +83,13 @@ public class Main {
         else if (operation == "divide") {
 
         }
+        return "";
     }
 
     public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newNumerator = firstNumerator * secondNumerator;
         int newDenominator = firstDenominator * secondDenominator;
-        String newNumber = newNumerator.toString() + '/' + newDenominator.toString();
+        String newNumber = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
         return newNumber;
     }
 
@@ -86,14 +97,14 @@ public class Main {
 //
 //    }
 
-//    public static String calculateImproperFraction(String fraction) {
-//        for (int i = 0; i < fraction.length; i++) {
-//            if (fraction[i] == '_') {
-//                // perform some other function
-//            }
-//        }
-//        return fraction;
-//    }
+    public static String calculateImproperFraction(String fraction) {
+        for (int i = 0; i < fraction.length(); i++) {
+            if (fraction.charAt(i) == '_') {
+                // perform some other function
+            }
+        }
+        return fraction;
+    }
 
 //    public static String calculateMixedFraction(String fraction) {
 //        return "";
@@ -116,7 +127,8 @@ public class Main {
 //    }
 
     public static void main(String[] args) {
-        initiateCalculation();
+//        initiateCalculation();
+        calculateResult("111/8", "22/3", "multiply");
     }
 }
 
