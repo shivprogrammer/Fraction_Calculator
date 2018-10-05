@@ -5,10 +5,6 @@ import java.util.Scanner;
 public class Main {
     private static Scanner consoleInput = new Scanner(System.in);
 
-//    public Main() {
-//        initiateCalculation();
-//    }
-
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -31,13 +27,11 @@ public class Main {
 
         System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
         String operation = consoleInput.nextLine();
-//        if (checkValidOperation(operation)) {
         System.out.println("The operation you want done between the two numbers is: " + operation);
         System.out.println(" ");
-//        }
 
 //        System.out.print("Great, would you like your answer as a mixed fraction or an improper fraction? ");
-//        String mixedOrImproper = in.nextLine();
+//        String mixedOrImproper = consoleInput.nextLine();
 //        System.out.println("Cool, you want your result as a " + mixedOrImproper + " fraction");
 
         String result = calculateResult(firstNum, secondNum, operation);
@@ -75,7 +69,6 @@ public class Main {
         }
 
         String result = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-//        System.out.println("newNumber: " + newNumber);
         return result;
     }
 
@@ -102,11 +95,8 @@ public class Main {
 
     public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newNumerator = firstNumerator * secondNumerator;
-//        System.out.println("newNumerator: " + newNumerator);
         int newDenominator = firstDenominator * secondDenominator;
-//        System.out.println("newDenominator: " + newDenominator);
         String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
-//        System.out.println("result: " + result);
         return result;
     }
 
@@ -139,14 +129,8 @@ public class Main {
 //        return "";
 //    }
 
-//    public static String divide(String num1, String num2) {
-//        return "";
-//    }
-
     public static void main(String[] args) {
         initiateCalculation();
-//        calculateResult("111/8", "22/3", "multiply");
-//        new Main();
     }
 }
 
@@ -161,4 +145,4 @@ Potential tests:
 • input has an extra space in the middle(1 10_2/3)
 • input is not a fraction (0.44)
         -> if input does not have '/'
- */
+*/
