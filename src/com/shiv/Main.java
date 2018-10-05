@@ -76,20 +76,20 @@ public class Main {
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
         if (operation.equals("add")) {
-            System.out.println("in the add function");
+//            System.out.println("in the add function");
             return add(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         else if (operation.equals("subtract")) {
-            System.out.println("in the subtract function");
+//            System.out.println("in the subtract function");
             return subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         else if (operation.equals("multiply")) {
-            System.out.println("in the multiply function");
+//            System.out.println("in the multiply function");
             return multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
         else if (operation.equals("divide")) {
-            System.out.println("in the divide function");
+//            System.out.println("in the divide function");
             return multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
         }
         return "";
@@ -136,17 +136,33 @@ public class Main {
     public static String calculateImproperFraction(String fraction) {
         for (int i = 0; i < fraction.length(); i++) {
             if (fraction.charAt(i) == '_') {
-                // perform some other function
+                return mixedToImproperFraction(fraction);
             }
         }
         return fraction;
     }
 
-//    public static String calculateMixedFraction(String fraction) {
-//        return "";
-//    }
+    public static String mixedToImproperFraction(String mixed) {
+        int underscoreLocation = -1, divideSymbolLocation = -1;
 
-//    public static String mixedToImproper(String mixed) {
+        for (int i = 0; i < mixed.length(); i++) {
+            if (mixed.charAt(i) == '_') {
+                underscoreLocation = i;
+            }
+            if (mixed.charAt(i) == '/') {
+                divideSymbolLocation = i;
+            }
+        }
+
+        int wholeNumber = Integer.parseInt(mixed.substring(0, underscoreLocation));
+        int currentNumerator = Integer.parseInt(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
+        int newNumerator = wholeNumber * currentNumerator;
+        int denominator = Integer.parseInt(mixed.substring(divideSymbolLocation + 1, mixed.length()));
+        String result = Integer.toString(newNumerator)+ '/' + Integer.toString(denominator);
+        return result;
+    }
+
+//    public static String calculateMixedFraction(String fraction) {
 //        return "";
 //    }
 
