@@ -30,7 +30,7 @@ public class Main {
 
         String result = calculateResult(firstNum, secondNum, operation);
 
-        System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " in the form of an improper fraction is: " + result);
+        System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " is: " + result);
 
         System.out.println("Do you want to run another calculation?: ");
         String anotherOne = consoleInput.nextLine();
@@ -54,20 +54,14 @@ public class Main {
         for (int x = 0; x < num1.length(); x++) {
             if (num1.charAt(x) == '/') {
                 num1Numerator = Integer.parseInt(num1.substring(0, x));
-                System.out.println("num1Numerator: " + num1Numerator);
                 num1Denominator = Integer.parseInt(num1.substring(x + 1, num1.length()));
-                System.out.println("num1Denominator: " + num1Denominator);
-
             }
         }
 
         for (int y = 0; y < num2.length(); y++) {
             if (num2.charAt(y) == '/') {
                 num2Numerator = Integer.parseInt(num2.substring(0, y));
-                System.out.println("num2Numerator: " + num2Numerator);
                 num2Denominator = Integer.parseInt(num2.substring(y + 1, num2.length()));
-                System.out.println("num2Denominator: " + num2Denominator);
-
             }
         }
 
