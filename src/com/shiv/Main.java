@@ -9,26 +9,27 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to the Fraction Calculator");
-        System.out.println("Please enter your first number as either a mixed number or improper fraction. If you are entering a mixed variable, please put a space between the whole number and the fraction");
+        System.out.println("Please enter your first number as either a mixed number or improper fraction.");
+        System.out.print("If you are entering a mixed variable, please put a space between the whole number and the fraction: ");
         String firstNum = in.nextLine();
         System.out.println("Your first number is: " + firstNum);
         System.out.println(" ");
 
-        System.out.println("Great, now please enter your second number in the same fashion");
+        System.out.print("Great, now please enter your second number in the same fashion: ");
         String secondNum = in.nextLine();
         System.out.println("Your second number is: " + secondNum);
         System.out.println(" ");
 
-        System.out.println("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide");
+        System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
         String operation = in.nextLine();
 //        if (checkValidOperation(operation)) {
         System.out.println("The operation you want done between the two numbers is: " + operation);
         System.out.println(" ");
 //        }
 
-        System.out.println("Great, would you like your answer as a mixed fraction or an improper fraction?");
+        System.out.print("Great, would you like your answer as a mixed fraction or an improper fraction? ");
         String mixedOrImproper = in.nextLine();
-        System.out.println("You want your result as a " + mixedOrImproper + " fraction");
+        System.out.println("Cool, you want your result as a " + mixedOrImproper + " fraction");
 
         calculateResult(firstNum, secondNum, operation);
     }
@@ -41,9 +42,9 @@ public class Main {
     }
 
     public static String calculateImproperFraction(String fraction) {
-        for (int i = 0; i < fraction.length; i++) {
-            if ()
-        }
+//        for (int i = 0; i < fraction.length; i++) {
+//            if ()
+//        }
 
         int numerator;
         int denominator;
@@ -51,12 +52,12 @@ public class Main {
         return "";
     }
 
-    public static String calculateMixecFraction(String fraction) {
-        
+    public static String calculateMixedFraction(String fraction) {
+        return "";
     }
 
     public static String mixedToImproper(String mixed) {
-
+        return "";
     }
 
     public static String add(String num1, String num2) {
