@@ -42,12 +42,19 @@ public class Main {
     }
 
     public static String calculateImproperFraction(String fraction) {
-//        for (int i = 0; i < fraction.length; i++) {
-//            if ()
-//        }
+        for (int i = 0; i < fraction.length; i++) {
+            if (fraction[i] == '_') {
+                // perform some other function
+            }
+        }
 
-        int numerator;
-        int denominator;
+
+        for (int x = 0; x < fraction.length; x++) {
+            if (fraction[x] == '/') {
+                int numerator = parseInt(fraction.substring(0, x));
+                int denominator = parseInt(fraction.substring(x + 1, fraction.length));
+            }
+        }
 
         return "";
     }
