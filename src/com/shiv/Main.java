@@ -73,22 +73,21 @@ public class Main {
     }
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
-        if (operation == "add") {
-
+        if (operation.equals("add")) {
+            System.out.println("We are in the add function");
+            return add(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
         }
         else if (operation == "subtract") {
 
         }
         else if (operation.equals("multiply")) {
             System.out.println("We are in the multiply function");
-            String result = multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
-            return result;
+            return multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
         else if (operation.equals("divide")) {
             System.out.println("we are in the divide function");
-            String result = multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
-            return result;
+            return multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
         }
         return "";
     }
@@ -98,6 +97,20 @@ public class Main {
         int newDenominator = firstDenominator * secondDenominator;
         String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
         return result;
+    }
+
+    public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
+        
+        String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
+        return result;
+    }
+
+    public static String subtract(String num1, String num2) {
+        return "";
+    }
+
+    public static int lowestCommonMultiple(int firstNum, int secondNum) {
+
     }
 
 //    public static String reduce(String firstNum, String secondNum) {
@@ -118,14 +131,6 @@ public class Main {
 //    }
 
 //    public static String mixedToImproper(String mixed) {
-//        return "";
-//    }
-
-//    public static String add(String num1, String num2) {
-//        return "";
-//    }
-
-//    public static String subtract(String num1, String num2) {
 //        return "";
 //    }
 
