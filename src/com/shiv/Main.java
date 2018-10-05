@@ -75,7 +75,7 @@ public class Main {
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
         if (operation.equals("add")) {
             System.out.println("We are in the add function");
-            return add(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
+            return add(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         else if (operation == "subtract") {
 
@@ -100,17 +100,25 @@ public class Main {
     }
 
     public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
-        
+        int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
+        System.out.println("newDenominator: " + newDenominator);
+        int newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
+        System.out.println("newNumerator: " + newNumerator);
         String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
         return result;
     }
 
-    public static String subtract(String num1, String num2) {
-        return "";
-    }
+//    public static String subtract(String num1, String num2) {
+//        return "";
+//    }
 
-    public static int lowestCommonMultiple(int firstNum, int secondNum) {
+    public static int findLowestCommonMultiple(int firstNum, int secondNum) {
+        int lowestCommonMultiple = firstNum * secondNum;
 
+        while (lowestCommonMultiple % firstNum == 0 && lowestCommonMultiple % secondNum == 0) {
+            lowestCommonMultiple /= 2;
+        }
+        return lowestCommonMultiple * 2;
     }
 
 //    public static String reduce(String firstNum, String secondNum) {
