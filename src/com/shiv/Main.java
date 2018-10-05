@@ -38,7 +38,21 @@ public class Main {
         String num1 = calculateImproperFraction(firstNum);
         String num2 = calculateImproperFraction(secondNum);
 
-        return "";
+        for (int x = 0; x < num1.length; x++) {
+            if (num1[x] == '/') {
+                int num1Numerator = parseInt(fraction.substring(0, x));
+                int num1Denominator = parseInt(fraction.substring(x + 1, fraction.length));
+            }
+        }
+
+        for (int y = 0; y < num2.length; y++) {
+            if (num2[y] == '/') {
+                int num2Numerator= parseInt(fraction.substring(0, x));
+                int nnum2Denominator = parseInt(fraction.substring(x + 1, fraction.length));
+            }
+        }
+
+        return performOperation()
     }
 
     public static String calculateImproperFraction(String fraction) {
@@ -47,15 +61,11 @@ public class Main {
                 // perform some other function
             }
         }
+        return fraction;
 
 
-        for (int x = 0; x < fraction.length; x++) {
-            if (fraction[x] == '/') {
-                int numerator = parseInt(fraction.substring(0, x));
-                int denominator = parseInt(fraction.substring(x + 1, fraction.length));
-            }
-        }
 
+//
         return "";
     }
 
