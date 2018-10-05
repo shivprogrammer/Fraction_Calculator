@@ -76,10 +76,12 @@ public class Main {
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
         if (operation.equals("add")) {
-            return add(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+            String result = add(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+            return reduce(result);
         }
         else if (operation.equals("subtract")) {
-            return subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+            String result = subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+            return reduce(result);
         }
         else if (operation.equals("multiply")) {
             String result = multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
@@ -87,7 +89,8 @@ public class Main {
         }
         // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
         else if (operation.equals("divide")) {
-            return multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
+            String result = multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
+            return reduce(result);
         }
         return "";
     }
@@ -118,7 +121,17 @@ public class Main {
     }
 
     public static int findLowestCommonMultiple(int firstNum, int secondNum) {
-        int lowestCommonMultiple = firstNum * secondNum;
+        int lowestCommonMultiple;
+        if (firstNum % secondNum == 0) {
+            lowestCommonMultiple = firstNum;
+            return lowestCommonMultiple;
+        }
+        if (secondNum % firstNum == 0) {
+            lowestCommonMultiple = secondNum;
+            return lowestCommonMultiple;
+        }
+
+        lowestCommonMultiple = firstNum * secondNum;
 
         while (lowestCommonMultiple % firstNum == 0 && lowestCommonMultiple % secondNum == 0) {
             lowestCommonMultiple /= 2;
