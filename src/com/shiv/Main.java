@@ -9,6 +9,14 @@ public class Main {
         System.out.flush();
     }
 
+    public static String calculateImproperFraction(String fraction) {
+
+    }
+
+    public static String multiply(String num1, String num2) {
+        
+    }
+
     public static void main(String[] args) {
         clearScreen();
 
@@ -21,7 +29,10 @@ public class Main {
 
         System.out.println("Great, now please enter your second number in the same fashion");
 
-        String secondNum =
-        System.out.println("You printed the line: " + s);
+        String secondNum = in.nextLine();
+
+        System.out.println("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide");
+
+
     }
 }
