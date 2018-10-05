@@ -53,7 +53,6 @@ public class Main {
         int num1Denominator = 0;
         int num2Numerator = 0;
         int num2Denominator = 0;
-//        String newNumber = "";
 
         for (int x = 0; x < num1.length(); x++) {
             if (num1.charAt(x) == '/') {
@@ -75,15 +74,9 @@ public class Main {
             }
         }
 
-//        if (operation == "multiply") {
-//            System.out.println("We are in the multiply function");
-//            newNumber = multiply(num1Numerator, num1Denominator, num2Numerator, num2Denominator);
-//            System.out.println("Your result is: " + newNumber);
-//        }
-
-        String newNumber = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-        System.out.println("newNumber: " + newNumber);
-        return newNumber;
+        String result = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
+//        System.out.println("newNumber: " + newNumber);
+        return result;
     }
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
@@ -95,23 +88,26 @@ public class Main {
         }
         else if (operation.equals("multiply")) {
             System.out.println("We are in the multiply function");
-            String newNumber = multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
-            return newNumber;
+            String result = multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+            return result;
         }
-        else if (operation == "divide") {
-
+        // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
+        else if (operation.equals("divide")) {
+            System.out.println("we are in the divide function");
+            String result = multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
+            return result;
         }
         return "";
     }
 
     public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newNumerator = firstNumerator * secondNumerator;
-        System.out.println("newNumerator: " + newNumerator);
+//        System.out.println("newNumerator: " + newNumerator);
         int newDenominator = firstDenominator * secondDenominator;
-        System.out.println("newDenominator: " + newDenominator);
-        String newNumber = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
-        System.out.println("newNumber: " + newNumber);
-        return newNumber;
+//        System.out.println("newDenominator: " + newDenominator);
+        String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
+//        System.out.println("result: " + result);
+        return result;
     }
 
 //    public static String reduce(String firstNum, String secondNum) {
