@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Main {
     private static Scanner consoleInput = new Scanner(System.in);
 
-    public Main() {
-        initiateCalculation();
-    }
+//    public Main() {
+//        initiateCalculation();
+//    }
 
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
@@ -41,19 +41,19 @@ public class Main {
 //        System.out.println("Cool, you want your result as a " + mixedOrImproper + " fraction");
 
         String result = calculateResult(firstNum, secondNum, operation);
-        System.out.println(" ");
-        System.out.println(result);
 
-//        System.out.println("The result of " + firstNum + operation + " with " + secondNum + " is: " + result);
+        System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " is: " + result);
     }
 
     public static String calculateResult(String firstNum, String secondNum, String operation) {
+        System.out.println("operation: " + operation);
         String num1 = calculateImproperFraction(firstNum);
         String num2 = calculateImproperFraction(secondNum);
         int num1Numerator = 0;
         int num1Denominator = 0;
         int num2Numerator = 0;
         int num2Denominator = 0;
+//        String newNumber = "";
 
         for (int x = 0; x < num1.length(); x++) {
             if (num1.charAt(x) == '/') {
@@ -75,7 +75,15 @@ public class Main {
             }
         }
 
-        return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
+//        if (operation == "multiply") {
+//            System.out.println("We are in the multiply function");
+//            newNumber = multiply(num1Numerator, num1Denominator, num2Numerator, num2Denominator);
+//            System.out.println("Your result is: " + newNumber);
+//        }
+
+        String newNumber = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
+        System.out.println("newNumber: " + newNumber);
+        return newNumber;
     }
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
@@ -85,8 +93,10 @@ public class Main {
         else if (operation == "subtract") {
 
         }
-        else if (operation == "multiply") {
-            return multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+        else if (operation.equals("multiply")) {
+            System.out.println("We are in the multiply function");
+            String newNumber = multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
+            return newNumber;
         }
         else if (operation == "divide") {
 
@@ -96,8 +106,11 @@ public class Main {
 
     public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newNumerator = firstNumerator * secondNumerator;
+        System.out.println("newNumerator: " + newNumerator);
         int newDenominator = firstDenominator * secondDenominator;
+        System.out.println("newDenominator: " + newDenominator);
         String newNumber = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
+        System.out.println("newNumber: " + newNumber);
         return newNumber;
     }
 
@@ -135,9 +148,9 @@ public class Main {
 //    }
 
     public static void main(String[] args) {
-//        initiateCalculation();
+        initiateCalculation();
 //        calculateResult("111/8", "22/3", "multiply");
-        new Main();
+//        new Main();
     }
 }
 
