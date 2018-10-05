@@ -47,12 +47,36 @@ public class Main {
 
         for (int y = 0; y < num2.length; y++) {
             if (num2[y] == '/') {
-                int num2Numerator= parseInt(fraction.substring(0, x));
-                int nnum2Denominator = parseInt(fraction.substring(x + 1, fraction.length));
+                int num2Numerator = parseInt(fraction.substring(0, x));
+                int num2Denominator = parseInt(fraction.substring(x + 1, fraction.length));
             }
         }
 
-        return performOperation()
+        return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator);
+    }
+
+    public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator Sting operation) {
+        if (operation == "add") {
+
+        }
+        else if (operation == "subtract") {
+
+        }
+        else if (operation == "multiply") {
+
+        }
+        else if (operation == "divide") {
+
+        }
+    }
+
+    public static String multiply(String firstNum, String secondNum) {
+
+        return "";
+    }
+
+    public static String reduce(String firstNum, String secondNum) {
+
     }
 
     public static String calculateImproperFraction(String fraction) {
@@ -82,10 +106,6 @@ public class Main {
     }
 
     public static String subtract(String num1, String num2) {
-        return "";
-    }
-
-    public static String multiply(String num1, String num2) {
         return "";
     }
 
