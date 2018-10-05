@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void gatherInformation() {
+    public static void initiateCalculation() {
         clearScreen();
         Scanner in = new Scanner(System.in);
 
@@ -39,20 +39,20 @@ public class Main {
         String num2 = calculateImproperFraction(secondNum);
 
         for (int x = 0; x < num1.length; x++) {
-            if (num1[x] == '/') {
+            if (num1[x] == "/") {
                 int num1Numerator = parseInt(fraction.substring(0, x));
                 int num1Denominator = parseInt(fraction.substring(x + 1, fraction.length));
             }
         }
 
         for (int y = 0; y < num2.length; y++) {
-            if (num2[y] == '/') {
+            if (num2[y] == "/") {
                 int num2Numerator = parseInt(fraction.substring(0, x));
                 int num2Denominator = parseInt(fraction.substring(x + 1, fraction.length));
             }
         }
 
-        return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator);
+        return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator Sting operation) {
@@ -63,16 +63,18 @@ public class Main {
 
         }
         else if (operation == "multiply") {
-
+            return multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
         }
         else if (operation == "divide") {
 
         }
     }
 
-    public static String multiply(String firstNum, String secondNum) {
-
-        return "";
+    public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
+        int newNumerator = firstNumerator * secondNumerator;
+        int newDenominator = firstDenominator * secondDenominator;
+        String newNumber = newNumerator.toString() + '/' + newDenominator.toString();
+        return newNumber;
     }
 
     public static String reduce(String firstNum, String secondNum) {
@@ -86,11 +88,6 @@ public class Main {
             }
         }
         return fraction;
-
-
-
-//
-        return "";
     }
 
     public static String calculateMixedFraction(String fraction) {
@@ -119,7 +116,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        gatherInformation();
+        initiateCalculation();
     }
 }
 
