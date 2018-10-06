@@ -28,11 +28,7 @@ public class Main {
         String operation = consoleInput.nextLine().toLowerCase();
         System.out.println("The operation you want done between the two numbers is: " + operation);
         System.out.println(" ");
-
-//        System.out.print("Great, would you like your answer as a mixed fraction or an improper fraction? ");
-//        String mixedOrImproper = consoleInput.nextLine();
-//        System.out.println("Cool, you want your result as a " + mixedOrImproper + " fraction");
-
+        
         String result = calculateResult(firstNum, secondNum, operation);
 
         System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " is: " + result);
@@ -47,37 +43,47 @@ public class Main {
         }
     }
 
-    // isValidNumber check is working correctly EXCEPT in instances with multiple divide signs
     public static boolean isValidNumber(String number) {
-        HashMap<Integer, Integer> numbers = new HashMap<Integer, Integer>();
-        numbers.put(0, 1);
-        numbers.put(1, 1);
-        numbers.put(2, 1);
-        numbers.put(3, 1);
-        numbers.put(4, 1);
-        numbers.put(5, 1);
-        numbers.put(6, 1);
-        numbers.put(7, 1);
-        numbers.put(8, 1);
-        numbers.put(9, 1);
+        HashMap<Character, Integer> numbers = new HashMap<Character, Integer>();
+        numbers.put('0', 1);
+        numbers.put('1', 1);
+        numbers.put('2', 1);
+        numbers.put('3', 1);
+        numbers.put('4', 1);
+        numbers.put('5', 1);
+        numbers.put('6', 1);
+        numbers.put('7', 1);
+        numbers.put('8', 1);
+        numbers.put('9', 1);
 
-        int numberOfDivideSymbols = 0;
-        int numberOfUnderscores = 0;
+        boolean containsDivideSymbol = false;
+        boolean containsUnderscore = false;
 
         for (int i = 0; i < number.length(); i++) {
-            System.out.println(number.charAt(i));
             if (number.charAt(i) == '_') {
-                numberOfUnderscores++;
+                if (!numbers.containsKey(number.charAt(i - 1)) || !numbers.containsKey(number.charAt(i - 1))) {
+                    return false;
+                }
+                if (containsUnderscore == true) {
+                    return false;
+                }
+                containsUnderscore = true;
             }
             else if (number.charAt(i) == '/') {
-                numberOfDivideSymbols++;
+                if (!numbers.containsKey(number.charAt(i - 1)) || !numbers.containsKey(number.charAt(i - 1))) {
+                    return false;
+                }
+                if (containsDivideSymbol == true) {
+                    return false;
+                }
+                containsDivideSymbol = true;
             }
-            else if (numbers.containsKey(number.charAt(i))) {
+            else if (!numbers.containsKey(number.charAt(i))) {
                 return false;
             }
         }
 
-        return (numberOfDivideSymbols == 1 && numberOfUnderscores <= 1);
+        return containsDivideSymbol;
     }
 
     public static String calculateResult(String firstNum, String secondNum, String operation) {
@@ -139,18 +145,14 @@ public class Main {
 
     public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
-        System.out.println("newDenominator: " + newDenominator);
         int newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
-        System.out.println("newNumerator: " + newNumerator);
         String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
         return result;
     }
 
     public static String subtract(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
-        System.out.println("newDenominator: " + newDenominator);
         int newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
-        System.out.println("newNumerator: " + newNumerator);
         String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
         return result;
     }
@@ -248,9 +250,12 @@ public class Main {
 /////////////////////////////
 
 /*
-Potential tests:
+Valid input tests:
 • input is a mixed number with more than one underscore (110__2/3)
 • input has an extra space in the middle(1 10_2/3)
 • input is not a fraction (0.44)
-        -> if input does not have '/'
+• input does not contain '/'
+• input has more than one divide symbol (13_1/3342/3)
+• input contains letters (hello)
+• input contains other symbols (1$4/4)
 */
