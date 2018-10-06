@@ -8,14 +8,20 @@ public class Main {
 
     public static void gatherCalculationInfo() {
         System.out.println(" ");
+
+        System.out.println("==================================");
         System.out.println("Welcome to the Fraction Calculator");
+        System.out.println("==================================");
 
         // Getting and ensuring the validity of the first fraction
         System.out.println("Please enter your first number as either a mixed number or improper fraction.");
-        System.out.print("If using a mixed variable, put an underscore between the whole number and the fraction (ex: 2_2/3): ");
+        System.out.println("If using a mixed variable, put an underscore between the whole number and the fraction");
+        System.out.println("Examples: ");
+        System.out.println("1/2 * 3_3/4");
+        System.out.println("2_3/8 + 9/8");
         String firstNum = consoleInput.nextLine();
         while (!isValidNumber(firstNum)) {
-            System.out.print("You have entered an invalid fraction, please try again: ");
+            System.out.print(firstNum + " is not a valid fraction, please try again: ");
             firstNum = consoleInput.nextLine();
         }
         System.out.println("Your first number is: " + firstNum);
@@ -25,7 +31,7 @@ public class Main {
         System.out.print("Great, now please enter your second number in the same fashion: ");
         String secondNum = consoleInput.nextLine();
         while (!isValidNumber(secondNum)) {
-            System.out.print("You have entered an invalid fraction, please try again: ");
+            System.out.print(secondNum + " is not a valid fraction, please try again: ");
             secondNum = consoleInput.nextLine();
         }
         System.out.println("Your second number is: " + secondNum);
@@ -35,10 +41,10 @@ public class Main {
         System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
         String operation = consoleInput.nextLine().toLowerCase();
         while (!isValidOperation(operation)) {
-            System.out.print("You have entered an invalid operation, please try again: ");
+            System.out.print(operation + " is not a valid operation, please try again: ");
             operation = consoleInput.nextLine().toLowerCase();
         }
-        System.out.println("The operation you want done between the two numbers is: " + operation);
+        System.out.println("Cool, the operation you want done between the two numbers is: " + operation);
         System.out.println(" ");
 
         displayResult(firstNum, secondNum, operation);
