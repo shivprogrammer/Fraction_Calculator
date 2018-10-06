@@ -101,8 +101,8 @@ public class Main {
     }
 
     public static String calculateResult(String firstNum, String secondNum, String operation) {
-        String num1 = calculateImproperFraction(firstNum);
-        String num2 = calculateImproperFraction(secondNum);
+        String num1 = getImproperFraction(firstNum);
+        String num2 = getImproperFraction(secondNum);
         int num1Numerator = 0;
         int num1Denominator = 0;
         int num2Numerator = 0;
@@ -150,22 +150,19 @@ public class Main {
     public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newNumerator = firstNumerator * secondNumerator;
         int newDenominator = firstDenominator * secondDenominator;
-        String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
-        return result;
+        return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
     }
 
     public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         int newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
-        String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
-        return result;
+        return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
     }
 
     public static String subtract(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         int newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
-        String result = Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
-        return result;
+        return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
     }
 
     public static int findLowestCommonMultiple(int firstNum, int secondNum) {
@@ -217,7 +214,7 @@ public class Main {
         return Integer.toString(numerator) + '/' + Integer.toString(denominator);
     }
 
-    public static String calculateImproperFraction(String fraction) {
+    public static String getImproperFraction(String fraction) {
         for (int i = 0; i < fraction.length(); i++) {
             if (fraction.charAt(i) == '_') {
                 return mixedToImproperFraction(fraction);
