@@ -1,5 +1,6 @@
 package com.shiv;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,10 @@ public class Main {
         System.out.println("Please enter your first number as either a mixed number or improper fraction.");
         System.out.print("If you are entering a mixed variable, please put an underscore between the whole number and the fraction (ex: 2_2/3): ");
         String firstNum = consoleInput.nextLine();
+        while (isValidNumber(firstNum) == false) {
+            System.out.println("You have entered an invalid input, please try again: ");
+            firstNum = consoleInput.nextLine();
+        }
         System.out.println("Your first number is: " + firstNum);
         System.out.println(" ");
 
@@ -39,6 +44,18 @@ public class Main {
         }
         else {
             System.out.println("Okay, bye!");
+        }
+    }
+
+    public static boolean isValidNumber(String number) {
+        HashMap<char, boolean> numbers = new HashMap<char, boolean>();
+
+        
+        boolean hasCheck = false;
+        boolean hasSpace = false;
+
+        for (int i = 0; i < number.length(); i++) {
+
         }
     }
 
