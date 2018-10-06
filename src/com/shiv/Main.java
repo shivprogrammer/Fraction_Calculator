@@ -12,8 +12,8 @@ public class Main {
         System.out.println("Please enter your first number as either a mixed number or improper fraction.");
         System.out.print("If you are entering a mixed variable, please put an underscore between the whole number and the fraction (ex: 2_2/3): ");
         String firstNum = consoleInput.nextLine();
-        while (isValidNumber(firstNum) == false) {
-            System.out.println("You have entered an invalid input, please try again: ");
+        while (!isValidNumber(firstNum)) {
+            System.out.print("You have entered an invalid input, please try again: ");
             firstNum = consoleInput.nextLine();
         }
         System.out.println("Your first number is: " + firstNum);
@@ -48,23 +48,31 @@ public class Main {
     }
 
     public static boolean isValidNumber(String number) {
-        HashMap<char, boolean> numbers = new HashMap<char, boolean>();
-        numbers.put('0', true);
-        numbers.put('1', true);
-        numbers.put('2', true);
-        numbers.put('3', true);
-        numbers.put('4', true);
-        numbers.put('5', true);
-        numbers.put('6', true);
-        numbers.put('7', true);
-        numbers.put('8', true);
-        numbers.put('9', true);
+        HashMap<Character, Integer> numbers = new HashMap<Character, Integer>();
+        numbers.put('0', 1);
+        numbers.put('1', 1);
+        numbers.put('2', 1);
+        numbers.put('3', 1);
+        numbers.put('4', 1);
+        numbers.put('5', 1);
+        numbers.put('6', 1);
+        numbers.put('7', 1);
+        numbers.put('8', 1);
+        numbers.put('9', 1);
 
         int numberOfDivideSymbols = 0;
         int numberOfUnderscores = 0;
 
         for (int i = 0; i < number.length(); i++) {
-
+            if (number.charAt(i) == '_') {
+                numberOfUnderscores++;
+            }
+            if (number.charAt(i) == '/') {
+                numberOfDivideSymbols++;
+            }
+            if (numbers.containsKey(number.charAt(i))) {
+                return false;
+            }
         }
 
         return (numberOfDivideSymbols == 1 && numberOfUnderscores <= 1);
