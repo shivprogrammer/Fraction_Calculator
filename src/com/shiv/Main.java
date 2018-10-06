@@ -49,14 +49,25 @@ public class Main {
 
     public static boolean isValidNumber(String number) {
         HashMap<char, boolean> numbers = new HashMap<char, boolean>();
+        numbers.put('0', true);
+        numbers.put('1', true);
+        numbers.put('2', true);
+        numbers.put('3', true);
+        numbers.put('4', true);
+        numbers.put('5', true);
+        numbers.put('6', true);
+        numbers.put('7', true);
+        numbers.put('8', true);
+        numbers.put('9', true);
 
-        
-        boolean hasCheck = false;
-        boolean hasSpace = false;
+        int numberOfDivideSymbols = 0;
+        int numberOfUnderscores = 0;
 
         for (int i = 0; i < number.length(); i++) {
 
         }
+
+        return (numberOfDivideSymbols == 1 && numberOfUnderscores <= 1);
     }
 
     public static String calculateResult(String firstNum, String secondNum, String operation) {
