@@ -122,9 +122,7 @@ public class Main {
             }
         }
 
-        String result = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-        return result;
-
+        return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
 //        return resultsMessage(firstNum, secondNum, operation, result);
     }
 
@@ -270,4 +268,5 @@ Valid input tests:
 • input has more than one divide symbol (13_1/3342/3)
 • input contains letters (hello)
 • input contains other symbols (1$4/4)
+*TODO* Handle negative numbers
 */
