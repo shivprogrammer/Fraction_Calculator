@@ -6,9 +6,11 @@ import java.util.Scanner;
 public class Main {
     private static Scanner consoleInput = new Scanner(System.in);
 
-    public static void initiateCalculation() {
+    public static void gatherCalculationInfo() {
         System.out.println(" ");
         System.out.println("Welcome to the Fraction Calculator");
+
+        // Getting and ensuring the validity of the first fraction
         System.out.println("Please enter your first number as either a mixed number or improper fraction.");
         System.out.print("If using a mixed variable, put an underscore between the whole number and the fraction (ex: 2_2/3): ");
         String firstNum = consoleInput.nextLine();
@@ -19,6 +21,7 @@ public class Main {
         System.out.println("Your first number is: " + firstNum);
         System.out.println(" ");
 
+        // Getting and ensuring the validity of the second fraction
         System.out.print("Great, now please enter your second number in the same fashion: ");
         String secondNum = consoleInput.nextLine();
         while (!isValidNumber(secondNum)) {
@@ -28,6 +31,7 @@ public class Main {
         System.out.println("Your second number is: " + secondNum);
         System.out.println(" ");
 
+        // Getting and ensuring the validity of the operation
         System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
         String operation = consoleInput.nextLine().toLowerCase();
         while (!isValidOperation(operation)) {
@@ -37,16 +41,24 @@ public class Main {
         System.out.println("The operation you want done between the two numbers is: " + operation);
         System.out.println(" ");
 
+        displayResult(firstNum, secondNum, operation);
+    }
+
+    public static void displayResult(String firstNum, String secondNum, String operation) {
         System.out.println("=========================================");
         String result = calculateResult(firstNum, secondNum, operation);
         System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " is: " + result);
         System.out.println("=========================================");
 
+        calculateAgain();
+    }
+
+    public static void calculateAgain() {
         System.out.println(" ");
         System.out.println("Do you want to run another calculation?: ");
         String anotherOne = consoleInput.nextLine();
         if (anotherOne.toLowerCase().equals("yes")) {
-            initiateCalculation();
+            gatherCalculationInfo();
         }
         else {
             System.out.println("Okay, bye!");
@@ -247,7 +259,7 @@ public class Main {
 //    }
 
     public static void main(String[] args) {
-        initiateCalculation();
+        gatherCalculationInfo();
     }
 }
 
