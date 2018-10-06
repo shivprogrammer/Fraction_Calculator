@@ -10,7 +10,7 @@ public class Main {
         System.out.println(" ");
         System.out.println("Welcome to the Fraction Calculator");
         System.out.println("Please enter your first number as either a mixed number or improper fraction.");
-        System.out.print("If you are entering a mixed variable, please put an underscore between the whole number and the fraction (ex: 2_2/3): ");
+        System.out.print("If using a mixed variable, put an underscore between the whole number and the fraction (ex: 2_2/3): ");
         String firstNum = consoleInput.nextLine();
         while (!isValidNumber(firstNum)) {
             System.out.print("You have entered an invalid fraction, please try again: ");
@@ -37,9 +37,12 @@ public class Main {
         System.out.println("The operation you want done between the two numbers is: " + operation);
         System.out.println(" ");
 
+        System.out.println("=========================================");
         String result = calculateResult(firstNum, secondNum, operation);
         System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " is: " + result);
+        System.out.println("=========================================");
 
+        System.out.println(" ");
         System.out.println("Do you want to run another calculation?: ");
         String anotherOne = consoleInput.nextLine();
         if (anotherOne.toLowerCase().equals("yes")) {
@@ -94,11 +97,10 @@ public class Main {
     }
 
     public static boolean isValidOperation(String operation) {
-        return (operation == "add" || operation == "subtract" || operation == "multiply" || operation == "divide");
+        return operation.equals("add") || operation.equals("subtract") || operation.equals("multiply") || operation.equals("divide");
     }
 
     public static String calculateResult(String firstNum, String secondNum, String operation) {
-        System.out.println("operation: " + operation);
         String num1 = calculateImproperFraction(firstNum);
         String num2 = calculateImproperFraction(secondNum);
         int num1Numerator = 0;
