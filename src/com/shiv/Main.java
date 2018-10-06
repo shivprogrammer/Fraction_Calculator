@@ -47,30 +47,32 @@ public class Main {
         }
     }
 
+    // isValidNumber check is working correctly EXCEPT in instances with multiple divide signs
     public static boolean isValidNumber(String number) {
-        HashMap<Character, Integer> numbers = new HashMap<Character, Integer>();
-        numbers.put('0', 1);
-        numbers.put('1', 1);
-        numbers.put('2', 1);
-        numbers.put('3', 1);
-        numbers.put('4', 1);
-        numbers.put('5', 1);
-        numbers.put('6', 1);
-        numbers.put('7', 1);
-        numbers.put('8', 1);
-        numbers.put('9', 1);
+        HashMap<Integer, Integer> numbers = new HashMap<Integer, Integer>();
+        numbers.put(0, 1);
+        numbers.put(1, 1);
+        numbers.put(2, 1);
+        numbers.put(3, 1);
+        numbers.put(4, 1);
+        numbers.put(5, 1);
+        numbers.put(6, 1);
+        numbers.put(7, 1);
+        numbers.put(8, 1);
+        numbers.put(9, 1);
 
         int numberOfDivideSymbols = 0;
         int numberOfUnderscores = 0;
 
         for (int i = 0; i < number.length(); i++) {
+            System.out.println(number.charAt(i));
             if (number.charAt(i) == '_') {
                 numberOfUnderscores++;
             }
-            if (number.charAt(i) == '/') {
+            else if (number.charAt(i) == '/') {
                 numberOfDivideSymbols++;
             }
-            if (numbers.containsKey(number.charAt(i))) {
+            else if (numbers.containsKey(number.charAt(i))) {
                 return false;
             }
         }
