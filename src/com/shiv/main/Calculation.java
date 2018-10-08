@@ -42,7 +42,7 @@ public class Calculation {
                 }
                 catch (NumberFormatException e) {
                     System.out.println("The result of the numbers you have chosen is too large, please try again: ");
-                    gatherCalculationInfo();
+//                    gatherCalculationInfo();
                 }
             }
 
@@ -54,7 +54,7 @@ public class Calculation {
                 }
                 catch (NumberFormatException e) {
                     System.out.println("The result of the numbers you have chosen is too large, please try again: ");
-                    gatherCalculationInfo();
+//                    gatherCalculationInfo();
                 }
             }
 

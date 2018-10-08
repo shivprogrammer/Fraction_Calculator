@@ -5,9 +5,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CheckValidInputTest extends CheckValidInput {
-    ///////////////////////
-    // VALID INPUT TESTS //
-    ///////////////////////
+    //////////////////////////
+    // INPUT VALIDITY TESTS //
+    //////////////////////////
     @Test
     public void isUserInputValid_inputIsNull_False() {
         Assert.assertEquals(isUserInputValid(""), false);
@@ -41,11 +41,15 @@ public class CheckValidInputTest extends CheckValidInput {
         Assert.assertEquals(isUserInputValid("10_2/3 * 4/0"), false);
     }
     @Test
-    public void isUserInputValid_inputContainsMassiveNumbers_Success() {
-        Assert.assertEquals(isUserInputValid("9223372036854775807/1212 / 113231414123123145432432342/12"), true);
+    public void isUserInputValid_denominatorIsMultipleZeros_False() {
+        Assert.assertEquals(isUserInputValid("4/00000 * 10_2/3"), false);
     }
     @Test
-    public void isUserInputValid_inputContainsNegativeNumbers_ThrowException() {
-        Assert.assertEquals(isUserInputValid("-4/3 * 7/12"), false);
+    public void isUserInputValid_inputContainsNumbersThatAreTooLarge_False() {
+        Assert.assertEquals(isUserInputValid("9223372036854775807/1212 / 113231414123123145432432342/12"), false);
     }
+//    @Test
+//    public void isUserInputValid_inputContainsNegativeNumbers_Success() {
+//        Assert.assertEquals(isUserInputValid("-4/3 * 7/12"), true);
+//    }
 }

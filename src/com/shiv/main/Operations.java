@@ -4,6 +4,10 @@ import static com.shiv.main.Conversions.calculateMixedFraction;
 
 public class Operations {
     static String performOperation(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator, char operation) {
+        if (firstDenominator == 0 || secondDenominator == 0) {
+            return "You cannot divide by 0";
+        }
+
         switch (operation) {
             case '+':
                 return calculateMixedFraction(reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
