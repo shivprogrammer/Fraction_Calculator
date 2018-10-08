@@ -25,6 +25,7 @@ public class FractionCalculatorTest extends FractionCalculator {
 //    }
 
     //TODO -- Negative fractions are currently returning an error
+    //TODO -- Throw exception for massive number inputs
     //TODO -- Double check the full validity of the reduce function
 
     ///////////////////////
@@ -59,8 +60,8 @@ public class FractionCalculatorTest extends FractionCalculator {
         Assert.assertEquals(CheckValidInput.isUserInputValid("10_2/3 x 4/4"), false);
     }
     @Test
-    public void isUserInputValid_inputContainsMassiveNumbers_ThrowException() {
-        Assert.assertEquals(CheckValidInput.isUserInputValid("9223372036854775807/2 x 12/12"), false);
+    public void isUserInputValid_inputContainsMassiveNumbers_Success() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("9223372036854775807/1212 / 113231414123123145432432342/12"), true);
     }
     @Test
     public void isUserInputValid_inputContainsNegativeNumbers_ThrowException() {

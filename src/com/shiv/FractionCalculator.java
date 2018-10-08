@@ -22,12 +22,11 @@ public class FractionCalculator {
         System.out.println("                                 • 2_3/8 + 9/8                                         ");
         System.out.println("=======================================================================================");
         System.out.println(" ");
-        System.out.print("Please enter the fractional operation that that you would like solved: ");
+        System.out.println("Please enter the fractional operation that that you would like solved: ");
 
         String desiredCalculation = consoleInput.nextLine();
 
         while (!CheckValidInput.isUserInputValid(desiredCalculation)) {
-            System.out.print(desiredCalculation + " is not a valid input, please try again: ");
             desiredCalculation = consoleInput.nextLine();
         }
 
