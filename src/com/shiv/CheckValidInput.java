@@ -23,11 +23,34 @@ class CheckValidInput {
                     numberOfValidOperations++;
             }
 
-        return numberOfSpaces == 2
-                && numberOfValidOperations == 1
-                && isValidFraction(desiredCalculation.substring(0, firstSpaceLocation))
-                && isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1));
+        // PROVIDING USEFUL USER FEEDBACK
+        if (numberOfSpaces != 2 || numberOfValidOperations != 1 || !isValidFraction(desiredCalculation.substring(0, firstSpaceLocation)) || !isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1))) {
+            if (numberOfSpaces != 2) {
+                if (numberOfSpaces < 2)
+                    System.out.println("Your input: " + desiredCalculation + ", is not separated correctly, please try again: ");
+                if (numberOfSpaces > 2)
+                    System.out.println("Your input: " + desiredCalculation + ", contains too many spaces, please try again: ");
+                return false;
+            }
+            if (numberOfValidOperations != 1) {
+                if (numberOfValidOperations < 1)
+                    System.out.println("Your input: " + desiredCalculation + ", does not contain a valid operation, please try again: ");
+                if (numberOfValidOperations > 1)
+                    System.out.println("Your input: " + desiredCalculation + ", does not contain a valid operation, please try again: ");
+                return false;
+            }
+            if (!isValidFraction(desiredCalculation.substring(0, firstSpaceLocation))) {
+                System.out.println("Your input: " + desiredCalculation + ", does not contain a valid operation, please try again: ");
+            }
+        }
+//        return numberOfSpaces == 2
+//                && numberOfValidOperations == 1
+//                && isValidFraction(desiredCalculation.substring(0, firstSpaceLocation))
+//                && isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1));
+        return true;
     }
+
+//    private static boolean provideUserFeedback() {}
 
     private static boolean isValidFraction(String fraction) {
         HashMap<Character, Boolean> numbers = new HashMap<>();

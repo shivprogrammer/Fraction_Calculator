@@ -24,24 +24,8 @@ public class FractionCalculatorTest extends FractionCalculator {
 //        System.setErr(originalErr);
 //    }
 
-    /////////////////////////////
-////////// TESTS ////////////
-/////////////////////////////
-
-    /*
-    Valid input tests:
-    • input is a mixed number with more than one underscore (110__2/3)
-    • input has an extra space in the middle(1 10_2/3)
-    • input is not a fraction (0.44)
-    • input does not contain '/'
-    • input has more than one divide symbol (13_1/3342/3)
-    • input contains letters (hello)
-    • input contains other symbols (1$4/4)
-
-    • Input contains one number that is just a whole number (5 * 5)
-    TODO -- Negative fractions are currently returning an error
-    TODO -- Double check the full validity of the reduce function
-    */
+    //TODO -- Negative fractions are currently returning an error
+    //TODO -- Double check the full validity of the reduce function
 
     ///////////////////////
     // VALID INPUT TESTS //
@@ -51,8 +35,36 @@ public class FractionCalculatorTest extends FractionCalculator {
         Assert.assertEquals(CheckValidInput.isUserInputValid(""), false);
     }
     @Test
-    public void isUserInputValid_inputContainsALetter_False() {
-        Assert.assertEquals(CheckValidInput.isUserInputValid("a1/2 + 3/2"), false);
+    public void isUserInputValid_inputContainsLetters_False() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("a1/2 + 3/2b"), false);
+    }
+    @Test
+    public void isUserInputValid_inputIsNotAFraction_False() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("1 + 3/2"), false);
+    }
+    @Test
+    public void isUserInputValid_inputIsADecimal_False() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("13/14 + 3.5"), false);
+    }
+    @Test
+    public void isUserInputValid_inputHasExtraSpaces_False() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("1 10_2/3 * 6/8"), false);
+    }
+    @Test
+    public void isUserInputValid_inputHasOtherSymbols_False() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("10_2/3 * 1$4/4"), false);
+    }
+    @Test
+    public void isUserInputValid_inputHasInvalidOperationSymbol_False() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("10_2/3 x 4/4"), false);
+    }
+    @Test
+    public void isUserInputValid_inputContainsMassiveNumbers_ThrowException() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("9223372036854775807/2 x 12/12"), false);
+    }
+    @Test
+    public void isUserInputValid_inputContainsNegativeNumbers_ThrowException() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("-4/3 * 7/12"), false);
     }
 
     ///////////////
@@ -93,6 +105,10 @@ public class FractionCalculatorTest extends FractionCalculator {
     @Test
     public void subtract_resultIsWholeNumber_Success() {
         Assert.assertEquals(Calculation.calculateResult("1/3 - 1/3"), "0");
+    }
+    @Test
+    public void subtract_resultIsNegative_Success() {
+        Assert.assertEquals(Calculation.calculateResult("1/3 - 2/3"), "-1/3");
     }
 
     ////////////////////
