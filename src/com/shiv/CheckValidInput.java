@@ -9,7 +9,7 @@ class CheckValidInput {
         int firstSpaceLocation = -1;
         int secondSpaceLocation = -1;
 
-        for (int i = 0; i < desiredCalculation.length(); i++) {
+        for (int i = 0; i < desiredCalculation.length(); i++)
             if (desiredCalculation.charAt((i)) == ' ') {
                 numberOfSpaces++;
                 if (firstSpaceLocation < 0)
@@ -18,11 +18,10 @@ class CheckValidInput {
                     secondSpaceLocation = i;
             }
             // if the character is either '+', '-', '*', '/' AND has an empty character before and after it:
-            else if (desiredCalculation.charAt(i) == '+'  || desiredCalculation.charAt(i) == '-'  || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
+            else if (desiredCalculation.charAt(i) == '+' || desiredCalculation.charAt(i) == '-' || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
                 if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')
                     numberOfValidOperations++;
             }
-        }
 
         return numberOfSpaces == 2
                 && numberOfValidOperations == 1
@@ -32,22 +31,22 @@ class CheckValidInput {
 
     private static boolean isValidFraction(String fraction) {
 //        System.out.println("In the isValidNumber function");
-        HashMap<Character, Integer> numbers = new HashMap<>();
-        numbers.put('0', 1);
-        numbers.put('1', 1);
-        numbers.put('2', 1);
-        numbers.put('3', 1);
-        numbers.put('4', 1);
-        numbers.put('5', 1);
-        numbers.put('6', 1);
-        numbers.put('7', 1);
-        numbers.put('8', 1);
-        numbers.put('9', 1);
+        HashMap<Character, Boolean> numbers = new HashMap<>();
+        numbers.put('0', true);
+        numbers.put('1', true);
+        numbers.put('2', true);
+        numbers.put('3', true);
+        numbers.put('4', true);
+        numbers.put('5', true);
+        numbers.put('6', true);
+        numbers.put('7', true);
+        numbers.put('8', true);
+        numbers.put('9', true);
 
         boolean containsDivideSymbol = false;
         boolean containsUnderscore = false;
 
-        for (int i = 0; i < fraction.length(); i++) {
+        for (int i = 0; i < fraction.length(); i++)
             if (fraction.charAt(i) == '_') {
                 // if the characters directly before and after the '_' are not numbers:
                 if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1)))
@@ -72,7 +71,6 @@ class CheckValidInput {
             }
             else if (!numbers.containsKey(fraction.charAt(i)))
                 return false;
-        }
 
         return containsDivideSymbol;
     }
