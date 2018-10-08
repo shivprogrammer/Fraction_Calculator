@@ -22,40 +22,46 @@ public class Main {
         System.out.print("Please enter the fractional operation that that you would like solved: ");
 
         String desiredCalculation = consoleInput.nextLine();
-        parseUserInput(desiredCalculation);
 
-        String firstNum = consoleInput.nextLine();
-        while (!isValidNumber(firstNum)) {
-            System.out.print(firstNum + " is not a valid fraction, please try again: ");
-            firstNum = consoleInput.nextLine();
+        while (!isUserInputValid(desiredCalculation)) {
+            System.out.print("The input you have entered is invalid, please try again: ");
+            desiredCalculation = consoleInput.nextLine();
         }
-        System.out.println("Your first number is: " + firstNum);
-        System.out.println(" ");
 
-        // Getting and ensuring the validity of the second fraction
-        System.out.print("Great, now please enter your second number in the same fashion: ");
-        String secondNum = consoleInput.nextLine();
-        while (!isValidNumber(secondNum)) {
-            System.out.print(secondNum + " is not a valid fraction, please try again: ");
-            secondNum = consoleInput.nextLine();
-        }
-        System.out.println("Your second number is: " + secondNum);
-        System.out.println(" ");
+        calculateResult(desiredCalculation);
 
-        // Getting and ensuring the validity of the operation
-        System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
-        String operation = consoleInput.nextLine().toLowerCase();
-        while (!isValidOperation(operation)) {
-            System.out.print(operation + " is not a valid operation, please try again: ");
-            operation = consoleInput.nextLine().toLowerCase();
-        }
-        System.out.println("Cool, the operation you want done between the two numbers is: " + operation);
-        System.out.println(" ");
+//        String firstNum = consoleInput.nextLine();
+//        while (!isValidNumber(firstNum)) {
+//            System.out.print(firstNum + " is not a valid fraction, please try again: ");
+//            firstNum = consoleInput.nextLine();
+//        }
+//        System.out.println("Your first number is: " + firstNum);
+//        System.out.println(" ");
+//
+//        // Getting and ensuring the validity of the second fraction
+//        System.out.print("Great, now please enter your second number in the same fashion: ");
+//        String secondNum = consoleInput.nextLine();
+//        while (!isValidNumber(secondNum)) {
+//            System.out.print(secondNum + " is not a valid fraction, please try again: ");
+//            secondNum = consoleInput.nextLine();
+//        }
+//        System.out.println("Your second number is: " + secondNum);
+//        System.out.println(" ");
+//
+//        // Getting and ensuring the validity of the operation
+//        System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
+//        String operation = consoleInput.nextLine().toLowerCase();
+//        while (!isValidOperation(operation)) {
+//            System.out.print(operation + " is not a valid operation, please try again: ");
+//            operation = consoleInput.nextLine().toLowerCase();
+//        }
+//        System.out.println("Cool, the operation you want done between the two numbers is: " + operation);
+//        System.out.println(" ");
 
-        displayResult(firstNum, secondNum, operation);
+//        displayResult(firstNum, secondNum, operation);
     }
 
-    public static void parseUserInput(String desiredCalculation) {
+    public static boolean isUserInputValid(String desiredCalculation) {
         HashMap<Character, Boolean> validOperationsMap = new HashMap<Character, Boolean>();
         validOperationsMap.put('+', true);
         validOperationsMap.put('-', true);
@@ -63,9 +69,10 @@ public class Main {
         validOperationsMap.put('/', true);
 
         int emptyCharacterCount = 0;
-        int numberOfOperations = 0;
+        int numberOfValidOperations = 0;
         int firstSpaceLocation = -1;
         int secondSpaceLocation = -1;
+
         for (int i = 0; i < desiredCalculation.length(); i++) {
             if (desiredCalculation.charAt((i)) == ' ') {
                 emptyCharacterCount++;
@@ -77,12 +84,12 @@ public class Main {
                 }
             }
             else if (validOperationsMap.containsKey(desiredCalculation.charAt(i))) {
-                numberOfOperations++;
+                numberOfValidOperations++;
             }
         }
 
         return emptyCharacterCount == 2
-                && numberOfOperations == 1
+                && numberOfValidOperations == 1
                 && isValidNumber(desiredCalculation.substring(0, firstSpaceLocation))
                 && isValidNumber(desiredCalculation.substring(secondSpaceLocation, desiredCalculation.length() - 1))
     }
@@ -151,11 +158,28 @@ public class Main {
         return containsDivideSymbol;
     }
 
-    public static boolean isValidOperation(String operation) {
-        return operation.equals("add") || operation.equals("subtract") || operation.equals("multiply") || operation.equals("divide");
-    }
+    public static String calculateResult(String desiredCalculation) {
+        int firstSpaceLocation = -1;
+        int secondSpaceLocation = -1;
+        char operation = ' ';
 
-    public static String calculateResult(String firstNum, String secondNum, char operation) {
+        for (int i = 0; i < desiredCalculation.length(); i++) {
+            if (desiredCalculation.charAt((i)) == ' ') {
+                if (firstSpaceLocation < 0) {
+                    firstSpaceLocation = i;
+                }
+                else {
+                    secondSpaceLocation = i;
+                }
+            }
+            else if (desiredCalculation.charAt(i) == '+'
+                    || desiredCalculation.charAt(i) == '-'
+                    || desiredCalculation.charAt(i) == '*'
+                    || desiredCalculation.charAt(i) == '/') {
+                operation = desiredCalculation.charAt(i);
+            }
+        }
+
         String num1 = getImproperFraction(firstNum);
         String num2 = getImproperFraction(secondNum);
         int num1Numerator = 0;
