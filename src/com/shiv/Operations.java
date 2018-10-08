@@ -19,25 +19,25 @@ class Operations {
         }
     }
 
-    private static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+    static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
         long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         long newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
-    private static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+    static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
         long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         long newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
-    private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+    static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
         long newNumerator = firstNumerator * secondNumerator;
         long newDenominator = firstDenominator * secondDenominator;
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
-    private static long findLowestCommonMultiple(long firstNum, long secondNum) {
+    static long findLowestCommonMultiple(long firstNum, long secondNum) {
         if (firstNum % secondNum == 0)
             return firstNum;
 
