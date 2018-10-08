@@ -133,6 +133,7 @@ public class CheckValidInput {
             System.out.println("DEALING WITH A MIXED NUMBER");
 
             String improperFraction = getImproperFraction(fraction);
+            System.out.println("improperFraction: " + improperFraction);
 
             for (int x = 0; x < improperFraction.length(); x++) {
                 if (improperFraction.charAt(x) == '/') {
