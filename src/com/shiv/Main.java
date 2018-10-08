@@ -12,10 +12,11 @@ public class Main {
         System.out.println("=====================================================================================");
         System.out.println("                       Welcome to the Fraction Calculator");
         System.out.println("     You can enter the fractions as either a mixed number or improper fraction");
-        System.out.println("If using a mixed variable, put an underscore between the whole number and the fraction");
-        System.out.println("                                   Examples: ");
-        System.out.println("                                • 1/2 * 3_3/4");
-        System.out.println("                                • 2_3/8 + 9/8");
+        System.out.println("If using a mixed number, place an underscore between the whole number and the fraction");
+        System.out.println("    You can add, subtract, multiply, or divide two fractions together (+, -, *, /)");
+        System.out.println("                                    Examples: ");
+        System.out.println("                                 • 1/2 * 3_3/4");
+        System.out.println("                                 • 2_3/8 + 9/8");
         System.out.println("=====================================================================================");
         System.out.println("Please enter the fractional operation that that you would like solved: ");
 
@@ -157,14 +158,14 @@ public class Main {
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, char operation) {
         switch (operation) {
             case '+':
-                return reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
+                return calculateMixedFraction(reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
             case '-':
-                return (subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
+                return calculateMixedFraction(reduce(subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
             case '*':
-                return reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
+                return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
             case '/':
                 // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
-                return reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator));
+                return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator)));
             default:
                 return " ";
         }
@@ -265,13 +266,37 @@ public class Main {
         return Integer.toString(newNumerator)+ '/' + Integer.toString(denominator);
     }
 
-//    public static String calculateMixedFraction(String fraction) {
-//        return "";
-//    }
+    public static String calculateMixedFraction(String fraction) {
+        boolean containsDivideSymbol = false;
+        String top = " ";
+        String bottom = " ";
+
+        for (int i = 0; i < fraction.length(); i++) {
+            if (fraction.charAt(i) == '/') {
+                top = fraction.substring(0, i);
+                bottom = fraction.substring(i + 1);
+                containsDivideSymbol = true;
+            }
+        }
+
+        int numerator = Integer.parseInt(top);
+        int denominator = Integer.parseInt(bottom);
+
+        if (!containsDivideSymbol || numerator < denominator) {
+            return fraction;
+        }
+
+        int wholeNumber = numerator / denominator;
+        System.out.println("Whole number: " + wholeNumber);
+        int newNumerator = numerator - (wholeNumber * denominator);
+        System.out.println("newNumerator: " + newNumerator);
+
+        return Integer.toString(wholeNumber) + '_' + Integer.toString(newNumerator) + '/' + Integer.toString(denominator);
+    }
 
     public static void displayResult(String desiredCalculation, String result) {
         System.out.println(" ");
-        System.out.println("==> " + desiredCalculation + " equals " + result);
+        System.out.println("RESULTS: " + desiredCalculation + " == " + result);
         System.out.println("--------------------------");
         runNewCalculation();
     }
