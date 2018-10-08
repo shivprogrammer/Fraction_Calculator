@@ -31,6 +31,7 @@ public class CheckValidInput {
                 System.out.println("Your input: " + desiredCalculation + ", is not separated correctly, please try again: ");
             if (numberOfSpaces > 2)
                 System.out.println("Your input: " + desiredCalculation + ", contains too many spaces, please try again: ");
+            System.out.println(" ");
             return false;
         }
         if (numberOfValidOperations != 1) {
@@ -38,14 +39,17 @@ public class CheckValidInput {
                 System.out.println("Your input: " + desiredCalculation + ", does not contain a valid operation, please try again: ");
             if (numberOfValidOperations > 1)
                 System.out.println("Your input: " + desiredCalculation + ", must have only one valid operation, please try again: ");
+            System.out.println(" ");
             return false;
         }
         if (!isValidFraction(desiredCalculation.substring(0, firstSpaceLocation))) {
-            System.out.println("The first fraction of your input: " + desiredCalculation + ", is invalid, please try again: ");
+            System.out.println("The first parameter of your input: " + desiredCalculation + ", is invalid, please try again: ");
+            System.out.println(" ");
             return false;
         }
         if (!isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1))) {
-            System.out.println("The second fraction of your input: " + desiredCalculation + ", is invalid, please try again: ");
+            System.out.println("The second parameter of your input: " + desiredCalculation + ", is invalid, please try again: ");
+            System.out.println(" ");
             return false;
         }
 
@@ -53,7 +57,7 @@ public class CheckValidInput {
     }
 
     private static boolean isValidFraction(String fraction) {
-        System.out.println("fraction: " + fraction);
+//        System.out.println("fraction: " + fraction);
         HashMap<Character, Boolean> numbers = new HashMap<>();
         numbers.put('0', true);
         numbers.put('1', true);
@@ -98,14 +102,18 @@ public class CheckValidInput {
             else if (!numbers.containsKey(fraction.charAt(i)))
                 return false;
 
+        if (!containsDivideSymbol) {
+            System.out.println("Your first parameter is not a fraction.");
+            return false;
+        }
         // Checking the validity of an improper fraction to provide useful user feedback
-        if (containsDivideSymbol && !containsUnderscore) {
-            System.out.println("DEALING WITH AN IMPROPER FRACTION");
+        if (!containsUnderscore) {
+//            System.out.println("DEALING WITH AN IMPROPER FRACTION");
 
             // VALID NUMERATOR CHECK
             try {
                 Long.parseLong(fraction.substring(0, divideSymbolLocation));
-                System.out.println("numerator: " + Long.parseLong(fraction.substring(0, divideSymbolLocation)));
+//                System.out.println("numerator: " + Long.parseLong(fraction.substring(0, divideSymbolLocation)));
             }
             catch (NumberFormatException e) {
                 System.out.println("The numerator you have chosen is too large and cannot be computed. ");
@@ -114,10 +122,10 @@ public class CheckValidInput {
 
             // VALID DENOMINATOR CHECK
             try {
-                Long.parseLong(fraction.substring(divideSymbolLocation));
-                System.out.println("denominator: " + Long.parseLong(fraction.substring(divideSymbolLocation)));
+                Long.parseLong(fraction.substring(divideSymbolLocation + 1));
+//                System.out.println("denominator: " + Long.parseLong(fraction.substring(divideSymbolLocation + 1)));
 
-                if (Long.parseLong(fraction.substring((divideSymbolLocation))) == 0) {
+                if (Long.parseLong(fraction.substring((divideSymbolLocation + 1))) == 0) {
                     System.out.println("You cannot have a fraction with a denominator of 0");
                     return false;
                 }
@@ -130,10 +138,10 @@ public class CheckValidInput {
 
         // checking the validity of the mixed number
         if (containsDivideSymbol && containsUnderscore) {
-            System.out.println("DEALING WITH A MIXED NUMBER");
+//            System.out.println("DEALING WITH A MIXED NUMBER");
 
             String improperFraction = getImproperFraction(fraction);
-            System.out.println("improperFraction: " + improperFraction);
+//            System.out.println("improperFraction: " + improperFraction);
 
             for (int x = 0; x < improperFraction.length(); x++) {
                 if (improperFraction.charAt(x) == '/') {
@@ -144,7 +152,7 @@ public class CheckValidInput {
             // VALID NUMERATOR CHECK
             try {
                 Long.parseLong(improperFraction.substring(0, divideSymbolLocation));
-                System.out.println("numerator: " + Long.parseLong(improperFraction.substring(0, divideSymbolLocation)));
+//                System.out.println("Valid Numerator: " + Long.parseLong(improperFraction.substring(0, divideSymbolLocation)));
             }
             catch (NumberFormatException e) {
                 System.out.println("The numerator you have chosen is too large and cannot be computed. ");
@@ -153,10 +161,11 @@ public class CheckValidInput {
 
             // VALID DENOMINATOR CHECK
             try {
-                Long.parseLong(improperFraction.substring(divideSymbolLocation));
-                System.out.println("denominator: " + Long.parseLong(improperFraction.substring(divideSymbolLocation)));
+//                System.out.println("Denominator in string form: " + improperFraction.substring(divideSymbolLocation));
+                Long.parseLong(improperFraction.substring(divideSymbolLocation + 1));
+//                System.out.println("Valid Denominator: " + Long.parseLong(improperFraction.substring(divideSymbolLocation + 1)));
 
-                if (Long.parseLong(improperFraction.substring((divideSymbolLocation))) == 0) {
+                if (Long.parseLong(improperFraction.substring((divideSymbolLocation + 1))) == 0) {
                     System.out.println("You cannot have a fraction with a denominator of 0");
                     return false;
                 }
@@ -167,6 +176,6 @@ public class CheckValidInput {
             }
         }
 
-        return containsDivideSymbol;
+        return true;
     }
 }
