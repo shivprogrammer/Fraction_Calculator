@@ -12,18 +12,15 @@ class CheckValidInput {
         for (int i = 0; i < desiredCalculation.length(); i++) {
             if (desiredCalculation.charAt((i)) == ' ') {
                 numberOfSpaces++;
-                if (firstSpaceLocation < 0) {
+                if (firstSpaceLocation < 0)
                     firstSpaceLocation = i;
-                }
-                else {
+                else
                     secondSpaceLocation = i;
-                }
             }
             // if the character is either '+', '-', '*', '/' AND has an empty character before and after it:
             else if (desiredCalculation.charAt(i) == '+'  || desiredCalculation.charAt(i) == '-'  || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
-                if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ') {
+                if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')
                     numberOfValidOperations++;
-                }
             }
         }
 
@@ -33,7 +30,7 @@ class CheckValidInput {
                 && isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1));
     }
 
-    static boolean isValidFraction(String fraction) {
+    private static boolean isValidFraction(String fraction) {
 //        System.out.println("In the isValidNumber function");
         HashMap<Character, Integer> numbers = new HashMap<>();
         numbers.put('0', 1);
@@ -53,35 +50,28 @@ class CheckValidInput {
         for (int i = 0; i < fraction.length(); i++) {
             if (fraction.charAt(i) == '_') {
                 // if the characters directly before and after the '_' are not numbers:
-                if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1))) {
+                if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1)))
                     return false;
-                }
-                if (containsUnderscore) {
+                if (containsUnderscore)
                     return false;
-                }
                 containsUnderscore = true;
             }
             else if (fraction.charAt(i) == '/') {
                 // if the characters directly before and after the '/' are not numbers:
-                if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1))) {
+                if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1)))
                     return false;
-                }
-                if (containsDivideSymbol) {
+                if (containsDivideSymbol)
                     return false;
-                }
                 containsDivideSymbol = true;
             }
             else if (fraction.charAt(i) == '-') {
-                if (i != 0 && fraction.charAt(i - 1) != ' ') {
+                if (i != 0 && fraction.charAt(i - 1) != ' ')
                     return false;
-                }
-                if (!numbers.containsKey(fraction.charAt(i + 1))) {
+                if (!numbers.containsKey(fraction.charAt(i + 1)))
                     return false;
-                }
             }
-            else if (!numbers.containsKey(fraction.charAt(i))) {
+            else if (!numbers.containsKey(fraction.charAt(i)))
                 return false;
-            }
         }
 
         return containsDivideSymbol;

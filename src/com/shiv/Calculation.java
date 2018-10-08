@@ -30,16 +30,14 @@ class Calculation {
                     firstNum = desiredCalculation.substring(0, i);
                     firstSpaceFound = true;
                 }
-                else {
+                else
                     secondNum = desiredCalculation.substring(i + 1);
-                }
             }
             else if (desiredCalculation.charAt(i) == '+'
                     || desiredCalculation.charAt(i) == '-'
                     || desiredCalculation.charAt(i) == '*'
-                    || (desiredCalculation.charAt(i) == '/' && desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')) {
+                    || (desiredCalculation.charAt(i) == '/' && desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' '))
                 operation = desiredCalculation.charAt(i);
-            }
         }
 
         String num1 = getImproperFraction(firstNum);
@@ -65,12 +63,11 @@ class Calculation {
         }
         return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
-    
+
     private static String getImproperFraction(String fraction) {
         for (int i = 0; i < fraction.length(); i++) {
-            if (fraction.charAt(i) == '_') {
+            if (fraction.charAt(i) == '_')
                 return mixedToImproperFraction(fraction);
-            }
         }
         return fraction;
     }
@@ -79,12 +76,10 @@ class Calculation {
         int underscoreLocation = -1, divideSymbolLocation = -1;
 
         for (int i = 0; i < mixed.length(); i++) {
-            if (mixed.charAt(i) == '_') {
+            if (mixed.charAt(i) == '_')
                 underscoreLocation = i;
-            }
-            if (mixed.charAt(i) == '/') {
+            if (mixed.charAt(i) == '/')
                 divideSymbolLocation = i;
-            }
         }
 
         long denominator = Long.parseLong(mixed.substring(divideSymbolLocation + 1));
@@ -107,9 +102,8 @@ class Calculation {
             }
         }
 
-        if (!containsDivideSymbol || numerator < denominator) {
+        if (!containsDivideSymbol || numerator < denominator)
             return fraction;
-        }
 
         long wholeNumber = numerator / denominator;
         long newNumerator = numerator - (wholeNumber * denominator);

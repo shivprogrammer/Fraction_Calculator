@@ -39,6 +39,7 @@ class Operations {
 
     private static long findLowestCommonMultiple(long firstNum, long secondNum) {
         long lowestCommonMultiple;
+
         if (firstNum % secondNum == 0) {
             lowestCommonMultiple = firstNum;
             return lowestCommonMultiple;
@@ -50,9 +51,9 @@ class Operations {
 
         lowestCommonMultiple = firstNum * secondNum;
 
-        while (lowestCommonMultiple % firstNum == 0 && lowestCommonMultiple % secondNum == 0) {
+        while (lowestCommonMultiple % firstNum == 0 && lowestCommonMultiple % secondNum == 0)
             lowestCommonMultiple /= 2;
-        }
+
         return lowestCommonMultiple * 2;
     }
 
@@ -60,9 +61,8 @@ class Operations {
         int divideSymbolLocation = -1;
 
         for (int i = 0; i < fraction.length(); i++) {
-            if (fraction.charAt(i) == '/') {
+            if (fraction.charAt(i) == '/')
                 divideSymbolLocation = i;
-            }
         }
 
         long numerator = Long.parseLong(fraction.substring(0, divideSymbolLocation));
@@ -79,10 +79,10 @@ class Operations {
 
         long smaller = (numerator < denominator) ? numerator : denominator;
         for (int i = 2; i <= smaller; i++) {
-            if (numerator % i == 0 && denominator % i == 0) {
+            if (numerator % i == 0 && denominator % i == 0)
                 return reduceHelper(numerator / i,denominator / i);
-            }
         }
+
         return Long.toString(numerator) + '/' + Long.toString(denominator);
     }
 }

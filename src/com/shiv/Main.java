@@ -8,7 +8,7 @@ import static com.shiv.CheckValidInput.*;
 public class Main {
     private static Scanner consoleInput = new Scanner(System.in);
 
-    public static void gatherCalculationInfo() {
+    private static void gatherCalculationInfo() {
         System.out.println(" ");
         System.out.println(" ");
         System.out.println("=======================================================================================");
@@ -38,7 +38,7 @@ public class Main {
 
     private static void displayResult(String desiredCalculation, String result) {
         System.out.println(" ");
-        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ ∞∞∞∞∞∞");
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
         System.out.println(desiredCalculation + " = " + result);
         System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
         runNewCalculation();
@@ -74,7 +74,6 @@ Valid input tests:
 • input has more than one divide symbol (13_1/3342/3)
 • input contains letters (hello)
 • input contains other symbols (1$4/4)
-
 
 • Input contains one number that is just a whole number (5 * 5)
 TODO -- Negative fractions are currently returning an error
