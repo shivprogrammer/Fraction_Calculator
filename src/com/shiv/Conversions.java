@@ -33,13 +33,12 @@ class Conversions {
         long numerator = 0L;
         long denominator = 0L;
 
-        for (int i = 0; i < fraction.length(); i++) {
+        for (int i = 0; i < fraction.length(); i++)
             if (fraction.charAt(i) == '/') {
                 numerator = Long.parseLong(fraction.substring(0, i));
                 denominator = Long.parseLong(fraction.substring(i + 1));
                 containsDivideSymbol = true;
             }
-        }
 
         if (!containsDivideSymbol || numerator < denominator)
             return fraction;
