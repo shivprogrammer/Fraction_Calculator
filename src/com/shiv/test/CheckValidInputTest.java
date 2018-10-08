@@ -56,6 +56,19 @@ public class CheckValidInputTest extends CheckValidInput {
     public void isUserInputValid_inputContainsNumbersThatAreTooLarge_False() {
         Assert.assertEquals(isUserInputValid("9223372036854775807/1212 / 113231414123123145432432342/12"), false);
     }
+    @Test
+    public void isUserInputValid_inputIsTwoOddMixedNumbers_True() {
+        Assert.assertEquals(isUserInputValid("10_4/2 + 11_6/3"), true);
+    }
+    @Test
+    public void isUserInputValid_deceptiveInput_False() {
+        Assert.assertEquals(isUserInputValid("4/3 2_2 * 1/3"), false);
+    }
+
+//    @Test
+//    public void isUserInputValid_deceptiveInput2_False() {
+//        Assert.assertEquals(isUserInputValid("4/3_2 * 1/3"), false);
+//    }
 
 //    @Test
 //    public void isUserInputValid_inputContainsNegativeNumbers_Success() {
