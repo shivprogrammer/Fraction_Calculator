@@ -2,9 +2,9 @@ package com.shiv;
 
 import org.junit.Assert;
 import org.junit.Test;
-import java.io.*;
+//import java.io.*;
 
-// import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
 public class FractionCalculatorTest extends FractionCalculator {
 //    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -24,7 +24,21 @@ public class FractionCalculatorTest extends FractionCalculator {
 //        System.setErr(originalErr);
 //    }
 
-    // add
+    ///////////////////////
+    // VALID INPUT TESTS //
+    ///////////////////////
+    @Test
+    public void isUserInputValid_inputIsNull_False() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid(""), false);
+    }
+    @Test
+    public void isUserInputValid_inputContainsALetter_False() {
+        Assert.assertEquals(CheckValidInput.isUserInputValid("a1/2 + 3/2"), false);
+    }
+
+    ///////////////
+    // ADD TESTS //
+    ///////////////
     @Test
     public void add_simpleValues_Success() {
         Assert.assertEquals(Calculation.calculateResult("1/10 + 2/10"), "3/10");
@@ -54,25 +68,33 @@ public class FractionCalculatorTest extends FractionCalculator {
         Assert.assertNotEquals(Calculation.calculateResult("1/3 + 2/3"), "3/3");
     }
 
-    // subtract
+    ////////////////////
+    // SUBTRACT TESTS //
+    ////////////////////
     @Test
     public void subtract_resultIsWholeNumber_Success() {
         Assert.assertEquals(Calculation.calculateResult("1/3 - 1/3"), "0");
     }
 
-    // multiply
+    ////////////////////
+    // MULTIPLY TESTS //
+    ////////////////////
     @Test
     public void multiply_simpleValues_Success() {
         Assert.assertEquals(Calculation.calculateResult("1/3 * 1/3"), "1/9");
     }
 
-    // divide
+    //////////////////
+    // DIVIDE TESTS //
+    //////////////////
     @Test
     public void divide_simpleValues_Success() {
         Assert.assertEquals(Calculation.calculateResult("7/8 / 7/5"), "5/8");
     }
 
-    // reduce
+    //////////////////
+    // REDUCE TESTS //
+    //////////////////
     @Test
     public void reduce_fractionCanBeReduced_Success() {
         Assert.assertEquals(Operations.reduce("3/21"), "1/7");
