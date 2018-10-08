@@ -147,10 +147,10 @@ public class Main {
         String num1 = getImproperFraction(firstNum);
         String num2 = getImproperFraction(secondNum);
 
-        int num1Numerator = 0;
-        int num1Denominator = 0;
-        int num2Numerator = 0;
-        int num2Denominator = 0;
+        long num1Numerator = 0L;
+        long num1Denominator = 0L;
+        long num2Numerator = 0L;
+        long num2Denominator = 0L;
 
         for (int x = 0; x < num1.length(); x++) {
             if (num1.charAt(x) == '/') {
@@ -168,7 +168,7 @@ public class Main {
         return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
 
-    public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, char operation) {
+    public static String performOperation(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator, char operation) {
         switch (operation) {
             case '+':
                 return calculateMixedFraction(reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
@@ -184,15 +184,15 @@ public class Main {
         }
     }
 
-    public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
-        int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
-        int newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
+    public static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
+        long newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
         return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
     }
 
-    public static String subtract(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
-        int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
-        int newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
+    public static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
+        long newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
         return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
     }
 
@@ -202,8 +202,8 @@ public class Main {
         return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
     }
 
-    public static int findLowestCommonMultiple(int firstNum, int secondNum) {
-        int lowestCommonMultiple;
+    public static long findLowestCommonMultiple(long firstNum, long secondNum) {
+        long lowestCommonMultiple;
         if (firstNum % secondNum == 0) {
             lowestCommonMultiple = firstNum;
             return lowestCommonMultiple;
@@ -230,19 +230,19 @@ public class Main {
             }
         }
 
-        int numerator = Integer.parseInt(fraction.substring(0, divideSymbolLocation));
-        int denominator = Integer.parseInt(fraction.substring(divideSymbolLocation + 1));
+        long numerator = Integer.parseInt(fraction.substring(0, divideSymbolLocation));
+        long denominator = Integer.parseInt(fraction.substring(divideSymbolLocation + 1));
 
         return reducer(numerator, denominator);
     }
 
-    public static String reducer(int numerator, int denominator) {
+    public static String reducer(long numerator, long denominator) {
         if (numerator % denominator == 0) {
             int reduced = numerator / denominator;
             return Integer.toString(reduced);
         }
 
-        int smaller = (numerator < denominator) ? numerator : denominator;
+        long smaller = (numerator < denominator) ? numerator : denominator;
         for (int i = 2; i <= smaller; i++) {
             if (numerator % i == 0 && denominator % i == 0) {
                 return reducer(numerator / i,denominator / i);
@@ -272,17 +272,17 @@ public class Main {
             }
         }
 
-        int denominator = Integer.parseInt(mixed.substring(divideSymbolLocation + 1));
-        int wholeNumber = Integer.parseInt(mixed.substring(0, underscoreLocation));
-        int currentNumerator = Integer.parseInt(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
-        int newNumerator = wholeNumber * denominator + currentNumerator;
+        long denominator = Integer.parseInt(mixed.substring(divideSymbolLocation + 1));
+        long wholeNumber = Integer.parseInt(mixed.substring(0, underscoreLocation));
+        long currentNumerator = Integer.parseInt(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
+        long newNumerator = wholeNumber * denominator + currentNumerator;
         return Integer.toString(newNumerator)+ '/' + Integer.toString(denominator);
     }
 
     public static String calculateMixedFraction(String fraction) {
         boolean containsDivideSymbol = false;
-        int numerator = 0;
-        int denominator = 0;
+        long numerator = 0L;
+        long denominator = 0L;
 
         for (int i = 0; i < fraction.length(); i++) {
             if (fraction.charAt(i) == '/') {
@@ -296,8 +296,8 @@ public class Main {
             return fraction;
         }
 
-        int wholeNumber = numerator / denominator;
-        int newNumerator = numerator - (wholeNumber * denominator);
+        long wholeNumber = numerator / denominator;
+        long newNumerator = numerator - (wholeNumber * denominator);
         return Integer.toString(wholeNumber) + '_' + Integer.toString(newNumerator) + '/' + Integer.toString(denominator);
     }
 
@@ -339,6 +339,7 @@ Valid input tests:
 • input has more than one divide symbol (13_1/3342/3)
 • input contains letters (hello)
 • input contains other symbols (1$4/4)
+
 
 • Input contains one number that is just a whole number (5 * 5)
 *TODO* Negative fractions are currently returning an error
