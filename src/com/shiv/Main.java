@@ -14,15 +14,15 @@ public class Main {
         System.out.println("==================================");
 
         // Getting and ensuring the validity of the first fraction
-        System.out.println("Please enter the fractional operation that that you would like solved: " +
-        Systme.out.println("You can enter the fractions as either a mixed number or improper fraction.");
+        System.out.println("You can enter the fractions as either a mixed number or improper fraction.");
         System.out.println("If using a mixed variable, put an underscore between the whole number and the fraction");
         System.out.println("Examples: ");
         System.out.println("1/2 * 3_3/4");
         System.out.println("2_3/8 + 9/8");
+        System.out.print("Please enter the fractional operation that that you would like solved: ");
 
-//        String desiredCalculation = consoleInput.nextLine();
-//        determineInformation(desiredCalculation);
+        String desiredCalculation = consoleInput.nextLine();
+        parseUserInput(desiredCalculation);
 
         String firstNum = consoleInput.nextLine();
         while (!isValidNumber(firstNum)) {
@@ -55,8 +55,35 @@ public class Main {
         displayResult(firstNum, secondNum, operation);
     }
 
-    public static void determineInformation(String desiredCalculation) {
+    public static void parseUserInput(String desiredCalculation) {
+        HashMap<Character, Boolean> validOperations = new HashMap<Character, Boolean>();
+        validOperations.put('+', true);
+        validOperations.put('-', true);
+        validOperations.put('*', true);
+        validOperations.put('/', true);
 
+        int spaceCount = 0;
+        int numberOfOperations = 0;
+        int firstSpaceLocation = -1;
+        int secondSpaceLocation = -1;
+        for (int i = 0; i < desiredCalculation.length(); i++) {
+            if (desiredCalculation.charAt((i)) == ' ') {
+                spaceCount++;
+                if (firstSpaceLocation < 0) {
+                    firstSpaceLocation = i;
+                }
+                else {
+                    secondSpaceLocation = i;
+                }
+            }
+            else if (validOperations.containsKey(desiredCalculation.charAt(i)) {
+                numberOfOperations++;
+            }
+        }
+
+        return spaceCount == 2
+                && isValidNumber(desiredCalculation.substring(0, firstSpaceLocation))
+                && isValidNumber()
     }
 
     public static void displayResult(String firstNum, String secondNum, String operation) {
