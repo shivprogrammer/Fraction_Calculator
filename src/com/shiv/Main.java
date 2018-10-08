@@ -187,19 +187,19 @@ public class Main {
     public static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
         long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         long newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
-        return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
+        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
     public static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
         long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         long newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
-        return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
+        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
-    public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
-        int newNumerator = firstNumerator * secondNumerator;
-        int newDenominator = firstDenominator * secondDenominator;
-        return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
+    public static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        long newNumerator = firstNumerator * secondNumerator;
+        long newDenominator = firstDenominator * secondDenominator;
+        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
     public static long findLowestCommonMultiple(long firstNum, long secondNum) {
@@ -238,8 +238,8 @@ public class Main {
 
     public static String reducer(long numerator, long denominator) {
         if (numerator % denominator == 0) {
-            int reduced = numerator / denominator;
-            return Integer.toString(reduced);
+            long reduced = numerator / denominator;
+            return Long.toString(reduced);
         }
 
         long smaller = (numerator < denominator) ? numerator : denominator;
@@ -248,7 +248,7 @@ public class Main {
                 return reducer(numerator / i,denominator / i);
             }
         }
-        return Integer.toString(numerator) + '/' + Integer.toString(denominator);
+        return Long.toString(numerator) + '/' + Long.toString(denominator);
     }
 
     public static String getImproperFraction(String fraction) {
@@ -276,7 +276,7 @@ public class Main {
         long wholeNumber = Integer.parseInt(mixed.substring(0, underscoreLocation));
         long currentNumerator = Integer.parseInt(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
         long newNumerator = wholeNumber * denominator + currentNumerator;
-        return Integer.toString(newNumerator)+ '/' + Integer.toString(denominator);
+        return Long.toString(newNumerator)+ '/' + Long.toString(denominator);
     }
 
     public static String calculateMixedFraction(String fraction) {
@@ -298,7 +298,7 @@ public class Main {
 
         long wholeNumber = numerator / denominator;
         long newNumerator = numerator - (wholeNumber * denominator);
-        return Integer.toString(wholeNumber) + '_' + Integer.toString(newNumerator) + '/' + Integer.toString(denominator);
+        return Long.toString(wholeNumber) + '_' + Long.toString(newNumerator) + '/' + Long.toString(denominator);
     }
 
     public static void displayResult(String desiredCalculation, String result) {
