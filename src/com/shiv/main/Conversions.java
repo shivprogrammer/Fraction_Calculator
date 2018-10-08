@@ -1,7 +1,7 @@
 package com.shiv.main;
 
 public class Conversions {
-    static String getImproperFraction(String fraction) {
+    public static String getImproperFraction(String fraction) {
         for (int i = 0; i < fraction.length(); i++)
             if (fraction.charAt(i) == '_')
                 return mixedToImproperFraction(fraction);
