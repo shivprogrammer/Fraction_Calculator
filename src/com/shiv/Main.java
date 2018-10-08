@@ -14,11 +14,16 @@ public class Main {
         System.out.println("==================================");
 
         // Getting and ensuring the validity of the first fraction
-        System.out.println("Please enter your first number as either a mixed number or improper fraction.");
+        System.out.println("Please enter the fractional operation that that you would like solved: " +
+        Systme.out.println("You can enter the fractions as either a mixed number or improper fraction.");
         System.out.println("If using a mixed variable, put an underscore between the whole number and the fraction");
         System.out.println("Examples: ");
         System.out.println("1/2 * 3_3/4");
         System.out.println("2_3/8 + 9/8");
+
+//        String desiredCalculation = consoleInput.nextLine();
+//        determineInformation(desiredCalculation);
+
         String firstNum = consoleInput.nextLine();
         while (!isValidNumber(firstNum)) {
             System.out.print(firstNum + " is not a valid fraction, please try again: ");
@@ -48,6 +53,10 @@ public class Main {
         System.out.println(" ");
 
         displayResult(firstNum, secondNum, operation);
+    }
+
+    public static void determineInformation(String desiredCalculation) {
+
     }
 
     public static void displayResult(String firstNum, String secondNum, String operation) {
