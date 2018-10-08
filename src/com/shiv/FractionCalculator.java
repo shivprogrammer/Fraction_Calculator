@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class FractionCalculator {
     private static Scanner consoleInput = new Scanner(System.in);
 
-    private static void gatherCalculationInfo() {
+    static void gatherCalculationInfo() {
         System.out.println(" ");
         System.out.println(" ");
         System.out.println("=======================================================================================");
