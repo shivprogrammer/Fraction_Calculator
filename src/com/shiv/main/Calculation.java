@@ -1,5 +1,7 @@
 package com.shiv.main;
 
+import static com.shiv.main.FractionCalculator.gatherCalculationInfo;
+
 public class Calculation {
     public static String calculateResult(String desiredCalculation) {
         boolean firstSpaceFound = false;
@@ -34,14 +36,26 @@ public class Calculation {
 
         for (int x = 0; x < num1.length(); x++)
             if (num1.charAt(x) == '/') {
-                num1Numerator = Long.parseLong(num1.substring(0, x));
-                num1Denominator = Long.parseLong(num1.substring(x + 1));
+                try {
+                    num1Numerator = Long.parseLong(num1.substring(0, x));
+                    num1Denominator = Long.parseLong(num1.substring(x + 1));
+                }
+                catch (NumberFormatException e) {
+                    System.out.println("The result of the numbers you have chosen is too large, please try again: ");
+                    gatherCalculationInfo();
+                }
             }
 
         for (int y = 0; y < num2.length(); y++)
             if (num2.charAt(y) == '/') {
-                num2Numerator = Long.parseLong(num2.substring(0, y));
-                num2Denominator = Long.parseLong(num2.substring(y + 1));
+                try {
+                    num2Numerator = Long.parseLong(num2.substring(0, y));
+                    num2Denominator = Long.parseLong(num2.substring(y + 1));
+                }
+                catch (NumberFormatException e) {
+                    System.out.println("The result of the numbers you have chosen is too large, please try again: ");
+                    gatherCalculationInfo();
+                }
             }
 
         return Operations.performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);

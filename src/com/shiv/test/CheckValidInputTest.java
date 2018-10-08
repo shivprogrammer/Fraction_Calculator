@@ -37,6 +37,10 @@ public class CheckValidInputTest extends CheckValidInput {
         Assert.assertEquals(isUserInputValid("10_2/3 x 4/4"), false);
     }
     @Test
+    public void isUserInputValid_denominatorIsZero_False() {
+        Assert.assertEquals(isUserInputValid("10_2/3 * 4/0"), false);
+    }
+    @Test
     public void isUserInputValid_inputContainsMassiveNumbers_Success() {
         Assert.assertEquals(isUserInputValid("9223372036854775807/1212 / 113231414123123145432432342/12"), true);
     }

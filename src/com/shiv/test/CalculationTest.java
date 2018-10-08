@@ -64,4 +64,8 @@ public class CalculationTest extends Calculation {
     public void divide_simpleValues_Success() {
         Assert.assertEquals(calculateResult("7/8 / 7/5"), "5/8");
     }
+    @Test
+    public void divide_inputContainsMassiveNumbers_ThrowException() {
+        Assert.assertEquals(calculateResult("9223372036854775807/1212 / 113231414123123145432432342/12"), true);
+    }
 }
