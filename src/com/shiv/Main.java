@@ -56,19 +56,19 @@ public class Main {
     }
 
     public static void parseUserInput(String desiredCalculation) {
-        HashMap<Character, Boolean> validOperations = new HashMap<Character, Boolean>();
-        validOperations.put('+', true);
-        validOperations.put('-', true);
-        validOperations.put('*', true);
-        validOperations.put('/', true);
+        HashMap<Character, Boolean> validOperationsMap = new HashMap<Character, Boolean>();
+        validOperationsMap.put('+', true);
+        validOperationsMap.put('-', true);
+        validOperationsMap.put('*', true);
+        validOperationsMap.put('/', true);
 
-        int spaceCount = 0;
+        int emptyCharacterCount = 0;
         int numberOfOperations = 0;
         int firstSpaceLocation = -1;
         int secondSpaceLocation = -1;
         for (int i = 0; i < desiredCalculation.length(); i++) {
             if (desiredCalculation.charAt((i)) == ' ') {
-                spaceCount++;
+                emptyCharacterCount++;
                 if (firstSpaceLocation < 0) {
                     firstSpaceLocation = i;
                 }
@@ -76,14 +76,15 @@ public class Main {
                     secondSpaceLocation = i;
                 }
             }
-            else if (validOperations.containsKey(desiredCalculation.charAt(i)) {
+            else if (validOperationsMap.containsKey(desiredCalculation.charAt(i))) {
                 numberOfOperations++;
             }
         }
 
-        return spaceCount == 2
+        return emptyCharacterCount == 2
+                && numberOfOperations == 1
                 && isValidNumber(desiredCalculation.substring(0, firstSpaceLocation))
-                && isValidNumber()
+                && isValidNumber(desiredCalculation.substring(secondSpaceLocation, desiredCalculation.length() - 1))
     }
 
     public static void displayResult(String firstNum, String secondNum, String operation) {
@@ -154,7 +155,7 @@ public class Main {
         return operation.equals("add") || operation.equals("subtract") || operation.equals("multiply") || operation.equals("divide");
     }
 
-    public static String calculateResult(String firstNum, String secondNum, String operation) {
+    public static String calculateResult(String firstNum, String secondNum, char operation) {
         String num1 = getImproperFraction(firstNum);
         String num2 = getImproperFraction(secondNum);
         int num1Numerator = 0;
@@ -180,31 +181,21 @@ public class Main {
 //        return resultsMessage(firstNum, secondNum, operation, result);
     }
 
-    public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, String operation) {
-        if (operation.equals("add")) {
-            String result = add(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
-            return reduce(result);
+    public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, char operation) {
+        if (operation == '+') {
+            return reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
         }
-        else if (operation.equals("subtract")) {
-            String result = subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
-            return reduce(result);
+        else if (operation == '-') {
+            return (subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
         }
-        else if (operation.equals("multiply")) {
-            String result = multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator);
-            return reduce(result);
+        else if (operation == '*') {
+            return reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
         }
         // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
-        else if (operation.equals("divide")) {
-            String result = multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator);
-            return reduce(result);
+        else if (operation == '/') {
+            return reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator));
         }
         return "";
-    }
-
-    public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
-        int newNumerator = firstNumerator * secondNumerator;
-        int newDenominator = firstDenominator * secondDenominator;
-        return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
     }
 
     public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
@@ -216,6 +207,12 @@ public class Main {
     public static String subtract(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         int newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
+        return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
+    }
+
+    public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
+        int newNumerator = firstNumerator * secondNumerator;
+        int newDenominator = firstDenominator * secondDenominator;
         return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
     }
 
