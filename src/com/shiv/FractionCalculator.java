@@ -10,6 +10,8 @@ public class FractionCalculator {
         System.out.println(" ");
         System.out.println("=======================================================================================");
         System.out.println("                        Welcome to the Fraction Calculator                             ");
+        System.out.println("                        ----------------------------------                             ");
+        System.out.println(" ");
         System.out.println("     You can add, subtract, multiply, or divide two fractions together (+, -, *, /)    ");
         System.out.println("        You can enter the fractions as either a mixed number or improper fraction      ");
         System.out.println(" If using mixed numbers, place an underscore between the whole number and the fraction ");
