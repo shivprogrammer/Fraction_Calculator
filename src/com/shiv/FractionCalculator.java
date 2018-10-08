@@ -2,7 +2,7 @@ package com.shiv;
 
 import java.util.Scanner;
 
-public class Main {
+public class FractionCalculator {
     private static Scanner consoleInput = new Scanner(System.in);
 
     private static void gatherCalculationInfo() {
@@ -36,7 +36,7 @@ public class Main {
     private static void displayResult(String desiredCalculation, String result) {
         System.out.println(" ");
         System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
-        System.out.println(desiredCalculation + " = " + result);
+        System.out.println("     " + desiredCalculation + " = " + result);
         System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
         runNewCalculation();
     }
