@@ -52,7 +52,7 @@ class Operations {
         return lowestCommonMultiple * 2;
     }
 
-    private static String reduce(String fraction) {
+    static String reduce(String fraction) {
         int divideSymbolLocation = -1;
 
         for (int i = 0; i < fraction.length(); i++)

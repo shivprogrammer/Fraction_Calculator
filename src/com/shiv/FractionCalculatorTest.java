@@ -6,7 +6,7 @@ import java.io.*;
 
 // import static org.junit.jupiter.api.Assertions.*;
 
-public class FractionCalculatorTest extends Calculation {
+public class FractionCalculatorTest extends FractionCalculator {
 //    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 //    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 //    private final PrintStream originalOut = System.out;
@@ -24,29 +24,62 @@ public class FractionCalculatorTest extends Calculation {
 //        System.setErr(originalErr);
 //    }
 
+    // add
     @Test
-    public void addTestWithMixedNumberResult() {
-        Assert.assertEquals(Calculation.calculateResult("2/3 + 2/3"), "1/9");
+    public void add_simpleValues_Success() {
+        Assert.assertEquals(Calculation.calculateResult("1/10 + 2/10"), "3/10");
+    }
+    @Test
+    public void add_resultHasNewDenominator_Success() {
+        Assert.assertEquals(Calculation.calculateResult("1/10 + 4/10"), "1/2");
+    }
+    @Test
+    public void add_resultWasNotReduced_Incorrect() {
+        Assert.assertNotEquals(Calculation.calculateResult("1/10 + 4/10"), "5/10");
+    }
+    @Test
+    public void add_resultIsMixedNumber_Success() {
+        Assert.assertEquals(Calculation.calculateResult("2/3 + 2/3"), "1_1/3");
+    }
+    @Test
+    public void add_resultShouldHaveBeenMixedNumber_Incorrect() {
+        Assert.assertNotEquals(Calculation.calculateResult("2/3 + 2/3"), "4/3");
+    }
+    @Test
+    public void add_resultIsWholeNumber_Success() {
+        Assert.assertEquals(Calculation.calculateResult("1/3 + 2/3"), "1");
+    }
+    @Test
+    public void add_resultShouldBeWholeNumberNotFraction_Incorrect() {
+        Assert.assertNotEquals(Calculation.calculateResult("1/3 + 2/3"), "3/3");
     }
 
+    // subtract
     @Test
-    public void addTestWithWholeNumberResult() {
-        Assert.assertEquals(Calculation.calculateResult("1/3 * 1/3"), "1/9");
-    }
-
-    @Test
-    public void subtractTestWithWholeNumberResult() {
+    public void subtract_resultIsWholeNumber_Success() {
         Assert.assertEquals(Calculation.calculateResult("1/3 - 1/3"), "0");
     }
 
+    // multiply
     @Test
-    public void multiplyTest() {
+    public void multiply_simpleValues_Success() {
         Assert.assertEquals(Calculation.calculateResult("1/3 * 1/3"), "1/9");
     }
 
+    // divide
     @Test
-    public void divideTest() {
-        Assert.assertEquals(Calculation.calculateResult("1/3 * 1/3"), "1/9");
+    public void divide_simpleValues_Success() {
+        Assert.assertEquals(Calculation.calculateResult("7/8 / 7/5"), "5/8");
+    }
+
+    // reduce
+    @Test
+    public void reduce_fractionCanBeReduced_Success() {
+        Assert.assertEquals(Operations.reduce("3/21"), "1/7");
+    }
+    @Test
+    public void reduce_fractionCannotBeReduced_Success() {
+        Assert.assertEquals(Operations.reduce("7/10"), "7/10");
     }
 }
 
