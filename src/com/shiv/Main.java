@@ -31,16 +31,16 @@ public class Main {
             System.out.print(desiredCalculation + " is not a valid input, please try again: ");
             desiredCalculation = consoleInput.nextLine();
         }
-        
+
         String result = calculateResult(desiredCalculation);
         displayResult(desiredCalculation, result);
     }
 
     private static void displayResult(String desiredCalculation, String result) {
         System.out.println(" ");
-        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ ∞∞∞∞∞∞");
         System.out.println(desiredCalculation + " = " + result);
-        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
         runNewCalculation();
     }
 
@@ -77,5 +77,6 @@ Valid input tests:
 
 
 • Input contains one number that is just a whole number (5 * 5)
-*TODO* Negative fractions are currently returning an error
+TODO -- Negative fractions are currently returning an error
+TODO -- Double check the full validity of the reduce function
 */

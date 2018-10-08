@@ -1,5 +1,7 @@
 package com.shiv;
 
+import static com.shiv.Operations.*;
+
 class Calculation {
 //public abstract class Calculation {
 //    private final String firstNum;
@@ -64,88 +66,88 @@ class Calculation {
         return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
 
-    private static String performOperation(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator, char operation) {
-        switch (operation) {
-            case '+':
-                return calculateMixedFraction(reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
-            case '-':
-                return calculateMixedFraction(reduce(subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
-            case '*':
-                return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
-            case '/':
-                // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
-                return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator)));
-            default:
-                return " ";
-        }
-    }
+//    private static String performOperation(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator, char operation) {
+//        switch (operation) {
+//            case '+':
+//                return calculateMixedFraction(reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
+//            case '-':
+//                return calculateMixedFraction(reduce(subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
+//            case '*':
+//                return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
+//            case '/':
+//                // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
+//                return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator)));
+//            default:
+//                return " ";
+//        }
+//    }
+//
+//    private static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+//        long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
+//        long newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
+//        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
+//    }
+//
+//    private static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+//        long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
+//        long newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
+//        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
+//    }
+//
+//    private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+//        long newNumerator = firstNumerator * secondNumerator;
+//        long newDenominator = firstDenominator * secondDenominator;
+//        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
+//    }
+//
+//    private static long findLowestCommonMultiple(long firstNum, long secondNum) {
+//        long lowestCommonMultiple;
+//        if (firstNum % secondNum == 0) {
+//            lowestCommonMultiple = firstNum;
+//            return lowestCommonMultiple;
+//        }
+//        if (secondNum % firstNum == 0) {
+//            lowestCommonMultiple = secondNum;
+//            return lowestCommonMultiple;
+//        }
+//
+//        lowestCommonMultiple = firstNum * secondNum;
+//
+//        while (lowestCommonMultiple % firstNum == 0 && lowestCommonMultiple % secondNum == 0) {
+//            lowestCommonMultiple /= 2;
+//        }
+//        return lowestCommonMultiple * 2;
+//    }
 
-    private static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
-        long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
-        long newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
-        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
-    }
-
-    private static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
-        long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
-        long newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
-        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
-    }
-
-    private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
-        long newNumerator = firstNumerator * secondNumerator;
-        long newDenominator = firstDenominator * secondDenominator;
-        return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
-    }
-
-    private static long findLowestCommonMultiple(long firstNum, long secondNum) {
-        long lowestCommonMultiple;
-        if (firstNum % secondNum == 0) {
-            lowestCommonMultiple = firstNum;
-            return lowestCommonMultiple;
-        }
-        if (secondNum % firstNum == 0) {
-            lowestCommonMultiple = secondNum;
-            return lowestCommonMultiple;
-        }
-
-        lowestCommonMultiple = firstNum * secondNum;
-
-        while (lowestCommonMultiple % firstNum == 0 && lowestCommonMultiple % secondNum == 0) {
-            lowestCommonMultiple /= 2;
-        }
-        return lowestCommonMultiple * 2;
-    }
-
-    private static String reduce(String fraction) {
-        int divideSymbolLocation = -1;
-
-        for (int i = 0; i < fraction.length(); i++) {
-            if (fraction.charAt(i) == '/') {
-                divideSymbolLocation = i;
-            }
-        }
-
-        long numerator = Integer.parseInt(fraction.substring(0, divideSymbolLocation));
-        long denominator = Integer.parseInt(fraction.substring(divideSymbolLocation + 1));
-
-        return reducer(numerator, denominator);
-    }
-
-    private static String reducer(long numerator, long denominator) {
-        if (numerator % denominator == 0) {
-            long reduced = numerator / denominator;
-            return Long.toString(reduced);
-        }
-
-        long smaller = (numerator < denominator) ? numerator : denominator;
-        for (int i = 2; i <= smaller; i++) {
-            if (numerator % i == 0 && denominator % i == 0) {
-                return reducer(numerator / i,denominator / i);
-            }
-        }
-        return Long.toString(numerator) + '/' + Long.toString(denominator);
-    }
+//    private static String reduce(String fraction) {
+//        int divideSymbolLocation = -1;
+//
+//        for (int i = 0; i < fraction.length(); i++) {
+//            if (fraction.charAt(i) == '/') {
+//                divideSymbolLocation = i;
+//            }
+//        }
+//
+//        long numerator = Long.parseLong(fraction.substring(0, divideSymbolLocation));
+//        long denominator = Long.parseLong(fraction.substring(divideSymbolLocation + 1));
+//
+//        return reducer(numerator, denominator);
+//    }
+//
+//    private static String reducer(long numerator, long denominator) {
+//        if (numerator % denominator == 0) {
+//            long reduced = numerator / denominator;
+//            return Long.toString(reduced);
+//        }
+//
+//        long smaller = (numerator < denominator) ? numerator : denominator;
+//        for (int i = 2; i <= smaller; i++) {
+//            if (numerator % i == 0 && denominator % i == 0) {
+//                return reducer(numerator / i,denominator / i);
+//            }
+//        }
+//        return Long.toString(numerator) + '/' + Long.toString(denominator);
+//    }
 
     private static String getImproperFraction(String fraction) {
         for (int i = 0; i < fraction.length(); i++) {
@@ -168,14 +170,14 @@ class Calculation {
             }
         }
 
-        long denominator = Integer.parseInt(mixed.substring(divideSymbolLocation + 1));
-        long wholeNumber = Integer.parseInt(mixed.substring(0, underscoreLocation));
+        long denominator = Long.parseLong(mixed.substring(divideSymbolLocation + 1));
+        long wholeNumber = Long.parseLong(mixed.substring(0, underscoreLocation));
         long currentNumerator = Integer.parseInt(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
         long newNumerator = wholeNumber * denominator + currentNumerator;
         return Long.toString(newNumerator)+ '/' + Long.toString(denominator);
     }
 
-    private static String calculateMixedFraction(String fraction) {
+    static String calculateMixedFraction(String fraction) {
         boolean containsDivideSymbol = false;
         long numerator = 0L;
         long denominator = 0L;
