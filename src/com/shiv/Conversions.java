@@ -22,7 +22,7 @@ class Conversions {
 
         long denominator = Long.parseLong(mixed.substring(divideSymbolLocation + 1));
         long wholeNumber = Long.parseLong(mixed.substring(0, underscoreLocation));
-        long currentNumerator = Integer.parseInt(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
+        long currentNumerator = Long.parseLong(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
         long newNumerator = wholeNumber * denominator + currentNumerator;
 
         return Long.toString(newNumerator)+ '/' + Long.toString(denominator);
@@ -35,8 +35,8 @@ class Conversions {
 
         for (int i = 0; i < fraction.length(); i++) {
             if (fraction.charAt(i) == '/') {
-                numerator = Integer.parseInt(fraction.substring(0, i));
-                denominator = Integer.parseInt(fraction.substring(i + 1));
+                numerator = Long.parseLong(fraction.substring(0, i));
+                denominator = Long.parseLong(fraction.substring(i + 1));
                 containsDivideSymbol = true;
             }
         }

@@ -2,9 +2,6 @@ package com.shiv;
 
 import java.util.Scanner;
 
-import static com.shiv.Calculation.*;
-import static com.shiv.CheckValidInput.*;
-
 public class Main {
     private static Scanner consoleInput = new Scanner(System.in);
 
@@ -27,12 +24,12 @@ public class Main {
 
         String desiredCalculation = consoleInput.nextLine();
 
-        while (!isUserInputValid(desiredCalculation)) {
+        while (!CheckValidInput.isUserInputValid(desiredCalculation)) {
             System.out.print(desiredCalculation + " is not a valid input, please try again: ");
             desiredCalculation = consoleInput.nextLine();
         }
 
-        String result = calculateResult(desiredCalculation);
+        String result = Calculation.calculateResult(desiredCalculation);
         displayResult(desiredCalculation, result);
     }
 

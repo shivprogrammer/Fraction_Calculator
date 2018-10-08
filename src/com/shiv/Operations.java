@@ -78,6 +78,7 @@ class Operations {
         }
 
         long smaller = (numerator < denominator) ? numerator : denominator;
+
         for (int i = 2; i <= smaller; i++) {
             if (numerator % i == 0 && denominator % i == 0)
                 return reduceHelper(numerator / i,denominator / i);
