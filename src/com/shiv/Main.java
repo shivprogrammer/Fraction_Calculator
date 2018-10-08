@@ -67,7 +67,7 @@ public class Main {
     }
 
     public static boolean isValidFraction(String fraction) {
-        System.out.println("In the isValidNumber function");
+//        System.out.println("In the isValidNumber function");
         HashMap<Character, Integer> numbers = new HashMap<>();
         numbers.put('0', 1);
         numbers.put('1', 1);
