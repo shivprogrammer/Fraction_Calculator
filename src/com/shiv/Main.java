@@ -9,16 +9,15 @@ public class Main {
     public static void gatherCalculationInfo() {
         System.out.println(" ");
 
-        System.out.println("==================================");
-        System.out.println("Welcome to the Fraction Calculator");
-        System.out.println("==================================");
-
-        System.out.println("You can enter the fractions as either a mixed number or improper fraction.");
+        System.out.println("=====================================================================================");
+        System.out.println("                       Welcome to the Fraction Calculator");
+        System.out.println("     You can enter the fractions as either a mixed number or improper fraction");
         System.out.println("If using a mixed variable, put an underscore between the whole number and the fraction");
-        System.out.println("Examples: ");
-        System.out.println("1/2 * 3_3/4");
-        System.out.println("2_3/8 + 9/8");
-        System.out.print("Please enter the fractional operation that that you would like solved: ");
+        System.out.println("                                   Examples: ");
+        System.out.println("                                • 1/2 * 3_3/4");
+        System.out.println("                                • 2_3/8 + 9/8");
+        System.out.println("=====================================================================================");
+        System.out.println("Please enter the fractional operation that that you would like solved: ");
 
         String desiredCalculation = consoleInput.nextLine();
 
@@ -27,10 +26,8 @@ public class Main {
             desiredCalculation = consoleInput.nextLine();
         }
 
-        System.out.println(" ");
-
         String result = calculateResult(desiredCalculation);
-        displayResult(result);
+        displayResult(desiredCalculation, result);
     }
 
     public static boolean isUserInputValid(String desiredCalculation) {
@@ -129,7 +126,6 @@ public class Main {
                     || desiredCalculation.charAt(i) == '*'
                     || (desiredCalculation.charAt(i) == '/' && desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')) {
                 operation = desiredCalculation.charAt(i);
-//                System.out.println(operation);
             }
         }
 
@@ -155,26 +151,23 @@ public class Main {
             }
         }
         String result = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-        System.out.println("this is the result: " + result);
         return result;
-//        return resultsMessage(firstNum, secondNum, operation, result);
     }
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, char operation) {
-        if (operation == '+') {
-            return reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
+        switch (operation) {
+            case '+':
+                return reduce(add(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
+            case '-':
+                return (subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
+            case '*':
+                return reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
+            case '/':
+                // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
+                return reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator));
+            default:
+                return " ";
         }
-        else if (operation == '-') {
-            return (subtract(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
-        }
-        else if (operation == '*') {
-            return reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator));
-        }
-        // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
-        else if (operation == '/') {
-            return reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator));
-        }
-        return "This statement should never be returned";
     }
 
     public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
@@ -276,17 +269,16 @@ public class Main {
 //        return "";
 //    }
 
-    public static void displayResult(String result) {
-        System.out.println("=========================================");
-        System.out.println("Your result is: " + result);
-        System.out.println("=========================================");
-
+    public static void displayResult(String desiredCalculation, String result) {
+        System.out.println(" ");
+        System.out.println("==> " + desiredCalculation + " equals " + result);
+        System.out.println("--------------------------");
         runNewCalculation();
     }
 
     public static void runNewCalculation() {
         System.out.println(" ");
-        System.out.println("Do you want to run another calculation?: ");
+        System.out.print("Do you want to run another calculation? (yes/no):  ");
         String anotherOne = consoleInput.nextLine();
         if (anotherOne.toLowerCase().equals("yes")) {
             gatherCalculationInfo();
