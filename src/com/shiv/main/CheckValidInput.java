@@ -1,9 +1,9 @@
-package com.shiv;
+package com.shiv.main;
 
 import java.util.HashMap;
 
-class CheckValidInput {
-    static boolean isUserInputValid(String desiredCalculation) {
+public class CheckValidInput {
+    protected static boolean isUserInputValid(String desiredCalculation) {
         int numberOfSpaces = 0;
         int numberOfValidOperations = 0;
         int firstSpaceLocation = -1;

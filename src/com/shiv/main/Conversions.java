@@ -1,6 +1,6 @@
-package com.shiv;
+package com.shiv.main;
 
-class Conversions {
+public class Conversions {
     static String getImproperFraction(String fraction) {
         for (int i = 0; i < fraction.length(); i++)
             if (fraction.charAt(i) == '_')

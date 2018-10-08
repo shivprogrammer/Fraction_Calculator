@@ -1,8 +1,8 @@
-package com.shiv;
+package com.shiv.main;
 
-import static com.shiv.Conversions.calculateMixedFraction;
+import static com.shiv.main.Conversions.calculateMixedFraction;
 
-class Operations {
+public class Operations {
     static String performOperation(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator, char operation) {
         switch (operation) {
             case '+':
@@ -19,25 +19,25 @@ class Operations {
         }
     }
 
-    static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+    private static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
         long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         long newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
-    static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+    private static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
         long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         long newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
-    static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+    private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
         long newNumerator = firstNumerator * secondNumerator;
         long newDenominator = firstDenominator * secondDenominator;
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
-    static long findLowestCommonMultiple(long firstNum, long secondNum) {
+    private static long findLowestCommonMultiple(long firstNum, long secondNum) {
         if (firstNum % secondNum == 0)
             return firstNum;
 
@@ -52,7 +52,7 @@ class Operations {
         return lowestCommonMultiple * 2;
     }
 
-    static String reduce(String fraction) {
+    protected static String reduce(String fraction) {
         int divideSymbolLocation = -1;
 
         for (int i = 0; i < fraction.length(); i++)

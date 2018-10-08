@@ -1,7 +1,7 @@
-package com.shiv;
+package com.shiv.main;
 
-class Calculation {
-    static String calculateResult(String desiredCalculation) {
+public class Calculation {
+    public static String calculateResult(String desiredCalculation) {
         boolean firstSpaceFound = false;
         char operation = ' ';
         String firstNum = " ";

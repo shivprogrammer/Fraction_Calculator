@@ -1,4 +1,4 @@
-package com.shiv;
+package com.shiv.main;
 
 import java.util.Scanner;
 

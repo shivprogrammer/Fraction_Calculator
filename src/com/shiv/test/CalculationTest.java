@@ -1,9 +1,10 @@
-package com.shiv;
+package com.shiv.test;
 
+import com.shiv.main.Calculation;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CalculationTest extends Calculation{
+public class CalculationTest extends Calculation {
     ///////////////
     // ADD TESTS //
     ///////////////
