@@ -9,39 +9,42 @@ public class Main {
     public static void gatherCalculationInfo() {
         System.out.println(" ");
         System.out.println(" ");
-        System.out.println("======================================================================================");
-        System.out.println("                       Welcome to the Fraction Calculator                             ");
-        System.out.println("    You can add, subtract, multiply, or divide two fractions together (+, -, *, /)    ");
-        System.out.println("       You can enter the fractions as either a mixed number or improper fraction      ");
-        System.out.println("If using a mixed number, place an underscore between the whole number and the fraction");
-        System.out.println("                                                                                      ");
-        System.out.println("                                    Examples:                                         ");
-        System.out.println("                                 • 1/2 * 3_3/4                                        ");
-        System.out.println("                                 • 2_3/8 + 9/8                                        ");
-        System.out.println("======================================================================================");
+        System.out.println("=======================================================================================");
+        System.out.println("                        Welcome to the Fraction Calculator                             ");
+        System.out.println("     You can add, subtract, multiply, or divide two fractions together (+, -, *, /)    ");
+        System.out.println("        You can enter the fractions as either a mixed number or improper fraction      ");
+        System.out.println(" If using mixed numbers, place an underscore between the whole number and the fraction ");
+        System.out.println("Please note that only fractions are accepted, decimals and purely whole numbers are not");
+        System.out.println("                                                                                       ");
+        System.out.println("                             Example Valid Equations:                                  ");
+        System.out.println("                                 • 1/2 * 3_3/4                                         ");
+        System.out.println("                                 • 2_3/8 + 9/8                                         ");
+        System.out.println("=======================================================================================");
         System.out.println(" ");
         System.out.print("Please enter the fractional operation that that you would like solved: ");
 
         String desiredCalculation = consoleInput.nextLine();
 
         while (!isUserInputValid(desiredCalculation)) {
-            System.out.print("The input you have entered is invalid, please try again: ");
+            System.out.print(desiredCalculation + " is not a valid input, please try again: ");
             desiredCalculation = consoleInput.nextLine();
         }
+
+        System.out.println("desiredCalculation: " + desiredCalculation);
 
         String result = calculateResult(desiredCalculation);
         displayResult(desiredCalculation, result);
     }
 
     public static boolean isUserInputValid(String desiredCalculation) {
-        int emptyCharacterCount = 0;
+        int numberOfSpaces = 0;
         int numberOfValidOperations = 0;
         int firstSpaceLocation = -1;
         int secondSpaceLocation = -1;
 
         for (int i = 0; i < desiredCalculation.length(); i++) {
             if (desiredCalculation.charAt((i)) == ' ') {
-                emptyCharacterCount++;
+                numberOfSpaces++;
                 if (firstSpaceLocation < 0) {
                     firstSpaceLocation = i;
                 }
@@ -57,13 +60,14 @@ public class Main {
             }
         }
 
-        return emptyCharacterCount == 2
+        return numberOfSpaces == 2
                 && numberOfValidOperations == 1
-                && isValidNumber(desiredCalculation.substring(0, firstSpaceLocation))
-                && isValidNumber(desiredCalculation.substring(secondSpaceLocation + 1));
+                && isValidFraction(desiredCalculation.substring(0, firstSpaceLocation))
+                && isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1));
     }
 
-    public static boolean isValidNumber(String number) {
+    public static boolean isValidFraction(String fraction) {
+        System.out.println("In the isValidNumber function");
         HashMap<Character, Integer> numbers = new HashMap<>();
         numbers.put('0', 1);
         numbers.put('1', 1);
@@ -79,10 +83,10 @@ public class Main {
         boolean containsDivideSymbol = false;
         boolean containsUnderscore = false;
 
-        for (int i = 0; i < number.length(); i++) {
-            if (number.charAt(i) == '_') {
+        for (int i = 0; i < fraction.length(); i++) {
+            if (fraction.charAt(i) == '_') {
                 // if the characters directly before and after the '_' are not numbers:
-                if (!numbers.containsKey(number.charAt(i - 1)) || !numbers.containsKey(number.charAt(i + 1))) {
+                if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1))) {
                     return false;
                 }
                 if (containsUnderscore) {
@@ -90,9 +94,9 @@ public class Main {
                 }
                 containsUnderscore = true;
             }
-            else if (number.charAt(i) == '/') {
+            else if (fraction.charAt(i) == '/') {
                 // if the characters directly before and after the '/' are not numbers:
-                if (!numbers.containsKey(number.charAt(i - 1)) || !numbers.containsKey(number.charAt(i + 1))) {
+                if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1))) {
                     return false;
                 }
                 if (containsDivideSymbol) {
@@ -100,7 +104,15 @@ public class Main {
                 }
                 containsDivideSymbol = true;
             }
-            else if (!numbers.containsKey(number.charAt(i))) {
+            else if (fraction.charAt(i) == '-') {
+                if (i != 0 && fraction.charAt(i - 1) != ' ') {
+                    return false;
+                }
+                if (!numbers.containsKey(fraction.charAt(i + 1))) {
+                    return false;
+                }
+            }
+            else if (!numbers.containsKey(fraction.charAt(i))) {
                 return false;
             }
         }
@@ -329,5 +341,5 @@ Valid input tests:
 • input contains other symbols (1$4/4)
 
 • Input contains one number that is just a whole number (5 * 5)
-*TODO* Handle negative numbers
+*TODO* Negative fractions are currently returning an error
 */
