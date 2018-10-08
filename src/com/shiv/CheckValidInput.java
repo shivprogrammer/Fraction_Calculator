@@ -30,7 +30,6 @@ class CheckValidInput {
     }
 
     private static boolean isValidFraction(String fraction) {
-//        System.out.println("In the isValidNumber function");
         HashMap<Character, Boolean> numbers = new HashMap<>();
         numbers.put('0', true);
         numbers.put('1', true);

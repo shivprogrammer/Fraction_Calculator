@@ -2,16 +2,16 @@ package com.shiv;
 
 class Conversions {
     static String getImproperFraction(String fraction) {
-        for (int i = 0; i < fraction.length(); i++) {
+        for (int i = 0; i < fraction.length(); i++)
             if (fraction.charAt(i) == '_')
                 return mixedToImproperFraction(fraction);
-        }
 
         return fraction;
     }
 
     private static String mixedToImproperFraction(String mixed) {
-        int underscoreLocation = -1, divideSymbolLocation = -1;
+        int underscoreLocation = -1;
+        int divideSymbolLocation = -1;
 
         for (int i = 0; i < mixed.length(); i++) {
             if (mixed.charAt(i) == '_')
@@ -25,7 +25,7 @@ class Conversions {
         long currentNumerator = Long.parseLong(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
         long newNumerator = wholeNumber * denominator + currentNumerator;
 
-        return Long.toString(newNumerator)+ '/' + Long.toString(denominator);
+        return Long.toString(newNumerator) + '/' + Long.toString(denominator);
     }
 
     static String calculateMixedFraction(String fraction) {
