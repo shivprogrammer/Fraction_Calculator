@@ -57,7 +57,6 @@ public class CheckValidInput {
     }
 
     private static boolean isValidFraction(String fraction) {
-//        System.out.println("fraction: " + fraction);
         HashMap<Character, Boolean> numbers = new HashMap<>();
         numbers.put('0', true);
         numbers.put('1', true);
@@ -113,9 +112,8 @@ public class CheckValidInput {
             return false;
         }
 
-        // Checking the validity of an improper fraction to provide useful user feedback
+        // Checking the validity of the improper fraction input to provide useful user feedback
         if (!containsUnderscore) {
-
             try {
                 Long.parseLong(fraction.substring(0, divideSymbolLocation)); // numerator
             }
@@ -123,10 +121,8 @@ public class CheckValidInput {
                 System.out.println("The numerator you have chosen is too large and cannot be computed. ");
                 return false;
             }
-
             try {
                 Long.parseLong(fraction.substring(divideSymbolLocation + 1)); // denominator
-
                 if (Long.parseLong(fraction.substring((divideSymbolLocation + 1))) == 0) {
                     System.out.println("You cannot have a fraction with a denominator of 0");
                     return false;
@@ -138,35 +134,24 @@ public class CheckValidInput {
             }
         }
 
-        // checking the validity of the mixed number
+        // checking the validity of the mixed number input to provide useful user feedback
         if (containsDivideSymbol && containsUnderscore) {
-//            System.out.println("DEALING WITH A MIXED NUMBER");
-
             String improperFraction = getImproperFraction(fraction);
-//            System.out.println("improperFraction: " + improperFraction);
 
-            for (int x = 0; x < improperFraction.length(); x++) {
-                if (improperFraction.charAt(x) == '/') {
+            for (int x = 0; x < improperFraction.length(); x++)
+                if (improperFraction.charAt(x) == '/')
                     divideSymbolLocation = x;
-                }
-            }
 
-            // VALID NUMERATOR CHECK
             try {
-                Long.parseLong(improperFraction.substring(0, divideSymbolLocation));
-//                System.out.println("Valid Numerator: " + Long.parseLong(improperFraction.substring(0, divideSymbolLocation)));
+                Long.parseLong(improperFraction.substring(0, divideSymbolLocation)); // numerator
             }
             catch (NumberFormatException e) {
                 System.out.println("The numerator you have chosen is too large and cannot be computed. ");
                 return false;
             }
 
-            // VALID DENOMINATOR CHECK
             try {
-//                System.out.println("Denominator in string form: " + improperFraction.substring(divideSymbolLocation));
-                Long.parseLong(improperFraction.substring(divideSymbolLocation + 1));
-//                System.out.println("Valid Denominator: " + Long.parseLong(improperFraction.substring(divideSymbolLocation + 1)));
-
+                Long.parseLong(improperFraction.substring(divideSymbolLocation + 1)); // denominator
                 if (Long.parseLong(improperFraction.substring((divideSymbolLocation + 1))) == 0) {
                     System.out.println("You cannot have a fraction with a denominator of 0");
                     return false;
