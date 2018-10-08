@@ -24,6 +24,25 @@ public class FractionCalculatorTest extends FractionCalculator {
 //        System.setErr(originalErr);
 //    }
 
+    /////////////////////////////
+////////// TESTS ////////////
+/////////////////////////////
+
+    /*
+    Valid input tests:
+    • input is a mixed number with more than one underscore (110__2/3)
+    • input has an extra space in the middle(1 10_2/3)
+    • input is not a fraction (0.44)
+    • input does not contain '/'
+    • input has more than one divide symbol (13_1/3342/3)
+    • input contains letters (hello)
+    • input contains other symbols (1$4/4)
+
+    • Input contains one number that is just a whole number (5 * 5)
+    TODO -- Negative fractions are currently returning an error
+    TODO -- Double check the full validity of the reduce function
+    */
+
     ///////////////////////
     // VALID INPUT TESTS //
     ///////////////////////
