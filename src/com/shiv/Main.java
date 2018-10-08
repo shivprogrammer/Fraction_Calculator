@@ -8,17 +8,19 @@ public class Main {
 
     public static void gatherCalculationInfo() {
         System.out.println(" ");
-
-        System.out.println("=====================================================================================");
-        System.out.println("                       Welcome to the Fraction Calculator");
-        System.out.println("     You can enter the fractions as either a mixed number or improper fraction");
+        System.out.println(" ");
+        System.out.println("======================================================================================");
+        System.out.println("                       Welcome to the Fraction Calculator                             ");
+        System.out.println("    You can add, subtract, multiply, or divide two fractions together (+, -, *, /)    ");
+        System.out.println("       You can enter the fractions as either a mixed number or improper fraction      ");
         System.out.println("If using a mixed number, place an underscore between the whole number and the fraction");
-        System.out.println("    You can add, subtract, multiply, or divide two fractions together (+, -, *, /)");
-        System.out.println("                                    Examples: ");
-        System.out.println("                                 • 1/2 * 3_3/4");
-        System.out.println("                                 • 2_3/8 + 9/8");
-        System.out.println("=====================================================================================");
-        System.out.println("Please enter the fractional operation that that you would like solved: ");
+        System.out.println("                                                                                      ");
+        System.out.println("                                    Examples:                                         ");
+        System.out.println("                                 • 1/2 * 3_3/4                                        ");
+        System.out.println("                                 • 2_3/8 + 9/8                                        ");
+        System.out.println("======================================================================================");
+        System.out.println(" ");
+        System.out.print("Please enter the fractional operation that that you would like solved: ");
 
         String desiredCalculation = consoleInput.nextLine();
 
@@ -151,8 +153,7 @@ public class Main {
                 num2Denominator = Integer.parseInt(num2.substring(y + 1));
             }
         }
-        String result = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-        return result;
+        return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
 
     public static String performOperation(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator, char operation) {
@@ -268,42 +269,37 @@ public class Main {
 
     public static String calculateMixedFraction(String fraction) {
         boolean containsDivideSymbol = false;
-        String top = " ";
-        String bottom = " ";
+        int numerator = 0;
+        int denominator = 0;
 
         for (int i = 0; i < fraction.length(); i++) {
             if (fraction.charAt(i) == '/') {
-                top = fraction.substring(0, i);
-                bottom = fraction.substring(i + 1);
+                numerator = Integer.parseInt(fraction.substring(0, i));
+                denominator = Integer.parseInt(fraction.substring(i + 1));
                 containsDivideSymbol = true;
             }
         }
-
-        int numerator = Integer.parseInt(top);
-        int denominator = Integer.parseInt(bottom);
 
         if (!containsDivideSymbol || numerator < denominator) {
             return fraction;
         }
 
         int wholeNumber = numerator / denominator;
-        System.out.println("Whole number: " + wholeNumber);
         int newNumerator = numerator - (wholeNumber * denominator);
-        System.out.println("newNumerator: " + newNumerator);
-
         return Integer.toString(wholeNumber) + '_' + Integer.toString(newNumerator) + '/' + Integer.toString(denominator);
     }
 
     public static void displayResult(String desiredCalculation, String result) {
         System.out.println(" ");
-        System.out.println("RESULTS: " + desiredCalculation + " == " + result);
-        System.out.println("--------------------------");
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
+        System.out.println(desiredCalculation + " = " + result);
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
         runNewCalculation();
     }
 
     public static void runNewCalculation() {
         System.out.println(" ");
-        System.out.print("Do you want to run another calculation? (yes/no):  ");
+        System.out.print("Do you want to run another calculation? (yes/no): ");
         String anotherOne = consoleInput.nextLine();
         if (anotherOne.toLowerCase().equals("yes")) {
             gatherCalculationInfo();
@@ -318,7 +314,6 @@ public class Main {
     }
 }
 
-
 /////////////////////////////
 ////////// TESTS ////////////
 /////////////////////////////
@@ -332,5 +327,7 @@ Valid input tests:
 • input has more than one divide symbol (13_1/3342/3)
 • input contains letters (hello)
 • input contains other symbols (1$4/4)
+
+• Input contains one number that is just a whole number (5 * 5)
 *TODO* Handle negative numbers
 */
