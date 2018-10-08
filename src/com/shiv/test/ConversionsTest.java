@@ -5,6 +5,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ConversionsTest extends Conversions {
+    /////////////////////////////////
+    // GET IMPROPER FRACTION TESTS //
+    /////////////////////////////////
     @Test
     public void getImproperFraction_inputIsSimpleFraction_Success() {
         Assert.assertEquals(getImproperFraction("1/4"), "1/4");
