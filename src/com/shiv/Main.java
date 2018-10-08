@@ -13,7 +13,6 @@ public class Main {
         System.out.println("Welcome to the Fraction Calculator");
         System.out.println("==================================");
 
-        // Getting and ensuring the validity of the first fraction
         System.out.println("You can enter the fractions as either a mixed number or improper fraction.");
         System.out.println("If using a mixed variable, put an underscore between the whole number and the fraction");
         System.out.println("Examples: ");
@@ -30,36 +29,6 @@ public class Main {
 
         String result = calculateResult(desiredCalculation);
         displayResult(result);
-
-//        String firstNum = consoleInput.nextLine();
-//        while (!isValidNumber(firstNum)) {
-//            System.out.print(firstNum + " is not a valid fraction, please try again: ");
-//            firstNum = consoleInput.nextLine();
-//        }
-//        System.out.println("Your first number is: " + firstNum);
-//        System.out.println(" ");
-//
-//        // Getting and ensuring the validity of the second fraction
-//        System.out.print("Great, now please enter your second number in the same fashion: ");
-//        String secondNum = consoleInput.nextLine();
-//        while (!isValidNumber(secondNum)) {
-//            System.out.print(secondNum + " is not a valid fraction, please try again: ");
-//            secondNum = consoleInput.nextLine();
-//        }
-//        System.out.println("Your second number is: " + secondNum);
-//        System.out.println(" ");
-//
-//        // Getting and ensuring the validity of the operation
-//        System.out.print("Great, now enter the operation you would like done to the two numbers [add, subtract, multiply, divide]: ");
-//        String operation = consoleInput.nextLine().toLowerCase();
-//        while (!isValidOperation(operation)) {
-//            System.out.print(operation + " is not a valid operation, please try again: ");
-//            operation = consoleInput.nextLine().toLowerCase();
-//        }
-//        System.out.println("Cool, the operation you want done between the two numbers is: " + operation);
-//        System.out.println(" ");
-
-//        displayResult(firstNum, secondNum, operation);
     }
 
     public static boolean isUserInputValid(String desiredCalculation) {
@@ -73,9 +42,11 @@ public class Main {
                 emptyCharacterCount++;
                 if (firstSpaceLocation < 0) {
                     firstSpaceLocation = i;
+//                    System.out.println("firstSpaceLocation: " + firstSpaceLocation);
                 }
                 else {
                     secondSpaceLocation = i;
+//                    System.out.println("secondSpaceLocation: " + secondSpaceLocation);
                 }
             }
             else if (desiredCalculation.charAt(i) == '+'  || desiredCalculation.charAt(i) == '-'  || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
@@ -85,31 +56,13 @@ public class Main {
             }
         }
 
+//        System.out.println("firstNum: " + desiredCalculation.substring(0, firstSpaceLocation));
+//        System.out.println("secondNum: " + desiredCalculation.substring(secondSpaceLocation + 1, desiredCalculation.length()));
+
         return emptyCharacterCount == 2
                 && numberOfValidOperations == 1
                 && isValidNumber(desiredCalculation.substring(0, firstSpaceLocation))
                 && isValidNumber(desiredCalculation.substring(secondSpaceLocation + 1, desiredCalculation.length()));
-    }
-
-    public static void displayResult(String desiredCalculation) {
-        System.out.println("=========================================");
-        String result = calculateResult(desiredCalculation);
-        System.out.println("Your result is: " + result);
-        System.out.println("=========================================");
-
-        calculateAgain();
-    }
-
-    public static void calculateAgain() {
-        System.out.println(" ");
-        System.out.println("Do you want to run another calculation?: ");
-        String anotherOne = consoleInput.nextLine();
-        if (anotherOne.toLowerCase().equals("yes")) {
-            gatherCalculationInfo();
-        }
-        else {
-            System.out.println("Okay, bye!");
-        }
     }
 
     public static boolean isValidNumber(String number) {
@@ -164,9 +117,11 @@ public class Main {
             if (desiredCalculation.charAt((i)) == ' ') {
                 if (firstSpaceLocation < 0) {
                     firstSpaceLocation = i;
+                    System.out.println("firstSpaceLocation: " + firstSpaceLocation);
                 }
                 else {
                     secondSpaceLocation = i;
+                    System.out.println("secondSpaceLocation: " + secondSpaceLocation);
                 }
             }
             else if (desiredCalculation.charAt(i) == '+'
@@ -179,6 +134,9 @@ public class Main {
 
         String firstNum = desiredCalculation.substring(0, firstSpaceLocation);
         String secondNum = desiredCalculation.substring(secondSpaceLocation + 1, desiredCalculation.length());
+
+        System.out.println("firstNum: " + firstNum);
+        System.out.println("secondNum: " + secondNum);
 
         String num1 = getImproperFraction(firstNum);
         String num2 = getImproperFraction(secondNum);
@@ -320,6 +278,27 @@ public class Main {
 //    public static String calculateMixedFraction(String fraction) {
 //        return "";
 //    }
+
+    public static void displayResult(String desiredCalculation) {
+        System.out.println("=========================================");
+        String result = calculateResult(desiredCalculation);
+        System.out.println("Your result is: " + result);
+        System.out.println("=========================================");
+
+        runNewCalculation();
+    }
+
+    public static void runNewCalculation() {
+        System.out.println(" ");
+        System.out.println("Do you want to run another calculation?: ");
+        String anotherOne = consoleInput.nextLine();
+        if (anotherOne.toLowerCase().equals("yes")) {
+            gatherCalculationInfo();
+        }
+        else {
+            System.out.println("Okay, bye!");
+        }
+    }
 
     public static void main(String[] args) {
         gatherCalculationInfo();
