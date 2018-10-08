@@ -17,6 +17,10 @@ public class CheckValidInputTest extends CheckValidInput {
         Assert.assertEquals(isUserInputValid("a1/2 + 3/2b"), false);
     }
     @Test
+    public void isUserInputValid_inputContainsNoNumbers_False() {
+        Assert.assertEquals(isUserInputValid("hello + world"), false);
+    }
+    @Test
     public void isUserInputValid_inputContainsMixedAndImproperFraction_Success() {
         Assert.assertEquals(isUserInputValid("10_2/3 * 53/5"), true);
     }

@@ -99,31 +99,33 @@ public class CheckValidInput {
 //                if (!numbers.containsKey(fraction.charAt(i + 1)))
 //                    return false;
 //            }
-            else if (!numbers.containsKey(fraction.charAt(i)))
+            else if (fraction.charAt(i) == '.') {
+                System.out.println("Decimals are not allowed, please use a fraction");
                 return false;
+            }
+            else if (!numbers.containsKey(fraction.charAt(i))) {
+                System.out.println("There is an invalid character in your input");
+                return false;
+            }
 
         if (!containsDivideSymbol) {
             System.out.println("Your first parameter is not a fraction.");
             return false;
         }
+
         // Checking the validity of an improper fraction to provide useful user feedback
         if (!containsUnderscore) {
-//            System.out.println("DEALING WITH AN IMPROPER FRACTION");
 
-            // VALID NUMERATOR CHECK
             try {
-                Long.parseLong(fraction.substring(0, divideSymbolLocation));
-//                System.out.println("numerator: " + Long.parseLong(fraction.substring(0, divideSymbolLocation)));
+                Long.parseLong(fraction.substring(0, divideSymbolLocation)); // numerator
             }
             catch (NumberFormatException e) {
                 System.out.println("The numerator you have chosen is too large and cannot be computed. ");
                 return false;
             }
 
-            // VALID DENOMINATOR CHECK
             try {
-                Long.parseLong(fraction.substring(divideSymbolLocation + 1));
-//                System.out.println("denominator: " + Long.parseLong(fraction.substring(divideSymbolLocation + 1)));
+                Long.parseLong(fraction.substring(divideSymbolLocation + 1)); // denominator
 
                 if (Long.parseLong(fraction.substring((divideSymbolLocation + 1))) == 0) {
                     System.out.println("You cannot have a fraction with a denominator of 0");
