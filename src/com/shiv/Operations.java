@@ -1,6 +1,6 @@
 package com.shiv;
 
-import static com.shiv.Calculation.*;
+import static com.shiv.Conversions.*;
 
 class Operations {
     static String performOperation(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator, char operation) {
