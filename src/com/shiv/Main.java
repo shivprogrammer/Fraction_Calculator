@@ -27,6 +27,8 @@ public class Main {
             desiredCalculation = consoleInput.nextLine();
         }
 
+        System.out.println(" ");
+
         String result = calculateResult(desiredCalculation);
         displayResult(result);
     }
@@ -42,13 +44,12 @@ public class Main {
                 emptyCharacterCount++;
                 if (firstSpaceLocation < 0) {
                     firstSpaceLocation = i;
-//                    System.out.println("firstSpaceLocation: " + firstSpaceLocation);
                 }
                 else {
                     secondSpaceLocation = i;
-//                    System.out.println("secondSpaceLocation: " + secondSpaceLocation);
                 }
             }
+            // if the character is either '+', '-', '*', '/' AND has an empty character before and after it:
             else if (desiredCalculation.charAt(i) == '+'  || desiredCalculation.charAt(i) == '-'  || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
                 if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ') {
                     numberOfValidOperations++;
@@ -56,17 +57,14 @@ public class Main {
             }
         }
 
-//        System.out.println("firstNum: " + desiredCalculation.substring(0, firstSpaceLocation));
-//        System.out.println("secondNum: " + desiredCalculation.substring(secondSpaceLocation + 1, desiredCalculation.length()));
-
         return emptyCharacterCount == 2
                 && numberOfValidOperations == 1
                 && isValidNumber(desiredCalculation.substring(0, firstSpaceLocation))
-                && isValidNumber(desiredCalculation.substring(secondSpaceLocation + 1, desiredCalculation.length()));
+                && isValidNumber(desiredCalculation.substring(secondSpaceLocation + 1));
     }
 
     public static boolean isValidNumber(String number) {
-        HashMap<Character, Integer> numbers = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> numbers = new HashMap<>();
         numbers.put('0', 1);
         numbers.put('1', 1);
         numbers.put('2', 1);
@@ -83,19 +81,21 @@ public class Main {
 
         for (int i = 0; i < number.length(); i++) {
             if (number.charAt(i) == '_') {
-                if (!numbers.containsKey(number.charAt(i - 1)) || !numbers.containsKey(number.charAt(i - 1))) {
+                // if the characters directly before and after the '_' are not numbers:
+                if (!numbers.containsKey(number.charAt(i - 1)) || !numbers.containsKey(number.charAt(i + 1))) {
                     return false;
                 }
-                if (containsUnderscore == true) {
+                if (containsUnderscore) {
                     return false;
                 }
                 containsUnderscore = true;
             }
             else if (number.charAt(i) == '/') {
-                if (!numbers.containsKey(number.charAt(i - 1)) || !numbers.containsKey(number.charAt(i - 1))) {
+                // if the characters directly before and after the '/' are not numbers:
+                if (!numbers.containsKey(number.charAt(i - 1)) || !numbers.containsKey(number.charAt(i + 1))) {
                     return false;
                 }
-                if (containsDivideSymbol == true) {
+                if (containsDivideSymbol) {
                     return false;
                 }
                 containsDivideSymbol = true;
@@ -109,37 +109,33 @@ public class Main {
     }
 
     public static String calculateResult(String desiredCalculation) {
-        int firstSpaceLocation = -1;
-        int secondSpaceLocation = -1;
+        boolean firstSpaceFound = false;
         char operation = ' ';
+        String firstNum = " ";
+        String secondNum = " ";
 
         for (int i = 0; i < desiredCalculation.length(); i++) {
             if (desiredCalculation.charAt((i)) == ' ') {
-                if (firstSpaceLocation < 0) {
-                    firstSpaceLocation = i;
-                    System.out.println("firstSpaceLocation: " + firstSpaceLocation);
+                if (!firstSpaceFound) {
+                    firstNum = desiredCalculation.substring(0, i);
+                    firstSpaceFound = true;
                 }
                 else {
-                    secondSpaceLocation = i;
-                    System.out.println("secondSpaceLocation: " + secondSpaceLocation);
+                    secondNum = desiredCalculation.substring(i + 1);
                 }
             }
             else if (desiredCalculation.charAt(i) == '+'
                     || desiredCalculation.charAt(i) == '-'
                     || desiredCalculation.charAt(i) == '*'
-                    || desiredCalculation.charAt(i) == '/') {
+                    || (desiredCalculation.charAt(i) == '/' && desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')) {
                 operation = desiredCalculation.charAt(i);
+//                System.out.println(operation);
             }
         }
 
-        String firstNum = desiredCalculation.substring(0, firstSpaceLocation);
-        String secondNum = desiredCalculation.substring(secondSpaceLocation + 1, desiredCalculation.length());
-
-        System.out.println("firstNum: " + firstNum);
-        System.out.println("secondNum: " + secondNum);
-
         String num1 = getImproperFraction(firstNum);
         String num2 = getImproperFraction(secondNum);
+
         int num1Numerator = 0;
         int num1Denominator = 0;
         int num2Numerator = 0;
@@ -148,18 +144,19 @@ public class Main {
         for (int x = 0; x < num1.length(); x++) {
             if (num1.charAt(x) == '/') {
                 num1Numerator = Integer.parseInt(num1.substring(0, x));
-                num1Denominator = Integer.parseInt(num1.substring(x + 1, num1.length()));
+                num1Denominator = Integer.parseInt(num1.substring(x + 1));
             }
         }
 
         for (int y = 0; y < num2.length(); y++) {
             if (num2.charAt(y) == '/') {
                 num2Numerator = Integer.parseInt(num2.substring(0, y));
-                num2Denominator = Integer.parseInt(num2.substring(y + 1, num2.length()));
+                num2Denominator = Integer.parseInt(num2.substring(y + 1));
             }
         }
-
-        return performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
+        String result = performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
+        System.out.println("this is the result: " + result);
+        return result;
 //        return resultsMessage(firstNum, secondNum, operation, result);
     }
 
@@ -177,7 +174,7 @@ public class Main {
         else if (operation == '/') {
             return reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator));
         }
-        return "";
+        return "This statement should never be returned";
     }
 
     public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
@@ -227,7 +224,7 @@ public class Main {
         }
 
         int numerator = Integer.parseInt(fraction.substring(0, divideSymbolLocation));
-        int denominator = Integer.parseInt(fraction.substring(divideSymbolLocation + 1, fraction.length()));
+        int denominator = Integer.parseInt(fraction.substring(divideSymbolLocation + 1));
 
         return reducer(numerator, denominator);
     }
@@ -268,7 +265,7 @@ public class Main {
             }
         }
 
-        int denominator = Integer.parseInt(mixed.substring(divideSymbolLocation + 1, mixed.length()));
+        int denominator = Integer.parseInt(mixed.substring(divideSymbolLocation + 1));
         int wholeNumber = Integer.parseInt(mixed.substring(0, underscoreLocation));
         int currentNumerator = Integer.parseInt(mixed.substring(underscoreLocation + 1, divideSymbolLocation));
         int newNumerator = wholeNumber * denominator + currentNumerator;
@@ -279,9 +276,8 @@ public class Main {
 //        return "";
 //    }
 
-    public static void displayResult(String desiredCalculation) {
+    public static void displayResult(String result) {
         System.out.println("=========================================");
-        String result = calculateResult(desiredCalculation);
         System.out.println("Your result is: " + result);
         System.out.println("=========================================");
 
