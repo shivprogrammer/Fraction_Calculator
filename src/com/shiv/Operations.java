@@ -68,10 +68,10 @@ class Operations {
         long numerator = Long.parseLong(fraction.substring(0, divideSymbolLocation));
         long denominator = Long.parseLong(fraction.substring(divideSymbolLocation + 1));
 
-        return reducer(numerator, denominator);
+        return reduceHelper(numerator, denominator);
     }
 
-    private static String reducer(long numerator, long denominator) {
+    private static String reduceHelper(long numerator, long denominator) {
         if (numerator % denominator == 0) {
             long reduced = numerator / denominator;
             return Long.toString(reduced);
@@ -80,7 +80,7 @@ class Operations {
         long smaller = (numerator < denominator) ? numerator : denominator;
         for (int i = 2; i <= smaller; i++) {
             if (numerator % i == 0 && denominator % i == 0) {
-                return reducer(numerator / i,denominator / i);
+                return reduceHelper(numerator / i,denominator / i);
             }
         }
         return Long.toString(numerator) + '/' + Long.toString(denominator);
