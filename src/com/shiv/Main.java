@@ -28,7 +28,8 @@ public class Main {
             desiredCalculation = consoleInput.nextLine();
         }
 
-        calculateResult(desiredCalculation);
+        String result = calculateResult(desiredCalculation);
+        displayResult(result);
 
 //        String firstNum = consoleInput.nextLine();
 //        while (!isValidNumber(firstNum)) {
@@ -62,12 +63,6 @@ public class Main {
     }
 
     public static boolean isUserInputValid(String desiredCalculation) {
-        HashMap<Character, Boolean> validOperationsMap = new HashMap<Character, Boolean>();
-        validOperationsMap.put('+', true);
-        validOperationsMap.put('-', true);
-        validOperationsMap.put('*', true);
-        validOperationsMap.put('/', true);
-
         int emptyCharacterCount = 0;
         int numberOfValidOperations = 0;
         int firstSpaceLocation = -1;
@@ -83,21 +78,23 @@ public class Main {
                     secondSpaceLocation = i;
                 }
             }
-            else if (validOperationsMap.containsKey(desiredCalculation.charAt(i))) {
-                numberOfValidOperations++;
+            else if (desiredCalculation.charAt(i) == '+'  || desiredCalculation.charAt(i) == '-'  || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
+                if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ') {
+                    numberOfValidOperations++;
+                }
             }
         }
 
         return emptyCharacterCount == 2
                 && numberOfValidOperations == 1
                 && isValidNumber(desiredCalculation.substring(0, firstSpaceLocation))
-                && isValidNumber(desiredCalculation.substring(secondSpaceLocation, desiredCalculation.length() - 1))
+                && isValidNumber(desiredCalculation.substring(secondSpaceLocation + 1, desiredCalculation.length()));
     }
 
-    public static void displayResult(String firstNum, String secondNum, String operation) {
+    public static void displayResult(String desiredCalculation) {
         System.out.println("=========================================");
-        String result = calculateResult(firstNum, secondNum, operation);
-        System.out.println("The result of " + firstNum + " " + operation + " with " + secondNum + " is: " + result);
+        String result = calculateResult(desiredCalculation);
+        System.out.println("Your result is: " + result);
         System.out.println("=========================================");
 
         calculateAgain();
@@ -180,6 +177,9 @@ public class Main {
             }
         }
 
+        String firstNum = desiredCalculation.substring(0, firstSpaceLocation);
+        String secondNum = desiredCalculation.substring(secondSpaceLocation + 1, desiredCalculation.length());
+
         String num1 = getImproperFraction(firstNum);
         String num2 = getImproperFraction(secondNum);
         int num1Numerator = 0;
@@ -225,19 +225,19 @@ public class Main {
     public static String add(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         int newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
-        return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
+        return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
     }
 
     public static String subtract(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         int newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
-        return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
+        return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
     }
 
     public static String multiply(int firstNumerator, int firstDenominator, int secondNumerator, int secondDenominator) {
         int newNumerator = firstNumerator * secondNumerator;
         int newDenominator = firstDenominator * secondDenominator;
-        return Integer.toString(newNumerator)+ '/' + Integer.toString(newDenominator);
+        return Integer.toString(newNumerator) + '/' + Integer.toString(newDenominator);
     }
 
     public static int findLowestCommonMultiple(int firstNum, int secondNum) {
