@@ -25,15 +25,29 @@ public class FractionCalculatorTest extends Calculation {
 //    }
 
     @Test
-    public void test1() {
-//        FractionCalculator fracCalc = new FractionCalculator();
+    public void addTestWithMixedNumberResult() {
+        Assert.assertEquals(Calculation.calculateResult("2/3 + 2/3"), "1/9");
+    }
 
+    @Test
+    public void addTestWithWholeNumberResult() {
         Assert.assertEquals(Calculation.calculateResult("1/3 * 1/3"), "1/9");
     }
 
-//    public static void main(String[] args) {
-//        test1();
-//    }
+    @Test
+    public void subtractTestWithWholeNumberResult() {
+        Assert.assertEquals(Calculation.calculateResult("1/3 - 1/3"), "0");
+    }
+
+    @Test
+    public void multiplyTest() {
+        Assert.assertEquals(Calculation.calculateResult("1/3 * 1/3"), "1/9");
+    }
+
+    @Test
+    public void divideTest() {
+        Assert.assertEquals(Calculation.calculateResult("1/3 * 1/3"), "1/9");
+    }
 }
 
 
