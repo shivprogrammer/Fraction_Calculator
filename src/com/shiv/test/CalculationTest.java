@@ -56,26 +56,26 @@ public class CalculationTest extends Calculation {
     ////////////////////
     // SUBTRACT TESTS //
     ////////////////////
-//    @Test
-//    public void subtract_resultIsWholeNumber_Success() {
-//        Assert.assertEquals(calculateResult("1/3 - 1/3"), "0");
-//    }
-//    @Test
-//    public void subtract_numeratorOfSecondFractionIsZero_Success() {
-//        Assert.assertEquals(calculateResult("1/3 - 0/3"), "1/3");
-//    }
-//    @Test
-//    public void subtract_numeratorOfFirstFractionIsZero_Success() {
-//        Assert.assertEquals(calculateResult("0/5 - 7/12"), "-7/12");
-//    }
-//    @Test
-//    public void subtract_resultIsNegative_Success() {
-//        Assert.assertEquals(calculateResult("1/3 - 2/3"), "-1/3");
-//    }
-//    @Test
-//    public void subtract_firstFractionIsNegativeAndResultIsNegativeInt_Success() {
-//        Assert.assertEquals(calculateResult("-1/3 - 2/3"), "-1");
-//    }
+    @Test
+    public void subtract_resultIsWholeNumber_Success() {
+        Assert.assertEquals(calculateResult("1/3 - 1/3", 3, 6, "1/3", "1/3"), "0");
+    }
+    @Test
+    public void subtract_numeratorOfSecondFractionIsZero_Success() {
+        Assert.assertEquals(calculateResult("1/3 - 0/3", 3, 6, "1/3", "0/3"), "1/3");
+    }
+    @Test
+    public void subtract_numeratorOfFirstFractionIsZero_Success() {
+        Assert.assertEquals(calculateResult("0/5 - 7/12", 3, 6, "0/5", "7/12"), "-7/12");
+    }
+    @Test
+    public void subtract_resultIsNegative_Success() {
+        Assert.assertEquals(calculateResult("1/3 - 2/3", 3, 6, "1/3", "2/3"), "-1/3");
+    }
+    @Test
+    public void subtract_firstFractionIsNegativeAndResultIsNegativeInt_Success() {
+        Assert.assertEquals(calculateResult("-1/3 - 2/3", 4, 7, "-1/3", "2/3"), "-1");
+    }
 
     ////////////////////
     // MULTIPLY TESTS //
