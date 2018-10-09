@@ -80,26 +80,26 @@ public class CalculationTest extends Calculation {
     ////////////////////
     // MULTIPLY TESTS //
     ////////////////////
-//    @Test
-//    public void multiply_simpleValues_Success() {
-//        Assert.assertEquals(calculateResult("1/3 * 1/3"), "1/9");
-//    }
-//    @Test
-//    public void multiply_numeratorOfSecondFractionIsZero_Success() {
-//        Assert.assertEquals(calculateResult("1/3 * 0/3"), "0");
-//    }
-//    @Test
-//    public void multiply_secondFractionIsNegative_Success() {
-//        Assert.assertEquals(calculateResult("1/2 * -1/2"), "-1/4");
-//    }
-//    @Test
-//    public void multiply_bothFractionsAreNegative_Success() {
-//        Assert.assertEquals(calculateResult("-1/2 * -1/2"), "1/4");
-//    }
-//    @Test
-//    public void multiply_denominatorIsZero_False() {
-//        Assert.assertEquals(calculateResult("10_2/3 * 4/0"), "Your fraction cannot have a denominator of 0");
-//    }
+    @Test
+    public void multiply_simpleValues_Success() {
+        Assert.assertEquals(calculateResult("1/3 * 1/3", 3, 6, "1/3", "1/3"), "1/9");
+    }
+    @Test
+    public void multiply_numeratorOfSecondFractionIsZero_Success() {
+        Assert.assertEquals(calculateResult("1/3 * 0/3", 3, 6, "1/3", "0/3"), "0");
+    }
+    @Test
+    public void multiply_secondFractionIsNegative_Success() {
+        Assert.assertEquals(calculateResult("1/2 * -1/2", 3, 6, "1/2", "-1/2"), "-1/4");
+    }
+    @Test
+    public void multiply_bothFractionsAreNegative_Success() {
+        Assert.assertEquals(calculateResult("-1/2 * -1/2", 4, 7, "-1/2", "-1/2"), "1/4");
+    }
+    @Test
+    public void multiply_denominatorIsZero_False() {
+        Assert.assertEquals(calculateResult("10_2/3 * 4/0", 6, 9, "10_2/3", "4/0"), "Your fraction cannot have a denominator of 0");
+    }
 
     //////////////////
     // DIVIDE TESTS //
