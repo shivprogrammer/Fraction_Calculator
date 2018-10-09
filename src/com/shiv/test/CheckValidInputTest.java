@@ -33,6 +33,10 @@ public class CheckValidInputTest extends CheckValidInput {
         Assert.assertEquals(isUserInputValid("1/    2 + 3/2"), false);
     }
     @Test
+    public void isUserInputValid_bizarreSecondParameter_False() {
+        Assert.assertEquals(isUserInputValid("1/2 + 5/23/2"), false);
+    }
+    @Test
     public void isUserInputValid_inputContainsLetters_False() {
         Assert.assertEquals(isUserInputValid("a1/2 + 3/2b"), false);
     }

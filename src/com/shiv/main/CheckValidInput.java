@@ -5,10 +5,22 @@ import static com.shiv.main.Conversions.getImproperFraction;
 
 public class CheckValidInput {
     protected static boolean isUserInputValid(String desiredCalculation) {
+        final HashMap<Character, Boolean> numbers = new HashMap<>();
+        numbers.put('0', true);
+        numbers.put('1', true);
+        numbers.put('2', true);
+        numbers.put('3', true);
+        numbers.put('4', true);
+        numbers.put('5', true);
+        numbers.put('6', true);
+        numbers.put('7', true);
+        numbers.put('8', true);
+        numbers.put('9', true);
+
         int numberOfSpaces = 0;
         int numberOfValidOperations = 0;
         int firstSpaceLocation = -1;
-        int secondSpaceLocation = -1;
+//        int secondSpaceLocation = -1;
         int secondFractionStart = -1;
 
         for (int i = 0; i < desiredCalculation.length(); i++) {
@@ -17,15 +29,22 @@ public class CheckValidInput {
                     System.out.println("Your equation cannot start with a space");
                     return false;
                 }
-                if (i == desiredCalculation.length() - 1) {
+                else if (i == desiredCalculation.length() - 1) {
                     System.out.println("Your equation cannot end with a space");
                 }
-                if ()
-                numberOfSpaces++;
-                if (firstSpaceLocation < 0)
-                    firstSpaceLocation = i;
-                else
-                    secondSpaceLocation = i;
+                else if (numberOfValidOperations == 1 && numbers.containsKey(desiredCalculation.charAt(i + 1))) {
+                    secondFractionStart = i + 1;
+                    numberOfSpaces++;
+                }
+                else if (numbers.containsKey(desiredCalculation.charAt(i - 1))) {
+                    if (firstSpaceLocation < 0)
+                        firstSpaceLocation = i;
+                    numberOfSpaces++;
+
+                }
+
+//                else
+//                    secondSpaceLocation = i;
             }
             // if the character is either '+', '-', '*', '/' AND has an empty character before and after it:
             else if (desiredCalculation.charAt(i) == '+' || desiredCalculation.charAt(i) == '-' || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
@@ -52,13 +71,14 @@ public class CheckValidInput {
             System.out.println(" ");
             return false;
         }
-        if (!isValidFraction(desiredCalculation.substring(0, firstSpaceLocation))) {
+        if (!isValidFraction(desiredCalculation.substring(0, firstSpaceLocation), numbers)) {
             System.out.println("The first parameter of your input: " + desiredCalculation + ", is invalid, please try again: ");
             System.out.println(" ");
             return false;
         }
-        if (!isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1))) {
-            System.out.println("The second parameter of your input: " + desiredCalculation + ", is invalid, please try again: ");
+//        if (!isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1))) {
+        if (!isValidFraction(desiredCalculation.substring(secondFractionStart), numbers)) {
+        System.out.println("The second parameter of your input: " + desiredCalculation + ", is invalid, please try again: ");
             System.out.println(" ");
             return false;
         }
@@ -66,19 +86,7 @@ public class CheckValidInput {
         return true;
     }
 
-    private static boolean isValidFraction(String fraction) {
-        HashMap<Character, Boolean> numbers = new HashMap<>();
-        numbers.put('0', true);
-        numbers.put('1', true);
-        numbers.put('2', true);
-        numbers.put('3', true);
-        numbers.put('4', true);
-        numbers.put('5', true);
-        numbers.put('6', true);
-        numbers.put('7', true);
-        numbers.put('8', true);
-        numbers.put('9', true);
-
+    private static boolean isValidFraction(String fraction, HashMap<Character, Boolean> numbers) {
         boolean containsDivideSymbol = false;
         int divideSymbolLocation = -1;
         boolean containsUnderscore = false;
