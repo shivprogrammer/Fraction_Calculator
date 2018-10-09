@@ -54,15 +54,11 @@ public class Operations {
     }
 
     private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
-        System.out.println("secondNumerator: " + secondNumerator);
         if (firstNumerator == 0 || secondNumerator == 0)
             return "0";
 
         long newNumerator = firstNumerator * secondNumerator;
-//        System.out.println("newNumerator: " + newNumerator);
         long newDenominator = firstDenominator * secondDenominator;
-//        System.out.println("newDenominator: " + newDenominator);
-//        System.out.println("result: " + Long.toString(newNumerator) + '/' + Long.toString(newDenominator));
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
@@ -98,8 +94,6 @@ public class Operations {
     }
 
     private static String reduceHelper(long numerator, long denominator) {
-        System.out.println("numerator:" + numerator);
-        System.out.println("denominator:" + denominator);
         if (numerator % denominator == 0) {
             long reduced = numerator / denominator;
             return Long.toString(reduced);
@@ -117,7 +111,7 @@ public class Operations {
         for (int i = 2; i <= numberCloserToZero; i++)
             if (numerator % i == 0 && denominator % i == 0)
                 return reduceHelper(numerator / i, denominator / i);
-            
+
         return Long.toString(numerator) + '/' + Long.toString(denominator);
     }
 }
