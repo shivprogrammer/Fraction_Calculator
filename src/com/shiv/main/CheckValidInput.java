@@ -20,7 +20,6 @@ public class CheckValidInput {
         int numberOfSpaces = 0;
         int numberOfValidOperations = 0;
         int firstSpaceLocation = -1;
-//        int secondSpaceLocation = -1;
         int secondFractionStart = -1;
 
         for (int i = 0; i < desiredCalculation.length(); i++) {
@@ -32,7 +31,9 @@ public class CheckValidInput {
                 else if (i == desiredCalculation.length() - 1) {
                     System.out.println("Your equation cannot end with a space");
                 }
-                else if (numberOfValidOperations == 1 && numbers.containsKey(desiredCalculation.charAt(i + 1))) {
+                // if an arithmetic operator has been recognized, and the next index is either a number
+                // or a '-' followed by a negative number (meaning the start of a negative fraction), then:
+                else if (numberOfValidOperations == 1 && (numbers.containsKey(desiredCalculation.charAt(i + 1)) || ((desiredCalculation.charAt(i + 1) == '-') && (numbers.containsKey(desiredCalculation.charAt(i + 2)))))) {
                     secondFractionStart = i + 1;
                     numberOfSpaces++;
                 }
@@ -40,11 +41,7 @@ public class CheckValidInput {
                     if (firstSpaceLocation < 0)
                         firstSpaceLocation = i;
                     numberOfSpaces++;
-
                 }
-
-//                else
-//                    secondSpaceLocation = i;
             }
             // if the character is either '+', '-', '*', '/' AND has an empty character before and after it:
             else if (desiredCalculation.charAt(i) == '+' || desiredCalculation.charAt(i) == '-' || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
@@ -76,7 +73,6 @@ public class CheckValidInput {
             System.out.println(" ");
             return false;
         }
-//        if (!isValidFraction(desiredCalculation.substring(secondSpaceLocation + 1))) {
         if (!isValidFraction(desiredCalculation.substring(secondFractionStart), numbers)) {
         System.out.println("The second parameter of your input: " + desiredCalculation + ", is invalid, please try again: ");
             System.out.println(" ");
