@@ -20,7 +20,11 @@ public class CheckValidInput {
             }
             // if the character is either '+', '-', '*', '/' AND has an empty character before and after it:
             else if (desiredCalculation.charAt(i) == '+' || desiredCalculation.charAt(i) == '-' || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
-                if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')
+                if (i == 0) {
+                    if (desiredCalculation.charAt(i) != '-')
+                        return false;
+                }
+                else if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')
                     numberOfValidOperations++;
             }
         }
