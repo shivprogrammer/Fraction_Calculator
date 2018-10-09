@@ -62,7 +62,7 @@ public class CalculationTest extends Calculation {
     }
     @Test
     public void multiply_denominatorIsZero_False() {
-        Assert.assertEquals(calculateResult("10_2/3 * 4/0"), "You cannot divide by 0");
+        Assert.assertEquals(calculateResult("10_2/3 * 4/0"), "Your fraction cannot have a denominator of 0");
     }
 
     //////////////////
@@ -71,5 +71,9 @@ public class CalculationTest extends Calculation {
     @Test
     public void divide_simpleValues_Success() {
         Assert.assertEquals(calculateResult("7/8 / 7/5"), "5/8");
+    }
+    @Test
+    public void divide_denominatorIsZero_False() {
+        Assert.assertEquals(calculateResult("10_2/3 / 4/0"), "Your fraction cannot have a denominator of 0");
     }
 }
