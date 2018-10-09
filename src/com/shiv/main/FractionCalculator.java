@@ -30,7 +30,7 @@ public class FractionCalculator {
             desiredCalculation = consoleInput.nextLine();
         }
 
-//        String result = Calculation.calculateResult(desiredCalculation);
+        displayResult(desiredCalculation, CheckValidInput.finalResult);
     }
 
     static void displayResult(String desiredCalculation, String result) {

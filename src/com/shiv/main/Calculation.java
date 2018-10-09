@@ -52,7 +52,11 @@ public class Calculation {
 //        System.out.println("operation: " + operation);
 
         String result = Operations.performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-//        displayResult(desiredCalculation, result);
+//        giveResult(desiredCalculation, result);
         return result;
     }
+
+//    public static void giveResult(String desiredCalculation, String result) {
+//        displayResult(desiredCalculation, result);
+//    }
 }

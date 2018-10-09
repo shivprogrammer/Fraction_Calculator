@@ -55,14 +55,13 @@ public class Operations {
     }
 
     private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
-        System.out.println("IN THE MULTIPLY METHOD");
         if (firstNumerator == 0 || secondNumerator == 0)
             return "0";
 
         long newNumerator = firstNumerator * secondNumerator;
-        System.out.println("newNumerator: " + newNumerator);
+//        System.out.println("newNumerator: " + newNumerator);
         long newDenominator = firstDenominator * secondDenominator;
-        System.out.println("newDenominator: " + newDenominator);
+//        System.out.println("newDenominator: " + newDenominator);
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
