@@ -60,10 +60,10 @@ public class CalculationTest extends Calculation {
 //    public void subtract_numeratorOfSecondFractionIsZero_Success() {
 //        Assert.assertEquals(calculateResult("1/3 - 0/3"), "1/3");
 //    }
-    @Test
-    public void subtract_numeratorOfFirstFractionIsZero_Success() {
-        Assert.assertEquals(calculateResult("0/5 - 7/12"), "-7/12");
-    }
+//    @Test
+//    public void subtract_numeratorOfFirstFractionIsZero_Success() {
+//        Assert.assertEquals(calculateResult("0/5 - 7/12"), "-7/12");
+//    }
 //    @Test
 //    public void subtract_resultIsNegative_Success() {
 //        Assert.assertEquals(calculateResult("1/3 - 2/3"), "-1/3");
@@ -108,4 +108,8 @@ public class CalculationTest extends Calculation {
 //    public void divide_denominatorIsZero_False() {
 //        Assert.assertEquals(calculateResult("10_2/3 / 4/0"), "Your fraction cannot have a denominator of 0");
 //    }
+    @Test
+    public void divide_numeratorOfSecondFractionIsZero_False() {
+        Assert.assertEquals(calculateResult("10_2/3 / 0/4"), "You cannot divide by a 0 fraction");
+    }
 }

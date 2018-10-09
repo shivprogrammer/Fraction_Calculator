@@ -17,6 +17,8 @@ public class Operations {
                 return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
             case '/':
                 // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
+                if (secondNumerator == 0)
+                    return "You cannot divide by a 0 fraction";
                 return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator)));
             default:
                 return " ";
@@ -35,6 +37,8 @@ public class Operations {
     }
 
     private static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        if (firstNumerator == 0)
+            return '-' + Long.toString(secondNumerator) + '/' + Long.toString(secondDenominator);
         if (secondNumerator == 0)
             return Long.toString(firstNumerator) + '/' + Long.toString(firstDenominator);
 
@@ -44,7 +48,7 @@ public class Operations {
     }
 
     private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
-        if (firstNumerator == 0 || secondDenominator == 0)
+        if (firstNumerator == 0 || secondNumerator == 0)
             return "0";
 
         long newNumerator = firstNumerator * secondNumerator;
