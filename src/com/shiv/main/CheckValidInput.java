@@ -46,6 +46,10 @@ public class CheckValidInput {
                     numberOfSpaces++;
                 }
             }
+            else if (desiredCalculation.charAt(i) == 'x' && desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ') {
+                System.out.println("Please remember to use an * symbol and not x for multiplication");
+                return false;
+            }
             // if the character is either '+', '-', '*', '/' AND has an empty character before and after it:
             else if (desiredCalculation.charAt(i) == '+' || desiredCalculation.charAt(i) == '-' || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
                 if (i == 0) {
