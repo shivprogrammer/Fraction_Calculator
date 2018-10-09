@@ -24,6 +24,11 @@ public class Operations {
     }
 
     private static String add(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        if (firstNumerator == 0)
+            return Long.toString(secondNumerator) + '/' + Long.toString(secondDenominator);
+        if (secondNumerator == 0)
+            return Long.toString(firstNumerator) + '/' + Long.toString(firstDenominator);
+
         long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         long newNumerator = firstNumerator * (newDenominator / firstDenominator) + secondNumerator * (newDenominator / secondDenominator);
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
@@ -36,8 +41,13 @@ public class Operations {
     }
 
     private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        if (firstNumerator == 0 || secondDenominator == 0)
+            return "0";
+
         long newNumerator = firstNumerator * secondNumerator;
+        System.out.println("newNumerator: " + newNumerator);
         long newDenominator = firstDenominator * secondDenominator;
+        System.out.println("newDenominator: " + newDenominator);
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 

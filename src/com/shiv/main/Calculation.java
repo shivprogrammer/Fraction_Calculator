@@ -27,36 +27,43 @@ public class Calculation {
         }
 
         String num1 = Conversions.getImproperFraction(firstNum);
+//        System.out.println("num1: " + num1);
         String num2 = Conversions.getImproperFraction(secondNum);
+//        System.out.println("num2: " + num2);
 
         long num1Numerator = 0L;
         long num1Denominator = 0L;
         long num2Numerator = 0L;
         long num2Denominator = 0L;
 
-        for (int x = 0; x < num1.length(); x++)
+        for (int x = 0; x < num1.length(); x++) {
             if (num1.charAt(x) == '/') {
                 try {
                     num1Numerator = Long.parseLong(num1.substring(0, x));
                     num1Denominator = Long.parseLong(num1.substring(x + 1));
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     System.out.println("The result of the numbers you have chosen is too large, please try again: ");
 //                    gatherCalculationInfo();
                 }
             }
+        }
 
-        for (int y = 0; y < num2.length(); y++)
+        for (int y = 0; y < num2.length(); y++) {
             if (num2.charAt(y) == '/') {
                 try {
                     num2Numerator = Long.parseLong(num2.substring(0, y));
                     num2Denominator = Long.parseLong(num2.substring(y + 1));
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     System.out.println("The result of the numbers you have chosen is too large, please try again: ");
 //                    gatherCalculationInfo();
                 }
             }
+        }
+
+        System.out.println("num1Numerator: " + num1Numerator);
+        System.out.println("num1Denominator: " + num1Denominator);
+        System.out.println("num2Numerator: " + num2Numerator);
+        System.out.println("num2Denominator: " + num2Denominator);
 
         return Operations.performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
