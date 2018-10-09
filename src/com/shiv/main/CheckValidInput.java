@@ -4,6 +4,7 @@ import java.util.HashMap;
 import static com.shiv.main.Conversions.getImproperFraction;
 
 public class CheckValidInput {
+
     protected static boolean isUserInputValid(String desiredCalculation) {
         final HashMap<Character, Boolean> numbers = new HashMap<>();
         numbers.put('0', true);
@@ -23,16 +24,18 @@ public class CheckValidInput {
         int secondFractionStart = -1;
 
         for (int i = 0; i < desiredCalculation.length(); i++) {
-            if (desiredCalculation.charAt((i)) == ' ') {
-                if (i == 0) {
-                    System.out.println("Your equation cannot start with a space");
+            if (i == 0) {
+                if (!(numbers.containsKey(desiredCalculation.charAt(0)) || desiredCalculation.charAt(0) == '-')) {
+                    System.out.println("Your input must start with the beginning of your first fraction");
                     return false;
                 }
-                else if (i == desiredCalculation.length() - 1) {
+            }
+            else if (desiredCalculation.charAt((i)) == ' ') {
+                if (i == desiredCalculation.length() - 1) {
                     System.out.println("Your equation cannot end with a space");
                 }
                 // if an arithmetic operator has been recognized, and the next index is either a number
-                // or a '-' followed by a negative number (meaning the start of a negative fraction), then:
+                // or a '-' followed by a number (signifying the start of a negative fraction):
                 else if (numberOfValidOperations == 1 && (numbers.containsKey(desiredCalculation.charAt(i + 1)) || ((desiredCalculation.charAt(i + 1) == '-') && (numbers.containsKey(desiredCalculation.charAt(i + 2)))))) {
                     secondFractionStart = i + 1;
                     numberOfSpaces++;
@@ -56,27 +59,37 @@ public class CheckValidInput {
 
         // PROVIDING USER FEEDBACK
         if (numberOfSpaces < 2) {
-            System.out.println("Your input: " + desiredCalculation + ", is not separated correctly, please try again: ");
+            System.out.println("Your input: " + desiredCalculation + ", is invalid, please try again: ");
             System.out.println(" ");
             return false;
         }
+
         if (numberOfValidOperations != 1) {
             if (numberOfValidOperations < 1)
                 System.out.println("Your input: " + desiredCalculation + ", does not contain a valid operation, please try again: ");
             if (numberOfValidOperations > 1)
-                System.out.println("Your input: " + desiredCalculation + ", must have only one valid operation, please try again: ");
+                System.out.println("Your input: " + desiredCalculation + ", cannot have more than one arithmetic operator, please try again: ");
             System.out.println(" ");
             return false;
         }
+
         if (!isValidFraction(desiredCalculation.substring(0, firstSpaceLocation), numbers)) {
             System.out.println("The first parameter of your input: " + desiredCalculation + ", is invalid, please try again: ");
             System.out.println(" ");
             return false;
         }
+
         if (!isValidFraction(desiredCalculation.substring(secondFractionStart), numbers)) {
         System.out.println("The second parameter of your input: " + desiredCalculation + ", is invalid, please try again: ");
             System.out.println(" ");
             return false;
+        }
+
+        for (int j = firstSpaceLocation; j < secondFractionStart; j++) {
+            if (!(desiredCalculation.charAt(j) == ' ' || desiredCalculation.charAt(j) == '+' || desiredCalculation.charAt(j) == '-' || desiredCalculation.charAt(j) == '*' || desiredCalculation.charAt(j) == '/')) {
+                System.out.println("Your input has invalid characters between the fractions");
+                return false;
+            }
         }
 
         return true;
@@ -90,7 +103,11 @@ public class CheckValidInput {
         boolean containsNegative = false;
 
         for (int i = 0; i < fraction.length(); i++) {
-            if (fraction.charAt(i) == '-') {
+            if (fraction.charAt(i) == ' ') {
+                System.out.println("Your fraction is formatted incorrectly");
+                return false;
+            }
+            else if (fraction.charAt(i) == '-') {
                 if (containsNegative)
                     return false;
                 containsNegative = true;
@@ -99,7 +116,7 @@ public class CheckValidInput {
             }
             else if (fraction.charAt(i) == '_') {
                 if (divideSymbolHasCome) {
-                    System.out.println("You have used an invalid mixed number format");
+                    System.out.println("There is a random underscore character in your input");
                     return false;
                 }
                 if (containsUnderscore)

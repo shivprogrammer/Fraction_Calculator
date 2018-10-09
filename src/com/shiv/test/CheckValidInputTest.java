@@ -97,6 +97,10 @@ public class CheckValidInputTest extends CheckValidInput {
         Assert.assertEquals(isUserInputValid("4/3_2 * 1/3"), false);
     }
     @Test
+    public void isUserInputValid_secondFractionIsIncorrectMixedNumberFormat_False() {
+        Assert.assertEquals(isUserInputValid("1/3 * 4/3_2"), false);
+    }
+    @Test
     public void isUserInputValid_inputContainsNegativeFraction_Success() {
         Assert.assertEquals(isUserInputValid("-4/3 * 7/12"), true);
     }

@@ -40,6 +40,10 @@ public class CalculationTest extends Calculation {
     public void add_resultShouldBeWholeNumberNotFraction_Incorrect() {
         Assert.assertNotEquals(calculateResult("1/3 + 2/3"), "3/3");
     }
+    @Test
+    public void add_inputHasMixedAndImproperFraction_Success() {
+        Assert.assertNotEquals(calculateResult("10_2/3 * 53/5"), "3/3");
+    }
 
     ////////////////////
     // SUBTRACT TESTS //
