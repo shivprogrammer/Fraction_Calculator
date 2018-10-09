@@ -72,15 +72,21 @@ public class CheckValidInput {
         boolean containsDivideSymbol = false;
         int divideSymbolLocation = -1;
         boolean containsUnderscore = false;
+        boolean divideSymbolHasCome = false;
 
         for (int i = 0; i < fraction.length(); i++)
             if (fraction.charAt(i) == '_') {
-                // if the characters directly before and after the '_' are not numbers:
-                if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1)))
+                if (divideSymbolHasCome) {
+                    System.out.println("You have used an invalid mixed number format");
                     return false;
+                }
                 if (containsUnderscore)
                     return false;
                 containsUnderscore = true;
+
+                // if the characters directly before and after the '_' are not numbers:
+                if (!numbers.containsKey(fraction.charAt(i - 1)) || !numbers.containsKey(fraction.charAt(i + 1)))
+                    return false;
             }
             else if (fraction.charAt(i) == '/') {
                 // if the characters directly before and after the '/' are not numbers:
@@ -89,6 +95,7 @@ public class CheckValidInput {
                 if (containsDivideSymbol)
                     return false;
                 containsDivideSymbol = true;
+                divideSymbolHasCome = true;
                 divideSymbolLocation = i;
             }
             // WORKING WITH NEGATIVE NUMBERS
@@ -112,7 +119,7 @@ public class CheckValidInput {
             return false;
         }
 
-        // Checking the validity of the improper fraction input to provide useful user feedback
+        // If input is an improper fraction, check validity and provide useful feedback
         if (!containsUnderscore) {
             try {
                 Long.parseLong(fraction.substring(0, divideSymbolLocation)); // numerator
@@ -134,7 +141,7 @@ public class CheckValidInput {
             }
         }
 
-        // checking the validity of the mixed number input to provide useful user feedback
+        // If input is a mixed number, check validity and provide useful feedback
         if (containsDivideSymbol && containsUnderscore) {
             String improperFraction = getImproperFraction(fraction);
 
