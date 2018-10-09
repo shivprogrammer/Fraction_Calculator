@@ -7,6 +7,8 @@ import static com.shiv.main.FractionCalculator.displayResult;
 
 public class CheckValidInput {
 
+//    public
+
     protected static boolean isUserInputValid(String desiredCalculation) {
         final HashMap<Character, Boolean> numbers = new HashMap<>();
         numbers.put('0', true);
@@ -100,7 +102,7 @@ public class CheckValidInput {
 
         String firstNum = desiredCalculation.substring(0, firstSpaceLocation);
         String secondNum = desiredCalculation.substring(secondFractionStart);
-        displayResult(desiredCalculation, calculateResult(desiredCalculation, firstSpaceLocation, secondFractionStart, firstNum, secondNum));
+        calculateResult(desiredCalculation, firstSpaceLocation, secondFractionStart, firstNum, secondNum);
         return true;
     }
 
