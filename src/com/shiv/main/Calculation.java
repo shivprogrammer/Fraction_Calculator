@@ -43,13 +43,12 @@ public class Calculation {
             }
         }
 
-        System.out.println("num1Numerator: " + num1Numerator);
-        System.out.println("num1Denominator: " + num1Denominator);
-        System.out.println("num2Numerator: " + num2Numerator);
-        System.out.println("num2Denominator: " + num2Denominator);
-        System.out.println("operation: " + operation);
+//        System.out.println("num1Numerator: " + num1Numerator);
+//        System.out.println("num1Denominator: " + num1Denominator);
+//        System.out.println("num2Numerator: " + num2Numerator);
+//        System.out.println("num2Denominator: " + num2Denominator);
+//        System.out.println("operation: " + operation);
 
-        String result = Operations.performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-        return result;
+        return Operations.performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
 }

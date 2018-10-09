@@ -18,11 +18,12 @@ public class Operations {
             case '/':
                 if (secondNumerator == 0)
                     return "You cannot divide by a 0 fraction";
-                // shifting the negative sign prior to entering the next function
-                if (secondNumerator < 0) {
+
+                if (secondNumerator < 0) {  // shifting the negative sign prior to entering the next function
                     secondNumerator *= -1;
                     secondDenominator *= -1;
                 }
+
                 // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
                 return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator)));
             default:
@@ -97,17 +98,26 @@ public class Operations {
     }
 
     private static String reduceHelper(long numerator, long denominator) {
+        System.out.println("numerator:" + numerator);
+        System.out.println("denominator:" + denominator);
         if (numerator % denominator == 0) {
             long reduced = numerator / denominator;
             return Long.toString(reduced);
         }
 
-        long smaller = (numerator < denominator) ? numerator : denominator;
+        long reducerNumerator = numerator;
 
-        for (int i = 2; i <= smaller; i++)
+
+        if (numerator < 0) {
+            reducerNumerator = numerator * -1;
+        }
+
+        long numberCloserToZero = (reducerNumerator < denominator) ? reducerNumerator : denominator;
+
+        for (int i = 2; i <= numberCloserToZero; i++)
             if (numerator % i == 0 && denominator % i == 0)
                 return reduceHelper(numerator / i, denominator / i);
-
+            
         return Long.toString(numerator) + '/' + Long.toString(denominator);
     }
 }
