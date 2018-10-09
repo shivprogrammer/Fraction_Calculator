@@ -4,8 +4,6 @@ import static com.shiv.main.Conversions.calculateMixedFraction;
 
 public class Operations {
     static String performOperation(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator, char operation) {
-//        System.out.println("IN THE PERFORM OPERATION METHOD");
-//        System.out.println("operation: " + operation);
         if (firstDenominator == 0 || secondDenominator == 0) {
             return "Your fraction cannot have a denominator of 0";
         }
@@ -55,6 +53,7 @@ public class Operations {
     }
 
     private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        System.out.println("secondNumerator: " + secondNumerator);
         if (firstNumerator == 0 || secondNumerator == 0)
             return "0";
 
@@ -62,6 +61,7 @@ public class Operations {
 //        System.out.println("newNumerator: " + newNumerator);
         long newDenominator = firstDenominator * secondDenominator;
 //        System.out.println("newDenominator: " + newDenominator);
+//        System.out.println("result: " + Long.toString(newNumerator) + '/' + Long.toString(newDenominator));
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
     }
 
@@ -85,6 +85,10 @@ public class Operations {
         for (int i = 0; i < fraction.length(); i++)
             if (fraction.charAt(i) == '/')
                 divideSymbolLocation = i;
+
+        if (divideSymbolLocation < 0) {
+            return fraction;
+        }
 
         long numerator = Long.parseLong(fraction.substring(0, divideSymbolLocation));
         long denominator = Long.parseLong(fraction.substring(divideSymbolLocation + 1));

@@ -190,7 +190,7 @@ public class CheckValidInput {
                 System.out.println("The denominator you have chosen is invalid and cannot be computed. ");
                 return false;
         }
-        
+
         return true;
     }
 }

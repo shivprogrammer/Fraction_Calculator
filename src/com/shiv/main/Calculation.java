@@ -1,7 +1,5 @@
 package com.shiv.main;
 
-import static com.shiv.main.FractionCalculator.displayResult;
-
 public class Calculation {
     public static String calculateResult(String desiredCalculation, int firstSpaceLocation, int secondFractionStart, String firstNum, String secondNum) {
         char operation = ' ';
@@ -45,18 +43,13 @@ public class Calculation {
             }
         }
 
-//        System.out.println("num1Numerator: " + num1Numerator);
-//        System.out.println("num1Denominator: " + num1Denominator);
-//        System.out.println("num2Numerator: " + num2Numerator);
-//        System.out.println("num2Denominator: " + num2Denominator);
-//        System.out.println("operation: " + operation);
+        System.out.println("num1Numerator: " + num1Numerator);
+        System.out.println("num1Denominator: " + num1Denominator);
+        System.out.println("num2Numerator: " + num2Numerator);
+        System.out.println("num2Denominator: " + num2Denominator);
+        System.out.println("operation: " + operation);
 
         String result = Operations.performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-//        giveResult(desiredCalculation, result);
         return result;
     }
-
-//    public static void giveResult(String desiredCalculation, String result) {
-//        displayResult(desiredCalculation, result);
-//    }
 }
