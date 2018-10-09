@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Fraction_Calculator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Fraction_Calculator_jar</output-path>
+    <root id="archive" name="Fraction_Calculator.jar">
+      <element id="module-output" name="Fraction_Calculator" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/junit-4.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/hamcrest-core-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/groovy-all-2.4.15.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
