@@ -21,6 +21,18 @@ public class CheckValidInputTest extends CheckValidInput {
         Assert.assertEquals(isUserInputValid("1/2 + 3/2     "), false);
     }
     @Test
+    public void isUserInputValid_noSpaceBetweenFirstFractionAndOperator_False() {
+        Assert.assertEquals(isUserInputValid("1/2+    3/2"), false);
+    }
+    @Test
+    public void isUserInputValid_multipleSpacesBetweenInputElements_Success() {
+        Assert.assertEquals(isUserInputValid("1/2     +      3/2"), true);
+    }
+    @Test
+    public void isUserInputValid_fractionHasSpacesInMiddle_False() {
+        Assert.assertEquals(isUserInputValid("1/    2 + 3/2"), false);
+    }
+    @Test
     public void isUserInputValid_inputContainsLetters_False() {
         Assert.assertEquals(isUserInputValid("a1/2 + 3/2b"), false);
     }

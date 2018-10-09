@@ -9,6 +9,7 @@ public class CheckValidInput {
         int numberOfValidOperations = 0;
         int firstSpaceLocation = -1;
         int secondSpaceLocation = -1;
+        int secondFractionStart = -1;
 
         for (int i = 0; i < desiredCalculation.length(); i++) {
             if (desiredCalculation.charAt((i)) == ' ') {
@@ -19,6 +20,7 @@ public class CheckValidInput {
                 if (i == desiredCalculation.length() - 1) {
                     System.out.println("Your equation cannot end with a space");
                 }
+                if ()
                 numberOfSpaces++;
                 if (firstSpaceLocation < 0)
                     firstSpaceLocation = i;
@@ -37,11 +39,8 @@ public class CheckValidInput {
         }
 
         // PROVIDING USER FEEDBACK
-        if (numberOfSpaces != 2) {
-            if (numberOfSpaces < 2)
-                System.out.println("Your input: " + desiredCalculation + ", is not separated correctly, please try again: ");
-            if (numberOfSpaces > 2)
-                System.out.println("Your input: " + desiredCalculation + ", contains too many spaces, please try again: ");
+        if (numberOfSpaces < 2) {
+            System.out.println("Your input: " + desiredCalculation + ", is not separated correctly, please try again: ");
             System.out.println(" ");
             return false;
         }
