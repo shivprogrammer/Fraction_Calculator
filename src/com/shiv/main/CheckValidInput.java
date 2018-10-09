@@ -2,6 +2,7 @@ package com.shiv.main;
 
 import java.util.HashMap;
 import static com.shiv.main.Conversions.getImproperFraction;
+import static com.shiv.main.Calculation.calculateResult;
 
 public class CheckValidInput {
 
@@ -52,11 +53,11 @@ public class CheckValidInput {
             }
             // if the character is either '+', '-', '*', '/' AND has an empty character before and after it:
             else if (desiredCalculation.charAt(i) == '+' || desiredCalculation.charAt(i) == '-' || desiredCalculation.charAt(i) == '*' || desiredCalculation.charAt(i) == '/') {
-                if (i == 0) {
-                    if (desiredCalculation.charAt(i) != '-')
-                        return false;
-                }
-                else if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')
+//                if (i == 0) {
+//                    if (desiredCalculation.charAt(i) != '-')
+//                        return false;
+//                }
+                if (desiredCalculation.charAt(i - 1) == ' ' && desiredCalculation.charAt(i + 1) == ' ')
                     numberOfValidOperations++;
             }
         }
@@ -96,6 +97,9 @@ public class CheckValidInput {
             }
         }
 
+        String firstNum = desiredCalculation.substring(0, firstSpaceLocation);
+        String secondNum = desiredCalculation.substring(secondFractionStart);
+        calculateResult(desiredCalculation, firstSpaceLocation, secondFractionStart, firstNum, secondNum);
         return true;
     }
 

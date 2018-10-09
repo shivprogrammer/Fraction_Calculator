@@ -4,6 +4,8 @@ import static com.shiv.main.Conversions.calculateMixedFraction;
 
 public class Operations {
     static String performOperation(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator, char operation) {
+//        System.out.println("IN THE PERFORM OPERATION METHOD");
+//        System.out.println("operation: " + operation);
         if (firstDenominator == 0 || secondDenominator == 0) {
             return "Your fraction cannot have a denominator of 0";
         }
@@ -16,9 +18,14 @@ public class Operations {
             case '*':
                 return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondNumerator, secondDenominator)));
             case '/':
-                // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
                 if (secondNumerator == 0)
                     return "You cannot divide by a 0 fraction";
+                // shifting the negative sign prior to entering the next function
+                if (secondNumerator < 0) {
+                    secondNumerator *= -1;
+                    secondDenominator *= -1;
+                }
+                // Utilizing a trick of fractional division -- dividing one fraction by another is the same as multiplying the first fraction by the inverse of the second fraction
                 return calculateMixedFraction(reduce(multiply(firstNumerator, firstDenominator, secondDenominator, secondNumerator)));
             default:
                 return " ";
@@ -48,6 +55,7 @@ public class Operations {
     }
 
     private static String multiply(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        System.out.println("IN THE MULTIPLY METHOD");
         if (firstNumerator == 0 || secondNumerator == 0)
             return "0";
 

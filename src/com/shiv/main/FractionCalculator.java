@@ -30,11 +30,10 @@ public class FractionCalculator {
             desiredCalculation = consoleInput.nextLine();
         }
 
-        String result = Calculation.calculateResult(desiredCalculation);
-        displayResult(desiredCalculation, result);
+//        String result = Calculation.calculateResult(desiredCalculation);
     }
 
-    private static void displayResult(String desiredCalculation, String result) {
+    static void displayResult(String desiredCalculation, String result) {
         System.out.println(" ");
         System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞");
         System.out.println("     " + desiredCalculation + " = " + result);
