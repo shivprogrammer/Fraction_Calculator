@@ -12,14 +12,14 @@ public class CalculationTest extends Calculation {
     public void add_simpleValues_Success() {
         Assert.assertEquals(calculateResult("1/10 + 2/10", 4, 7, "1/10", "2/10"), "3/10");
     }
-//    @Test
-//    public void add_inputContainsNegativeFraction_Success() {
-//        Assert.assertEquals(calculateResult("-1/10 + 2/10"), "1/10");
-//    }
-//    @Test
-//    public void add_multipleSpacesBetweenInputElements_Success() {
-//        Assert.assertEquals(calculateResult("1/2     +      3/2"), "2");
-//    }
+    @Test
+    public void add_inputContainsNegativeFraction_Success() {
+        Assert.assertEquals(calculateResult("-1/10 + 2/10", 5, 8, "-1/10", "2/10"), "1/10");
+    }
+    @Test
+    public void add_multipleSpacesBetweenInputElements_Success() {
+        Assert.assertEquals(calculateResult("1/2     +      3/2", 3, 15, "1/2", "3/2"), "2");
+    }
 //    @Test
 //    public void add_resultHasNewDenominator_Success() {
 //        Assert.assertEquals(calculateResult("1/10 + 4/10"), "1/2");
