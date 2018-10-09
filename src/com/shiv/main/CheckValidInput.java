@@ -3,6 +3,7 @@ package com.shiv.main;
 import java.util.HashMap;
 import static com.shiv.main.Conversions.getImproperFraction;
 import static com.shiv.main.Calculation.calculateResult;
+import static com.shiv.main.FractionCalculator.displayResult;
 
 public class CheckValidInput {
 
@@ -99,7 +100,7 @@ public class CheckValidInput {
 
         String firstNum = desiredCalculation.substring(0, firstSpaceLocation);
         String secondNum = desiredCalculation.substring(secondFractionStart);
-        calculateResult(desiredCalculation, firstSpaceLocation, secondFractionStart, firstNum, secondNum);
+        displayResult(desiredCalculation, calculateResult(desiredCalculation, firstSpaceLocation, secondFractionStart, firstNum, secondNum));
         return true;
     }
 

@@ -76,8 +76,6 @@ public class Calculation {
         System.out.println("num2Denominator: " + num2Denominator);
         System.out.println("operation: " + operation);
 
-        String result = Operations.performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
-        displayResult(desiredCalculation, result);
-        return result;
+        return Operations.performOperation(num1Numerator, num1Denominator, num2Numerator, num2Denominator, operation);
     }
 }
