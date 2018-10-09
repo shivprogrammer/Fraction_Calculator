@@ -73,9 +73,17 @@ public class CheckValidInput {
         int divideSymbolLocation = -1;
         boolean containsUnderscore = false;
         boolean divideSymbolHasCome = false;
+        boolean containsNegative = false;
 
-        for (int i = 0; i < fraction.length(); i++)
-            if (fraction.charAt(i) == '_') {
+        for (int i = 0; i < fraction.length(); i++) {
+            if (fraction.charAt(i) == '-') {
+                if (containsNegative)
+                    return false;
+                containsNegative = true;
+                if (i != 0 && !numbers.containsKey(fraction.charAt(i + 1)))
+                    return false;
+            }
+            else if (fraction.charAt(i) == '_') {
                 if (divideSymbolHasCome) {
                     System.out.println("You have used an invalid mixed number format");
                     return false;
@@ -98,13 +106,6 @@ public class CheckValidInput {
                 divideSymbolHasCome = true;
                 divideSymbolLocation = i;
             }
-            // WORKING WITH NEGATIVE NUMBERS
-//            else if (fraction.charAt(i) == '-') {
-//                if (i != 0 && fraction.charAt(i - 1) != ' ')
-//                    return false;
-//                if (!numbers.containsKey(fraction.charAt(i + 1)))
-//                    return false;
-//            }
             else if (fraction.charAt(i) == '.') {
                 System.out.println("Decimals are not allowed, please use a fraction");
                 return false;
@@ -113,9 +114,10 @@ public class CheckValidInput {
                 System.out.println("There is an invalid character in your input");
                 return false;
             }
+        }
 
         if (!containsDivideSymbol) {
-            System.out.println("Your first parameter is not a fraction.");
+            System.out.println("Your input is not a fraction");
             return false;
         }
 
