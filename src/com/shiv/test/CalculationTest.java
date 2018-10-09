@@ -13,6 +13,10 @@ public class CalculationTest extends Calculation {
         Assert.assertEquals(calculateResult("1/10 + 2/10"), "3/10");
     }
     @Test
+    public void add_inputContainsNegativeFraction_Success() {
+        Assert.assertEquals(calculateResult("-1/10 + 2/10"), "1/10");
+    }
+    @Test
     public void add_resultHasNewDenominator_Success() {
         Assert.assertEquals(calculateResult("1/10 + 4/10"), "1/2");
     }
