@@ -61,6 +61,14 @@ public class CalculationTest extends Calculation {
         Assert.assertEquals(calculateResult("1/3 * 1/3"), "1/9");
     }
     @Test
+    public void multiply_secondFractionIsNegative_Success() {
+        Assert.assertEquals(calculateResult("1/2 * -1/2"), "-1/4");
+    }
+    @Test
+    public void multiply_bothFractionsAreNegative_Success() {
+        Assert.assertEquals(calculateResult("-1/2 * -1/2"), "1/4");
+    }
+    @Test
     public void multiply_denominatorIsZero_False() {
         Assert.assertEquals(calculateResult("10_2/3 * 4/0"), "Your fraction cannot have a denominator of 0");
     }
