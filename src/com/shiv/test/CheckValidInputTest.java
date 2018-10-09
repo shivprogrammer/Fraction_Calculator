@@ -109,6 +109,10 @@ public class CheckValidInputTest extends CheckValidInput {
         Assert.assertEquals(isUserInputValid("4/3 * -7/12"), true);
     }
     @Test
+    public void isUserInputValid_negativeSymbolPlacedIncorrectlyInSecondFraction_Success() {
+        Assert.assertEquals(isUserInputValid("4/3 * 7/-12"), false);
+    }
+    @Test
     public void isUserInputValid_inputBeginsWithRandomArithmeticSymbol_False() {
         Assert.assertEquals(isUserInputValid("+4/3 * 7/12"), false);
     }
