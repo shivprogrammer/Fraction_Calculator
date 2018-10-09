@@ -20,38 +20,38 @@ public class CalculationTest extends Calculation {
     public void add_multipleSpacesBetweenInputElements_Success() {
         Assert.assertEquals(calculateResult("1/2     +      3/2", 3, 15, "1/2", "3/2"), "2");
     }
-//    @Test
-//    public void add_resultHasNewDenominator_Success() {
-//        Assert.assertEquals(calculateResult("1/10 + 4/10"), "1/2");
-//    }
-//    @Test
-//    public void add_numeratorOfSecondFractionIsZero_Success() {
-//        Assert.assertEquals(calculateResult("1/3 + 0/3"), "1/3");
-//    }
-//    @Test
-//    public void add_resultWasNotReduced_Incorrect() {
-//        Assert.assertNotEquals(calculateResult("1/10 + 4/10"), "5/10");
-//    }
-//    @Test
-//    public void add_resultIsMixedNumber_Success() {
-//        Assert.assertEquals(calculateResult("2/3 + 2/3"), "1_1/3");
-//    }
-//    @Test
-//    public void add_resultShouldHaveBeenMixedNumber_Incorrect() {
-//        Assert.assertNotEquals(calculateResult("2/3 + 2/3"), "4/3");
-//    }
-//    @Test
-//    public void add_resultIsWholeNumber_Success() {
-//        Assert.assertEquals(calculateResult("1/3 + 2/3"), "1");
-//    }
-//    @Test
-//    public void add_resultShouldBeWholeNumberNotFraction_Incorrect() {
-//        Assert.assertNotEquals(calculateResult("1/3 + 2/3"), "3/3");
-//    }
-//    @Test
-//    public void add_inputHasMixedAndImproperFraction_Success() {
-//        Assert.assertNotEquals(calculateResult("10_2/3 * 53/5"), "3/3");
-//    }
+    @Test
+    public void add_resultHasNewDenominator_Success() {
+        Assert.assertEquals(calculateResult("1/10 + 4/10", 4, 7, "1/10", "4/10"), "1/2");
+    }
+    @Test
+    public void add_numeratorOfSecondFractionIsZero_Success() {
+        Assert.assertEquals(calculateResult("1/3 + 0/3", 3, 6, "1/3", "0/3"), "1/3");
+    }
+    @Test
+    public void add_resultWasNotReduced_Incorrect() {
+        Assert.assertNotEquals(calculateResult("1/10 + 4/10", 4, 7, "1/10", "4/10"), "5/10");
+    }
+    @Test
+    public void add_resultIsMixedNumber_Success() {
+        Assert.assertEquals(calculateResult("2/3 + 2/3", 3, 6, "2/3", "2/3"), "1_1/3");
+    }
+    @Test
+    public void add_resultShouldHaveBeenMixedNumber_Incorrect() {
+        Assert.assertNotEquals(calculateResult("2/3 + 2/3", 3, 6, "2/3", "2/3"), "4/3");
+    }
+    @Test
+    public void add_resultIsWholeNumber_Success() {
+        Assert.assertEquals(calculateResult("1/3 + 2/3", 3, 6, "1/3", "2/3"), "1");
+    }
+    @Test
+    public void add_resultShouldBeWholeNumberNotFraction_Incorrect() {
+        Assert.assertNotEquals(calculateResult("1/3 + 2/3", 3, 6, "1/3", "2/3"), "3/3");
+    }
+    @Test
+    public void add_inputHasMixedAndImproperFraction_Success() {
+        Assert.assertEquals(calculateResult("10_2/3 + 53/3", 6, 9, "10_2/3", "53/3"), "28_1/3");
+    }
 
     ////////////////////
     // SUBTRACT TESTS //
