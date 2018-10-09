@@ -12,6 +12,13 @@ public class CheckValidInput {
 
         for (int i = 0; i < desiredCalculation.length(); i++) {
             if (desiredCalculation.charAt((i)) == ' ') {
+                if (i == 0) {
+                    System.out.println("Your equation cannot start with a space");
+                    return false;
+                }
+                if (i == desiredCalculation.length() - 1) {
+                    System.out.println("Your equation cannot end with a space");
+                }
                 numberOfSpaces++;
                 if (firstSpaceLocation < 0)
                     firstSpaceLocation = i;

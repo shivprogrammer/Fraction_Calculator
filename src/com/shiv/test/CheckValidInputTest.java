@@ -13,6 +13,14 @@ public class CheckValidInputTest extends CheckValidInput {
         Assert.assertEquals(isUserInputValid(""), false);
     }
     @Test
+    public void isUserInputValid_inputHasExtraSpacesInFront_False() {
+        Assert.assertEquals(isUserInputValid("    1/2 + 3/2"), false);
+    }
+    @Test
+    public void isUserInputValid_inputHasExtraSpacesInBack_False() {
+        Assert.assertEquals(isUserInputValid("1/2 + 3/2     "), false);
+    }
+    @Test
     public void isUserInputValid_inputContainsLetters_False() {
         Assert.assertEquals(isUserInputValid("a1/2 + 3/2b"), false);
     }
