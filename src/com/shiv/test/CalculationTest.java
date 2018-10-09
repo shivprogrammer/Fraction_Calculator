@@ -104,20 +104,20 @@ public class CalculationTest extends Calculation {
     //////////////////
     // DIVIDE TESTS //
     //////////////////
-//    @Test
-//    public void divide_simpleValues_Success() {
-//        Assert.assertEquals(calculateResult("7/8 / 7/5"), "5/8");
-//    }
-//    @Test
-//    public void divide_denominatorIsZero_False() {
-//        Assert.assertEquals(calculateResult("10_2/3 / 4/0"), "Your fraction cannot have a denominator of 0");
-//    }
-//    @Test
-//    public void divide_numeratorOfSecondFractionIsZero_False() {
-//        Assert.assertEquals(calculateResult("10_2/3 / 0/4"), "You cannot divide by a 0 fraction");
-//    }
-//    @Test
-//    public void divide_secondFractionIsNegative_Success() {
-//        Assert.assertEquals(calculateResult("8/9 / -8/9"), "-1");
-//    }
+    @Test
+    public void divide_simpleValues_Success() {
+        Assert.assertEquals(calculateResult("7/8 / 7/5", 3, 6, "7/8", "7/5"), "5/8");
+    }
+    @Test
+    public void divide_denominatorIsZero_False() {
+        Assert.assertEquals(calculateResult("10_2/3 / 4/0", 6, 9, "10_2/3", "4/0"), "Your fraction cannot have a denominator of 0");
+    }
+    @Test
+    public void divide_numeratorOfSecondFractionIsZero_False() {
+        Assert.assertEquals(calculateResult("10_2/3 / 0/4", 6, 9, "10_2/3", "0/4"), "You cannot divide by a 0 fraction");
+    }
+    @Test
+    public void divide_secondFractionIsNegative_Success() {
+        Assert.assertEquals(calculateResult("8/9 / -8/9", 3, 6, "8/9", "-8/9"), "-1");
+    }
 }
