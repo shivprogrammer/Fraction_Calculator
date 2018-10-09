@@ -157,57 +157,40 @@ public class CheckValidInput {
             return false;
         }
 
-        // If input is an improper fraction, check validity and provide useful feedback
+        String improperFraction = null;
+
         if (!containsUnderscore) {
-            try {
-                Long.parseLong(fraction.substring(0, divideSymbolLocation)); // numerator
-            }
-            catch (NumberFormatException e) {
-                System.out.println("The numerator you have chosen is too large and cannot be computed. ");
-                return false;
-            }
-            try {
-                Long.parseLong(fraction.substring(divideSymbolLocation + 1)); // denominator
-                if (Long.parseLong(fraction.substring((divideSymbolLocation + 1))) == 0) {
-                    System.out.println("You cannot have a fraction with a denominator of 0");
-                    return false;
-                }
-            }
-            catch (NumberFormatException e) {
-                System.out.println("The denominator you have chosen is invalid and cannot be computed. ");
-                return false;
-            }
+            improperFraction = fraction;
         }
 
-        // If input is a mixed number, check validity and provide useful feedback
         if (containsDivideSymbol && containsUnderscore) {
-            String improperFraction = getImproperFraction(fraction);
+            improperFraction = getImproperFraction(fraction);
 
             for (int x = 0; x < improperFraction.length(); x++)
                 if (improperFraction.charAt(x) == '/')
                     divideSymbolLocation = x;
+        }
 
-            try {
-                Long.parseLong(improperFraction.substring(0, divideSymbolLocation)); // numerator
-            }
-            catch (NumberFormatException e) {
-                System.out.println("The numerator you have chosen is too large and cannot be computed. ");
-                return false;
-            }
+        try {
+            Long.parseLong(improperFraction.substring(0, divideSymbolLocation)); // numerator
+        }
+        catch (NumberFormatException e) {
+            System.out.println("The numerator you have chosen is too large and cannot be computed. ");
+            return false;
+        }
+        try {
+            Long.parseLong(improperFraction.substring(divideSymbolLocation + 1)); // denominator
 
-            try {
-                Long.parseLong(improperFraction.substring(divideSymbolLocation + 1)); // denominator
-                if (Long.parseLong(improperFraction.substring((divideSymbolLocation + 1))) == 0) {
-                    System.out.println("You cannot have a fraction with a denominator of 0");
-                    return false;
-                }
-            }
-            catch (NumberFormatException e) {
-                System.out.println("The denominator you have chosen is invalid and cannot be computed. ");
+            if (Long.parseLong(improperFraction.substring((divideSymbolLocation + 1))) == 0) {
+                System.out.println("You cannot have a fraction with a denominator of 0");
                 return false;
             }
         }
-
+        catch (NumberFormatException e) {
+                System.out.println("The denominator you have chosen is invalid and cannot be computed. ");
+                return false;
+        }
+        
         return true;
     }
 }
