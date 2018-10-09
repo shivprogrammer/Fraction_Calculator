@@ -16,4 +16,8 @@ public class OperationsTest extends Operations {
     public void reduce_fractionCannotBeReduced_Success() {
         Assert.assertEquals(reduce("7/10"), "7/10");
     }
+    @Test
+    public void reduce_negativeFraction_Success() {
+        Assert.assertEquals(reduce("-35/60"), "-7/12");
+    }
 }

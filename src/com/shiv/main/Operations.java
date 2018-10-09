@@ -35,6 +35,9 @@ public class Operations {
     }
 
     private static String subtract(long firstNumerator, long firstDenominator, long secondNumerator, long secondDenominator) {
+        if (secondNumerator == 0)
+            return Long.toString(firstNumerator) + '/' + Long.toString(firstDenominator);
+
         long newDenominator = findLowestCommonMultiple(firstDenominator, secondDenominator);
         long newNumerator = firstNumerator * (newDenominator / firstDenominator) - secondNumerator * (newDenominator / secondDenominator);
         return Long.toString(newNumerator) + '/' + Long.toString(newDenominator);
@@ -59,7 +62,6 @@ public class Operations {
             return secondNum;
 
         long lowestCommonMultiple = firstNum * secondNum;
-
         while (lowestCommonMultiple % firstNum == 0 && lowestCommonMultiple % secondNum == 0)
             lowestCommonMultiple /= 2;
 
