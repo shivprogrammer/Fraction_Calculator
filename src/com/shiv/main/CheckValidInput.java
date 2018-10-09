@@ -59,7 +59,9 @@ public class CheckValidInput {
             }
         }
 
-        // PROVIDING USER FEEDBACK
+        /////////////////////////////
+        // PROVIDING USER FEEDBACK //
+        /////////////////////////////
         if (numberOfSpaces < 2) {
             System.out.println("Your input: " + desiredCalculation + ", is invalid, please try again: ");
             System.out.println(" ");
